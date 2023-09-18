@@ -17,6 +17,13 @@ Route::get('/dicom', function () {
     return view('dicom');
 });
 
+Route::get('/', function () {
+    return view('master');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
