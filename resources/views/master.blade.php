@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
 
     @yield('header')
+    @vite('resources/css/app.css')
 </head>
 <body>
-        <nav-dicom></nav-dicom>
+        <div id="app"></div>
+        @vite('resources/js/app.js')
         @yield('content')
 </body>
 
