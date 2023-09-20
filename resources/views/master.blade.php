@@ -9,11 +9,11 @@
     <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
 
     @yield('header')
-    @vite('resources/css/app.css')
+    @vite('public/css/app.css')
 </head>
 <body>
         <div id="app"></div>
-        @vite('resources/js/app.js')
+        @vite('public/js/app.js')
         @yield('content')
 </body>
 
