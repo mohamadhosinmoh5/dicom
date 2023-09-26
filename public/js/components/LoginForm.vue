@@ -57,7 +57,6 @@
 				</a>
 			</div>
 			<button
-				@click ="submit"
 				class  = "login mt-[30px] bg-[#7D97F4] text-[#fff] border-2 border-solid border-[#7D97F4] rounded-md font-bold text-[15px] w-max pt-[10px] pb-[10px] pr-[30px] pl-[30px] m-auto hover:bg-blue-500 hover:border-blue-500">
 				LOGIN
 				
@@ -89,8 +88,27 @@
 				this.activeInput = 'password';
 			},
 			submit(){
-				if(this.username.value === '') this.username.invalid = true
-				if(this.password.value === '') this.password.invalid = true
+				if(this.username.value === '')
+					this.username.invalid = true;
+				if(this.password.value === '')
+					this.password.invalid = true;
+				if(this.username.value === '' || this.password.value === '')
+					return;
+
+				axios.get(
+					'http://localhost:5000/login',
+					{
+						username : this.username.value,
+						password : this.password.value,
+					}
+				)
+					.then((response)=> {
+						console.log(response);
+					})
+					.catch(()=> {
+						alert('سرور خود را چک کنید')
+					})
+				;
 			}
 		},
 	};
