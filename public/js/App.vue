@@ -1,10 +1,8 @@
 <template>
-    <div class="admin-panel-app bg-ghostWhite min-h-screen grid grid-cols-[15%_1fr] grid-rows-[max-content_1fr]">
-        <Sidebar />
-        <main class="p-5">
-            <router-view></router-view>
-        </main>
-        <Footer />
+    <div class="admin-panel-app bg-ghostWhite min-h-screen max-h-screen h-screen grid grid-cols-[10%_1fr] grid-rows-[80vh_20vh]">
+        <Sidebar v-if="$route.path !== '/dicom/public/log-in'" />
+        <router-view></router-view>
+        <Footer v-if="$route.path !== '/dicom/public/log-in'"/>
     </div>
 </template>
 <script>
@@ -16,5 +14,9 @@ export default {
         Sidebar,
         Footer,
     },
+    mounted()
+    {
+        console.log(this.$route.path);
+    }
 };
 </script>
