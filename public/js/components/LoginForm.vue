@@ -1,5 +1,5 @@
 <template>
-	<div class = "loginWays flex gap-[100px] relative">
+	<div class = "login-ways flex gap-[100px] relative">
 		<button
 			id    = "button"
 			class = "button text-[#4e51fe] text-[15px] tracking-wide font-bold hover:text-blue-700">By Username
@@ -59,7 +59,6 @@
 			<button
 				class  = "login mt-[30px] bg-[#7D97F4] text-[#fff] border-2 border-solid border-[#7D97F4] rounded-md font-bold text-[15px] w-max pt-[10px] pb-[10px] pr-[30px] pl-[30px] m-auto hover:bg-blue-500 hover:border-blue-500">
 				LOGIN
-				
 			</button>
 		</form>
 	</div>
