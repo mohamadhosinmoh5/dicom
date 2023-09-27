@@ -11,6 +11,8 @@
 import Sidebar from './components/Sidebar.vue';
 import Footer from './components/Footer.vue';
 
+// console.log(this.$router);
+
 export default {
     components: {
         Sidebar,
