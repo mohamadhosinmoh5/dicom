@@ -102,10 +102,15 @@
 					}
 				)
 					.then((response)=> {
-						console.log(response);
+						if(response.data.error) {
+							alert(response.data.error)
+							return
+						};
+						if(response.data.success){
+							
+						}
 					})
 					.catch(()=> {
-						alert('سرور خود را چک کنید')
 					})
 				;
 			}
