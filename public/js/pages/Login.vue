@@ -1,5 +1,5 @@
 <template>
-    <div class="loginPage h-screen grid grid-cols-[3fr_2fr] row-[1/3] col-[1/3]" >
+    <div class="loginPage h-screen grid grid-cols-[50%_50%] row-[1/3] col-[1/3]" >
         <div class="logo h-screen bg-gradient-to-r from-[#1C39BB] to-[#7D97F4] relative flex justify-center items-center">
             <img
                 src="../../assets/pics/Logo.png"
@@ -9,7 +9,7 @@
         </div>
         <div class="loginForm bg-[#e9f0ff] flex items-center flex-col justify-center relative">
             <svg
-                class="absolute top-0 right-[94%] h-full"
+                class="absolute top-[-5px] right-[94%] h-full"
                 width="100"
                 height="989"
                 viewBox="0 0 128 989"
