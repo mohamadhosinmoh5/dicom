@@ -9,7 +9,7 @@
         </div>
         <div class="loginForm bg-[#e9f0ff] flex items-center flex-col justify-center relative">
             <svg
-                class="absolute top-[-5px] right-[94%] h-full"
+                class="absolute top-0 right-[94%] h-full scale-110"
                 width="100"
                 height="989"
                 viewBox="0 0 128 989"
