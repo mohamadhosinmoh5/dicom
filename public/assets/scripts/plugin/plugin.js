@@ -1,6 +1,6 @@
 let PLUGIN = {};
 PLUGIN.List = [];
-var assetsUrl = document.getElementById('assets').value;
+var assetsUrl = document.getElementById('baseURL').value;
 
 
 PLUGIN.loadScript = function (path, name, scriptType) {
@@ -25,7 +25,8 @@ window.addEventListener("load", function (event) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
     var request = new XMLHttpRequest();
-    request.open('GET', "/data/plugin.json");
+    var url = document.getElementById('baseURL').value;
+    request.open('GET', url + "/data/plugin.json");
     request.responseType = 'json';
     request.send();
     request.onload = function () {

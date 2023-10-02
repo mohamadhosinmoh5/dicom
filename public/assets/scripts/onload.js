@@ -230,9 +230,10 @@ function loadLdcmview() {
 
   getByid("textWC").style.display = getByid("textWW").style.display = "none";
 
+  var url = document.getElementById('baseURL').value;
   //載入config檔的設定
-  readDicomTags("../data/dicomTags.json", setLabelPadding);
-  readConfigJson("../data/config.json", readAllJson, readJson);
+  readDicomTags(url + "/data/dicomTags.json", setLabelPadding);
+  readConfigJson(url + "/data/config.json", readAllJson, readJson);
 
   //設定icon邊框
   drawBorder(getByid("MouseOperation"));
@@ -279,6 +280,7 @@ function readDicomTags(url, setLabelPadding) {
   //LB代表left  bottom
   //RB代表right bottom
   request.onload = function () {
+    console.log(url);
     var DicomResponse = request.response["default"];
     dicomtags.labelPadding = parseInt(DicomResponse["labelPadding"]) ? parseInt(DicomResponse["labelPadding"]) : 5;
     dicomtags.leftLabelPadding = parseInt(DicomResponse["leftLabelPadding"]) ? parseInt(DicomResponse["leftLabelPadding"]) : dicomtags.labelPadding;
@@ -360,6 +362,7 @@ function readConfigJson(url, readAllJson, readJson) {
   request.open('GET', url);
   request.responseType = 'json';
   request.send();
+  console.log(url);
   request.onload = function () {
     var DicomResponse = request.response;
     config.QIDO = {};

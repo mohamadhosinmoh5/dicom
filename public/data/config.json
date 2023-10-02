@@ -20,7 +20,7 @@
             "includefield": false,
             "enableXml2Dcm":false,
             "Xml2DcmUrl":"/upload",
-            "target": "http://127.0.0.1:8000/dicom",
+            "target": "http://localhost/dicom",
             "token": {
                 "apikey":"",
                 "bearer":""
@@ -46,7 +46,7 @@
             "includefield": false,
             "enableXml2Dcm":false,
             "Xml2DcmUrl":"/upload",
-            "target": "http://127.0.0.1:8000/dicom",
+            "target": "http://localhost/dicom",
             "token": {
                 "apikey":"",
                 "bearer":""

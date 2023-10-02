@@ -10,10 +10,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <!-- <link rel="stylesheet" type="text/css" href="{{url('assets')}}/css/vr.css"> -->
-  <!-- <link rel="icon" href="{{url('assets')}}/image/icon/title/bluelight.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="{{url('assets')}}/css/vr.css">
+    <script defer src="{{url('assets')}}/scripts/external/other/lodash.min.js"></script>
+    <script defer src="{{url('assets')}}/scripts/external/other/interact.js"></script>
+    <script defer src="{{url('assets')}}/scripts/external/cornerstone/cornerstone.min.js"></script>
+    <script defer src="{{url('assets')}}/scripts/external/cornerstone/dicomParser.js"></script>
+    <script defer src="{{url('assets')}}/scripts/external/cornerstone/dataDictionary.js"></script>
 
-  <script src="{{url('assets')}}/scripts/external/other/lodash.min.js"></script>
-  <script src="{{url('assets')}}/scripts/external/other/interact.js"></script>
+    <script defer src="{{url('assets')}}/scripts/external/cornerstone/cornerstoneWADOImageLoader.bundle.min.js"></script>
+    <!-- <script defer src="{{url('assets')}}/scripts/external/threejs/customWebWorkersConfig.js"></script> -->
+    <script defer src="{{url('assets')}}/scripts/external/threejs/initializeWebWorkers.js"></script>
+
+
+    <script defer src="{{url('assets')}}/scripts/toolfunction.js"></script>
+    <script defer src="{{url('assets')}}/scripts/variable.js"></script>
+    <script defer src="{{url('assets')}}/scripts/mark.js"></script>
+
+    <script defer src="{{url('assets')}}/scripts/eventmanager.js"></script>
+
+    <script defer src="{{url('assets')}}/scripts/plugin/table.js"></script>
+
+    <script defer src="{{url('assets')}}/scripts/viewer.js"></script>
+    <script defer src="{{url('assets')}}/scripts/common.js"></script>
+    <script defer src="{{url('assets')}}/scripts/other.js"></script>
+    <script defer src="{{url('assets')}}/scripts/readsome.js"></script>
+    <script defer src="{{url('assets')}}/scripts/onload.js"></script>
+    <script defer src="{{url('assets')}}/scripts/label.js"></script>
+    <script defer src="{{url('assets')}}/scripts/mtss.js"></script>
+    <script defer src="{{url('assets')}}/scripts/play_video.js"></script>
+    <script defer src="{{url('assets')}}/scripts/html.js"></script>
+    <script defer src="{{url('assets')}}/scripts/newscript/mousetool.js"></script>
+    <script defer src="{{url('assets')}}/scripts/newscript/scroll.js"></script>
+    <script defer src="{{url('assets')}}/scripts/newscript/windowlevel.js"></script>
+    <script defer src="{{url('assets')}}/scripts/newscript/zoom.js"></script>
+    <script defer src="{{url('assets')}}/scripts/newscript/rotate.js"></script>
+    <script defer src="{{url('assets')}}/scripts/external/other/html2canvas.min.js"></script>
+    <link rel="icon" href="{{url('assets')}}/image/icon/title/bluelight.png" type="image/x-icon" />
+  <!--
+
 
   
   <script src="{{url('assets')}}/scripts/external/cornerstone/cornerstone.min.js"></script>
@@ -63,14 +97,16 @@
 </body>
 
 @yield('javascript')
-        <!-- <script type="module">
-          import { decodeImageFrame1 } from "/assets/scripts/external/cornerstone/decode/decodeImageFrame.js";
-          decodeImageFrame = decodeImageFrame1;
-        </script> -->
-        <!-- <script src="{{url('assets')}}/scripts/external/threejs/customWebWorkersConfig.js"></script>
+        <script type="module">
+            import { decodeImageFrame1 } from "{{url('assets')}}/scripts/external/cornerstone/decode/decodeImageFrame.js";
+            decodeImageFrame = decodeImageFrame1;
+        </script>
+        <script src="{{url('assets')}}/scripts/external/threejs/customWebWorkersConfig.js"></script>
         <script src="{{url('assets')}}/scripts/plugin/plugin.js"></script>
         <script src="{{url('assets')}}/scripts/newscript/measure.js"></script>
         <script src="{{url('assets')}}/scripts/newscript/angle.js"></script>
-<script src="{{url('assets')}}/vue/app.js"></script> -->
+        <!-- 
+<script src="{{url('assets')}}/vue/app.js"></script>
+-->
 
 </html>

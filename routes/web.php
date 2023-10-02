@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/dicom', function () {
-//     return view('dicom');
-// });
+Route::get('/dicom', function () {
+    return view('dicom');
+});
 
 // Route::get('/', function () {
 //     return view('master');
