@@ -1,6 +1,5 @@
 <template>
 	dicom
-  
 </template>
 
 <script>

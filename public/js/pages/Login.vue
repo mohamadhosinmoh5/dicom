@@ -1,9 +1,9 @@
 <template>
-    <div class="loginPage h-screen grid grid-cols-[50%_50%] row-[1/3] col-[1/3]" >
+    <div class="loginPage overflow-hidden h-screen grid grid-cols-[50%_50%] row-[1/3] col-[1/3]" >
         <div class="logo h-screen bg-gradient-to-r from-[#1C39BB] to-[#7D97F4] relative flex justify-center items-center">
             <img
                 src="../../assets/pics/Logo.png"
-                alt=""
+                alt="logo"
                 class="logoPic w-[100%] h-[100%] object-contain"
             />
         </div>
@@ -31,9 +31,5 @@ export default {
     components: {
         LoginForm,
     },
-    data() {
-        return {};
-    },
-    methods: {},
 };
 </script>
