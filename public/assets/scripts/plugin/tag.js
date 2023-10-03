@@ -1,5 +1,6 @@
 var openWriteTAG = false;
 var assetsUrl = document.getElementById('assets').value;
+var url = document.getElementById('baseURL').value;
 function loadWriteTAG() {
     var span = document.createElement("SPAN")
     span.innerHTML =
@@ -70,7 +71,7 @@ function readImageTags(url) {
         });
     }
 }
-readImageTags("../data/imageTags.json");
+readImageTags(""+url+"/data/imageTags.json");
 
 getByid("medicalSpecialtyTag").onchange = function () {
 

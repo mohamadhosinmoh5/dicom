@@ -25,10 +25,10 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Route::get('{any}', function(){
-    return view('master');
-})
-    ->where('any', '.*');
+// Route::get('{any}', function(){
+//     return view('master');
+// })
+//     ->where('any', '.*');
 // Route::get('/login', function () {
 //     return view('login');
 // });
