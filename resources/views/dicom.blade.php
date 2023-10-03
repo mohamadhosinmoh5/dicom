@@ -69,7 +69,7 @@
 </head>
 
 <body style="background-color:#000000;" onmousewheel="/*return false;*/">
-
+  <p class="text-danger">{{csrf_token()}}</p>
   <input type="hidden" id="assets" value="{{url('assets')}}">
   <input type="hidden" id="baseURL" value="{{url('')}}">
   <header class="page-header" id="page-header">
