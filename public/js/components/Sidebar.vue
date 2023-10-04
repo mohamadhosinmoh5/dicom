@@ -4,14 +4,14 @@
             v-for="link in sidebarLinks"
             :key="link"
             :to="link.to"
-            class="side-bar-link relative flex items-center gap-4 w-full h-9 text-base font-bold text-powderBlue pr-[12%] hover:text-[#6E80B7] ml-[20px] "
+            class="group side-bar-link relative flex items-center gap-4 w-full h-9 text-base font-bold text-powderBlue pr-[12%] hover:text-[#6E80B7] ml-[20px] "
         >
             <img
                 id="img"
                 :src = "link.imgURL" alt=""
                 class=" w-[50px] h-[50px] "
             >
-            <span class="invisible ">
+            <span class="hidden group-hover:block">
                 {{ link.text }}
             </span>
         </router-link>
