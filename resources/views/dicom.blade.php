@@ -69,7 +69,6 @@
 </head>
 
 <body style="background-color:#000000;" onmousewheel="/*return false;*/">
-
   <input type="hidden" id="assets" value="{{url('assets')}}">
   <input type="hidden" id="baseURL" value="{{url('')}}">
   <header class="page-header" id="page-header">
@@ -220,7 +219,7 @@
         id="magnifierCanvas"></canvas></div>
 
         <script type="module">
-          import { decodeImageFrame1 } from "/assets/scripts/external/cornerstone/decode/decodeImageFrame.js";
+          import { decodeImageFrame1 } from "{{url('')}}/assets/scripts/external/cornerstone/decode/decodeImageFrame.js";
           decodeImageFrame = decodeImageFrame1;
         </script>
         <script src="{{url('assets')}}/scripts/external/threejs/customWebWorkersConfig.js"></script>

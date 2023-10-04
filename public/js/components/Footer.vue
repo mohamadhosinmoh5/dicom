@@ -1,13 +1,83 @@
 <template>
-  <div class="footer">footer</div>
+    <footer
+        class="h-[30vh] grid grid-rows-[30px_1fr_20px] gap-[2px] px-[3%] py-[1%]"
+    >
+        <div class="action-box flex justify-center gap-[20%]">
+            <Button type="text" text="results" @on-click="results" />
+            <Button type="text" text="analyze" @on-click="results" />
+        </div>
+        <div class="overflow-auto">
+            <Table :headerList="table.headerList" :data="table.data" />
+        </div>
+        <span class="text-center"> 2023 </span>
+    </footer>
 </template>
 
 <script>
-export default {
+import Table from "./Table.vue";
+import Button from "./Button.vue";
 
-}
+export default {
+    components: {
+        Table,
+        Button,
+    },
+    data() {
+        return {
+            table: {
+                headerList: [
+                    {
+                        name: "results",
+                        label: "results",
+                    },
+                    {
+                        name: "imageName",
+                        label: "image name",
+                    },
+                    {
+                        name: "series",
+                        label: "series",
+                    },
+                    {
+                        name: "date",
+                        label: "date",
+                    },
+                    {
+                        name: "sequence",
+                        label: "sequence",
+                    },
+                    {
+                        name: "encoding",
+                        label: "encoding",
+                    },
+                ],
+                data: [
+                    [
+                        "results1",
+                        "image name1",
+                        "series1",
+                        "date1",
+                        "sequence1",
+                        "encoding1",
+                    ],
+                    [
+                        "results2",
+                        "image name2",
+                        "series2",
+                        "date2",
+                        "sequence2",
+                        "encoding2",
+                    ],
+                ],
+            },
+        };
+    },
+    methods: {
+        results() {
+            alert("wow");
+        },
+    },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
