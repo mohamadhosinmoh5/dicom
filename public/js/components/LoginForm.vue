@@ -15,12 +15,13 @@
             </button>
             <span class="text-[#4e51fe]">or</span>
             <button
-                class="text-[#4e51fe] text-[15px] tracking-wide font-bold hover:text-blue-700 p-[10px]"
+                class="text-[#4e51fe] text-[15px] tracking-wide font-bold p-[10px] opacity-60"
                 :class="{
                     'border-b-2 border-solid border-[#4e51fe]':
                         loginWay === 'sms',
                 }"
                 @click="activeSMS"
+                disabled="true"
             >
                 By SMS
             </button>
