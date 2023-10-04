@@ -1,11 +1,7 @@
 <template>
     <footer
-        class="h-[30vh] grid grid-rows-[30px_1fr_20px] gap-[2px] px-[3%] py-[1%]"
+        class="h-[30vh] grid grid-rows-[1fr_20px] gap-[2px] px-[3%] py-[1%]"
     >
-        <div class="action-box flex justify-center gap-[20%]">
-            <Button type="text" text="results" @on-click="results" />
-            <Button type="text" text="analyze" @on-click="results" />
-        </div>
         <div class="overflow-auto">
             <Table :headerList="table.headerList" :data="table.data" />
         </div>
@@ -15,12 +11,10 @@
 
 <script>
 import Table from "./Table.vue";
-import Button from "./Button.vue";
 
 export default {
     components: {
         Table,
-        Button,
     },
     data() {
         return {
