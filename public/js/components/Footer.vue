@@ -3,7 +3,7 @@
         class="h-[30vh] grid grid-rows-[1fr_20px] gap-[2px] px-[3%] py-[1%]"
     >
         <div class="overflow-auto">
-            <Table :headerList="table.headerList" :data="table.data" />
+            <Table :headers="table.headers" :data="table.data" />
         </div>
         <span class="text-center"> 2023 </span>
     </footer>
@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             table: {
-                headerList: [
+                headers: [
                     {
                         name: "results",
                         label: "results",

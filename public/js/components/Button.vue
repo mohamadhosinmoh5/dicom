@@ -1,5 +1,5 @@
 <template>
-    <button class="flex items-center justify-center p-[5px] bg-[#4E51FE] text-white rounded-sm" @click="$emit('on-click')">
+    <button class="flex items-center justify-center p-[5px] bg-[#4E51FE] text-white rounded-sm opacity-90 hover:opacity-100" @click="$emit('on-click')">
         <i v-if="type === 'icon'" class="material-icons material-icons-round">{{ text }}</i>
         <span v-else>{{ text }}</span>
     </button>
