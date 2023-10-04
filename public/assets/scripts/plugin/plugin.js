@@ -1,6 +1,6 @@
 let PLUGIN = {};
 PLUGIN.List = [];
-var assetsUrl = document.getElementById('baseURL').value;
+var assetsUrl = document.getElementById('assets').value;
 
 
 PLUGIN.loadScript = function (path, name, scriptType) {

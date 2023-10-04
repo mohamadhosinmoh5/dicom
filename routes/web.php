@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,31 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::POST('/post/login', [LoginController::class,'login']);
+
 Route::get('/dicom', function () {
     return view('dicom');
 });
 
-// Route::get('/', function () {
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+// Route::get('{any}', function(){
 //     return view('master');
-// });
-
-// Route::get('/dicom-viewer', function () {
-//     return view('master');
-// });
-
-// Route::get('/settings', function () {
-//     return view('master');
-// });
-
-
-Route::get('{any}', function(){
-    return view('master');
-})
-    ->where('any', '.*');
+// })
+//     ->where('any', '.*');
 // Route::get('/login', function () {
 //     return view('login');
 // });
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
