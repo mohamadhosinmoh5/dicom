@@ -9,8 +9,7 @@
             <img
                 :src = "link.imgURL" alt=""
                 class=" w-[50px] h-[50px]"
-                >
-                {{ link.text }}
+            />
         </router-link>
     </div>
 </template>
