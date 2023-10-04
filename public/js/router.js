@@ -12,7 +12,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/dicom/public', redirect: '/dicom/public/image-viewer'},
-        {path: '/dicom/public/img-viewer', component: DicomViewer},
+        {path: '/dicom/public/image-viewer', component: DicomViewer},
         {path: '/dicom/public/three-d-viewer', component: ThreeDViewer},
         {path: '/dicom/public/compare-data', component: CompareData},
         {path: '/dicom/public/generate-report', component: GenerateReport},
