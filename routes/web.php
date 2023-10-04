@@ -14,27 +14,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('master');
+// });
+
+Route::get('/image-viewer', function () {
+    return view('master');
+});
+
+Route::get('/compare-data', function () {
+    return view('master');
+});
+
 Route::get('/', function () {
     return view('master');
 });
 
-Route::get('/dicom-viewer', function () {
-    return view('master');
-});
+// Route::POST('/post/login', [LoginController::class,'login']);
 
-Route::POST('/post/login', [LoginController::class,'login']);
+// Route::get('/dicom', function () {
+//     return view('dicom');
+// });
 
-Route::get('/dicom', function () {
-    return view('dicom');
-});
+// Route::get('/image-viewer', function () {
+//     return view('master');
+// });
 
-Route::get('/dicom-viewer', function () {
-    return view('master');
-});
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
+// Route::group(['prefix' => 'admin'], function () {
+//     Voyager::routes();
+// });
 
 
 Route::get('{any}', function(){
