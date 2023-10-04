@@ -9,7 +9,7 @@
             <img
                 id="img"
                 :src = "link.imgURL" alt=""
-                class=" w-[50px] h-[50px] "
+                class=" w-[40px] h-[40px] "
             >
             <div class="hidden absolute left-[59px] top-[-3px] group-hover:block bg-[#c7d3ec] opacity-100 text-[#4E51FE] text-[15px] p-[5px] rounded ">
                 <span class="z-10">{{ link.text }}</span>
