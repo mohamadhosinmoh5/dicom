@@ -1,9 +1,9 @@
 <template>
-    <table class="w-full border border-solid border-[#3E5E9F] rounded-md">
+    <table class="w-full border border-solid border-[#3E5E9F] rounded-md text-xs">
         <thead>
             <tr>
                 <td
-                    v-for="header in headerList"
+                    v-for="header in headers"
                     :key="header.name"
                     class="text-center bg-[#3E5E9F33]"
                     :style="{ textWrap: 'nowrap'}"
@@ -33,7 +33,7 @@
 
 <script>
 export default {
-    props: ['headerList', 'data'],
+    props: ['headers', 'data'],
     mounted(){
         console.log(this.$refs);
     }
