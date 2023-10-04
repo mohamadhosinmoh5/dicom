@@ -14,10 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('master');
+});
+
+Route::get('/dicom-viewer', function () {
+    return view('master');
+});
+
 Route::POST('/post/login', [LoginController::class,'login']);
 
 Route::get('/dicom', function () {
     return view('dicom');
+});
+
+Route::get('/dicom-viewer', function () {
+    return view('master');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -25,9 +37,10 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-// Route::get('{any}', function(){
-//     return view('master');
-// })
+Route::get('{any}', function(){
+    return view('master');
+});
+
 //     ->where('any', '.*');
 // Route::get('/login', function () {
 //     return view('login');
