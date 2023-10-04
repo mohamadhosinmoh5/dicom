@@ -16,6 +16,14 @@
 </template>
 
 <script>
+    import imgViewer from '../../assets/pics/imageIcon.png';
+    import ThreeDIcon from '../../assets/pics/3DIcon.png';
+    import chartIcon from '../../assets/pics/chartIcon.png';
+    import compareIcon from '../../assets/pics/compareIcon.png';
+    import reportIcon from '../../assets/pics/reportIcon.png';
+    import settingsIcon from '../../assets/pics/settingsIcon.png';
+    import addIcon from '../../assets/pics/addIcon.png';
+    import analysisIcon from '../../assets/pics/analysisIconn.png';
 export default {
     data() {
         return {
@@ -23,42 +31,42 @@ export default {
                 {
                     to     : "/dicom/public/image-viewer",
                     text   : "DicomViewer",
-                    imgURL : "../../assets/pics/imageIcon.png"
+                    imgURL : imgViewer,
                 },
                 {
                     to     : "/dicom/public/three-d-viewer",
                     text   : "ThreeDViewer",
-                    imgURL : "../../assets/pics/3DIcon.png"
+                    imgURL : ThreeDIcon
                 },
                 {
                     to: "/dicom/public/table-graph",
                     text: "TableGraph",
-                    imgURL : "../../assets/pics/chartIcon.png"
+                    imgURL : chartIcon
                 },
                 {
                     to: "/dicom/public/compare-data",
                     text: "CompareData",
-                    imgURL : "../../assets/pics/compareIcon.png"
+                    imgURL : compareIcon,
                 },
                 {
                     to: "/dicom/public/generate-report",
                     text: "GenerateReport",
-                    imgURL : "../../assets/pics/reportIcon.png"
+                    imgURL : reportIcon,
                 },
                 {
                     to: "/dicom/public/settings",
                     text: "Settings",
-                    imgURL : "../../assets/pics/settingsIcon.png"
+                    imgURL : settingsIcon
                 },
                 {
                     to: "/dicom/public/add",
                     text: "Add",
-                    imgURL : "../../assets/pics/addIcon.png"
+                    imgURL : addIcon
                 },
                 {
                     to: "/dicom/public/analysis",
                     text: "Analysis",
-                    imgURL : "../../assets/pics/analysisIconn.png"
+                    imgURL : analysisIcon,
                 },
                 {
                     to: "/dicom/public/log-in",
