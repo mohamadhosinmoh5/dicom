@@ -48,11 +48,24 @@
             <div class="charts-container w-full h-full">
                 <div
                     v-show="currentChartArea === 'area_chart'"
-                    class="area-chars-box grid grid-cols-[1fr_1fr_1fr_1fr] items-center gap-[2%]"
-                ></div>
+                    class="line-chars-box grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
+                >
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Line :data="charts.line.XComponent.data" :options="charts.line.XComponent.options" />
+                    </div>
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Line :data="charts.line.YComponent.data" :options="charts.line.YComponent.options" />
+                    </div>
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Line :data="charts.line.ZComponent.data" :options="charts.line.ZComponent.options" />
+                    </div>
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Line :data="charts.line.AbsoluteComponent.data" :options="charts.line.AbsoluteComponent.options" />
+                    </div>
+                </div>
                 <div
                     v-show="currentChartArea === 'bar_chart'"
-                    class="area-chars-box flex items-center justify-between h-full"
+                    class="flex items-center justify-between h-full"
                 >
                     <div
                         class="w-[220px] h-full relative flex items-center justify-center"
@@ -89,18 +102,12 @@
                 </div>
                 <div
                     v-show="currentChartArea === 'signal_cellular_alt'"
-                    class="area-chars-box grid grid-cols-[1fr_1fr_1fr_1fr] items-center gap-[2%]"
+                    class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center gap-[2%]"
                 >
-                    <div class="w-[220px] h-full relative flex items-center justify-center">
-                        <!-- <Bubble
-                            :data="charts.bubble.XComponent.data"
-                            :options="charts.bubble.XComponent.options"
-                        /> -->
-                    </div>
                 </div>
                 <div
                     v-show="currentChartArea === 'bubble_chart'"
-                    class="area-chars-box grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
+                    class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
                 >
                     <div class="w-[250px] h-full relative flex items-center justify-center">
                         <Bubble
@@ -135,7 +142,7 @@
 <script>
     import Table from "../components/Table.vue";
     import Button from "../components/Button.vue";
-    import { Bar, Bubble } from "vue-chartjs";
+    import { Bar, Bubble, Line } from "vue-chartjs";
     import {
         Chart as ChartJS,
         Title,
@@ -145,6 +152,7 @@
         CategoryScale,
         LinearScale,
         PointElement,
+        LineElement,
     } from "chart.js";
 
     ChartJS.register(
@@ -154,7 +162,8 @@
         BarElement,
         CategoryScale,
         LinearScale,
-        PointElement
+        PointElement,
+        LineElement
     );
 
     export default {
@@ -162,11 +171,12 @@
             Table,
             Button,
             Bar,
-            Bubble
+            Bubble,
+            Line
         },
         data() {
             return {
-                currentChartArea: "bubble_chart",
+                currentChartArea: "timeline",
                 summaryStatistics: {
                     headers: [
                         {
@@ -588,6 +598,128 @@
                                             {x: Math.round(Math.random() * 100), y: Math.round(Math.random() * 100), z: 2},
                                         ]
                                     }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        }
+                    },
+                    line: {
+                        XComponent: {
+                            data: {
+                                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                                datasets: [
+                                    {
+                                        label: 'XComponent',
+                                        backgroundColor: '#4E51FE',
+                                        borderColor: '#4E51FE',
+                                        cubicInterpolationMode: 'monotone',
+                                        tension: 0.4,
+                                        data: [
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                        ]
+                                    },
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        },
+                        YComponent: {
+                            data: {
+                                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                                datasets: [
+                                    {
+                                        label: 'YComponent',
+                                        backgroundColor: '#4E51FE',
+                                        borderColor: '#4E51FE',
+                                        cubicInterpolationMode: 'monotone',
+                                        tension: 0.4,
+                                        data: [
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                        ]
+                                    },
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        },
+                        ZComponent: {
+                            data: {
+                                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                                datasets: [
+                                    {
+                                        label: 'ZComponent',
+                                        backgroundColor: '#4E51FE',
+                                        borderColor: '#4E51FE',
+                                        cubicInterpolationMode: 'monotone',
+                                        tension: 0.4,
+                                        data: [
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                        ]
+                                    },
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        },
+                        AbsoluteComponent: {
+                            data: {
+                                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                                datasets: [
+                                    {
+                                        label: 'AbsoluteComponent',
+                                        backgroundColor: '#4E51FE',
+                                        borderColor: '#4E51FE',
+                                        cubicInterpolationMode: 'monotone',
+                                        tension: 0.4,
+                                        data: [
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 100),
+                                        ]
+                                    },
                                 ]
                             },
                             options: {
