@@ -47,7 +47,7 @@
             </div>
             <div class="charts-container w-full h-full">
                 <div
-                    v-show="currentChartArea === 'area_chart'"
+                    v-if="currentChartArea === 'area_chart'"
                     class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
                 >
                     <div class="w-[250px] h-full relative flex items-center justify-center">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div
-                    v-show="currentChartArea === 'bar_chart'"
+                    v-if="currentChartArea === 'bar_chart'"
                     class="flex items-center justify-between h-full"
                 >
                     <div
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div
-                    v-show="currentChartArea === 'pie_chart'"
+                    v-if="currentChartArea === 'pie_chart'"
                     class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center"
                 >
                     <div class="w-[250px] h-full relative flex items-center justify-center">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 <div
-                    v-show="currentChartArea === 'bubble_chart'"
+                    v-if="currentChartArea === 'bubble_chart'"
                     class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
                 >
                     <div class="w-[250px] h-full relative flex items-center justify-center">
