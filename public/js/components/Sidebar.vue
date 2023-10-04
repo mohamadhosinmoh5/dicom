@@ -1,10 +1,10 @@
 <template>
-    <div class="page-link-containers row-[1/3] py-10 flex flex-col gap-5 w-full h-full gap-[30px]">
+    <div class="page-link-containers row-[1/3] py-10 flex flex-col gap-6 w-full h-full border-r border-r-[#4E51FE] ">
         <router-link
             v-for="link in sidebarLinks"
             :key="link"
             :to="link.to"
-            class="group side-bar-link relative flex items-center gap-4 w-full h-9 text-base font-bold text-powderBlue pr-[12%] hover:text-[#6E80B7] ml-[20px] "
+            class="group side-bar-link relative flex items-center gap-4 w-full h-9 text-base font-bold text-powderBlue pr-[12%] hover:text-[#6E80B7] ml-[20px]  "
         >
             <img
                 id="img"
