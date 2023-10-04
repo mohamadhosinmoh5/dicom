@@ -36,8 +36,8 @@
                 />
                 <Button
                     type="icon"
-                    text="signal_cellular_alt"
-                    @on-click="() => (currentChartArea = 'signal_cellular_alt')"
+                    text="pie_chart"
+                    @on-click="() => (currentChartArea = 'pie_chart')"
                 />
                 <Button
                     type="icon"
@@ -48,7 +48,7 @@
             <div class="charts-container w-full h-full">
                 <div
                     v-show="currentChartArea === 'area_chart'"
-                    class="line-chars-box grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
+                    class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
                 >
                     <div class="w-[250px] h-full relative flex items-center justify-center">
                         <Line :data="charts.line.XComponent.data" :options="charts.line.XComponent.options" />
@@ -101,9 +101,21 @@
                     </div>
                 </div>
                 <div
-                    v-show="currentChartArea === 'signal_cellular_alt'"
-                    class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center gap-[2%]"
+                    v-show="currentChartArea === 'pie_chart'"
+                    class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center"
                 >
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Pie :data="charts.pie.XComponent.data" :options="charts.pie.XComponent.options" />
+                    </div>
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Pie :data="charts.pie.YComponent.data" :options="charts.pie.YComponent.options" />
+                    </div>
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Pie :data="charts.pie.ZComponent.data" :options="charts.pie.ZComponent.options" />
+                    </div>
+                    <div class="w-[250px] h-full relative flex items-center justify-center">
+                        <Pie :data="charts.pie.AbsoluteComponent.data" :options="charts.pie.AbsoluteComponent.options" />
+                    </div>
                 </div>
                 <div
                     v-show="currentChartArea === 'bubble_chart'"
@@ -142,7 +154,7 @@
 <script>
     import Table from "../components/Table.vue";
     import Button from "../components/Button.vue";
-    import { Bar, Bubble, Line } from "vue-chartjs";
+    import { Bar, Bubble, Line, Pie } from "vue-chartjs";
     import {
         Chart as ChartJS,
         Title,
@@ -153,6 +165,7 @@
         LinearScale,
         PointElement,
         LineElement,
+        ArcElement
     } from "chart.js";
 
     ChartJS.register(
@@ -163,7 +176,8 @@
         CategoryScale,
         LinearScale,
         PointElement,
-        LineElement
+        LineElement,
+        ArcElement
     );
 
     export default {
@@ -172,11 +186,12 @@
             Button,
             Bar,
             Bubble,
-            Line
+            Line,
+            Pie
         },
         data() {
             return {
-                currentChartArea: "timeline",
+                currentChartArea: "pie_chart",
                 summaryStatistics: {
                     headers: [
                         {
@@ -618,16 +633,16 @@
                                         cubicInterpolationMode: 'monotone',
                                         tension: 0.4,
                                         data: [
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
                                         ]
                                     },
                                 ]
@@ -727,6 +742,92 @@
                                 maintainAspectRatio: false,
                             },
                         }
+                    },
+                    pie: {
+                        XComponent: {
+                            data: {
+                                labels: ['XComponent'],
+                                datasets: [
+                                    {
+                                        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16', '#658975'],
+                                        data: [
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                        ]
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        },
+                        YComponent: {
+                            data: {
+                                labels: ['YComponent'],
+                                datasets: [
+                                    {
+                                        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16', '#658975'],
+                                        data: [
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                        ]
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        },
+                        ZComponent: {
+                            data: {
+                                labels: ['ZComponent'],
+                                datasets: [
+                                    {
+                                        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16', '#658975'],
+                                        data: [
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                        ]
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        },
+                        AbsoluteComponent: {
+                            data: {
+                                labels: ['AbsoluteComponent'],
+                                datasets: [
+                                    {
+                                        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16', '#658975'],
+                                        data: [
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                            Math.round(Math.random() * 10),
+                                        ]
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                            },
+                        },
                     }
                 },
             };
