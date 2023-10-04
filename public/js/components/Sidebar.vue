@@ -1,17 +1,17 @@
 <template>
-    <div class="page-link-containers row-[1/3] py-10 flex flex-col gap-6 w-full h-full border-r border-r-[#4E51FE] ">
+    <div class="page-link-containers row-[1/3] py-10 flex flex-col items-center gap-6 w-full h-full border-r border-r-[#4E51FE] ">
         <router-link
             v-for="link in sidebarLinks"
             :key="link"
             :to="link.to"
-            class="group side-bar-link relative flex items-center gap-4 w-full h-9 text-base font-bold text-powderBlue pr-[12%] hover:text-[#6E80B7] ml-[20px]  "
+            class="group side-bar-link flex items-center justify-center relative w-[50px] h-[50px] min-w-[50px] min-h-[50px] max-w-[50px] max-h-[50px] rounded-full hover:bg-[#4E51FE26]"
         >
             <img
                 id="img"
                 :src = "link.imgURL" alt=""
-                class=" w-[40px] h-[40px] "
+                class=" w-[70%] h-[70%]"
             >
-            <div class="hidden absolute left-[59px] top-[-3px] group-hover:block bg-[#c7d3ec] opacity-100 text-[#4E51FE] text-[15px] p-[5px] rounded ">
+            <div class="hidden absolute left-[65px] top-[5px] group-hover:block bg-[#c7d3ec] opacity-100 text-[#4E51FE] text-[15px] p-[5px] rounded z-[20] font-bold ">
                 <span class=" relative z-10">{{ link.text }}</span>
                 <span class="absolute left-[-6px] bottom-[9px] rotate-45 w-[15px] h-[15px] bg-[#c7d3ec] rounded "></span>
             </div>
