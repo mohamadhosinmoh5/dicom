@@ -1,6 +1,6 @@
 <template>
-    <div class="table-page grid grid-cols-[55%_44%] gap-[1%] p-[5px]">
-        <div class="slice-table grid gap-[2px] h-max">
+    <div class="table-page grid grid-cols-[55%_44%] grid-rows-[max-content_1fr] gap-[10px] p-[5px]">
+        <div class="slice-table grid gap-[2px] h-max col-[1/2] row-[1/2]">
             <div class="action-btns flex items-center justify-between">
                 <div class="flex items-center justify-center gap-[2px]">
                     <Button
@@ -28,7 +28,8 @@
                     @on-click="sliceTableDisplay(index)"
                 />
             </div>
-            <Table
+            <div class="overflow-auto">
+                <Table
                 v-show="sliceTableNum % 2 === 0"
                 :headers="sliceTable1.headers"
                 :data="sliceTableData"
@@ -38,14 +39,20 @@
                 :headers="sliceTable2.headers"
                 :data="sliceTableData2"
             />
+            </div>
         </div>
-        <div class="coordinate3D-table overflow-auto">
+        <div class="coordinate3D-table overflow-auto col-[2/3] row-[1/3]">
             <Table
                 :headers="coordinate3D.headers"
                 :data="coordinate3D.data"
             />
         </div>
-        <div class="deviation-table"></div>
+        <div class="deviation-table overflow-auto col-[1/2] rows-[2/3]">
+            <Table
+                :headers="deviation.headers"
+                :data="deviation.data"
+            />
+        </div>
     </div>
 </template>
 
@@ -172,74 +179,10 @@ export default {
                     Math.random().toFixed(3),
                     Math.random().toFixed(3),
                 ],
-                [
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                ],
-                [
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                ],
             ];
         },
         sliceTableData2() {
             return [
-                [
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                ],
-                [
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                    Math.random().toFixed(3),
-                ],
                 [
                     Math.random().toFixed(3),
                     Math.random().toFixed(3),
@@ -788,6 +731,81 @@ export default {
                     ],
                 ]
             },
+            deviation: {
+                headers: [
+                    {
+                        name: "",
+                        label: "",
+                    },
+                    {
+                        name: "dx",
+                        label: "dx",
+                    },
+                    {
+                        name: "dy",
+                        label: "dy",
+                    },
+                    {
+                        name: "dz",
+                        label: "dz",
+                    },
+                    {
+                        name: "dz",
+                        label: "dz",
+                    },
+                ],
+                data: [
+                    [
+                        'Maximum Absolure Deviation(mm)',
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                    ],
+                    [
+                        'Minimum Absolure Deviation(mm)',
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                    ],
+                    [
+                        'Mean Absolure Deviation(mm)',
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                    ],
+                    [
+                        'Standard Absolure Deviation(mm)',
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                    ],
+                    [
+                        'Maximum Absolure Cordinate(mm)',
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                    ],
+                    [
+                        'Minimum Absolure Cordinate(mm)',
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                    ],
+                    [
+                        'Mean Absolure Cordinate(mm)',
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                        (Math.random() * 100).toFixed(3),
+                    ],
+                ]
+            }
         };
     },
     methods: {
