@@ -11,7 +11,7 @@
                 :src = "link.imgURL" alt=""
                 class=" w-[50px] h-[50px] "
             >
-            <span class="hidden group-hover:block">
+            <span class="hidden group-hover:block bg-[#3E5E9F] text-[#fff] text-[15px] p-[5px] rounded ">
                 {{ link.text }}
             </span>
         </router-link>
