@@ -11,9 +11,9 @@
                 :src = "link.imgURL" alt=""
                 class=" w-[50px] h-[50px] "
             >
-            <div class="hidden absolute left-[59px] top-[-3px] group-hover:block bg-[#3e5e9f3b] text-[#4E51FE] text-[15px] p-[5px] rounded ">
-                <span>{{ link.text }}</span>
-                <span class="absolute w-[5px] h-[5px] bg-[#3e5e9f5c]"></span>
+            <div class="hidden absolute left-[59px] top-[-3px] group-hover:block bg-[#c7d3ec] opacity-100 text-[#4E51FE] text-[15px] p-[5px] rounded ">
+                <span class="z-10">{{ link.text }}</span>
+                <span class="absolute left-[-6px] bottom-[9px] rotate-45 w-[15px] h-[15px] bg-[#c7d3ec] "></span>
             </div>
         </router-link>
     </div>
