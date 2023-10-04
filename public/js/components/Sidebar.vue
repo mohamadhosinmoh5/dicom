@@ -11,9 +11,10 @@
                 :src = "link.imgURL" alt=""
                 class=" w-[50px] h-[50px] "
             >
-            <span class="hidden absolute left-[59px] top-[-3px] group-hover:block bg-[#3e5e9f5c] text-[#4E51FE] text-[15px] p-[5px] rounded ">
-                {{ link.text }}
-            </span>
+            <div class="hidden absolute left-[59px] top-[-3px] group-hover:block bg-[#3e5e9f3b] text-[#4E51FE] text-[15px] p-[5px] rounded ">
+                <span>{{ link.text }}</span>
+                <span class="absolute w-[5px] h-[5px] bg-[#3e5e9f5c]"></span>
+            </div>
         </router-link>
     </div>
 </template>
@@ -25,8 +26,6 @@
     import compareIcon from '../../assets/pics/compareIcon.png';
     import reportIcon from '../../assets/pics/reportIcon.png';
     import settingsIcon from '../../assets/pics/settingsIcon.png';
-    import addIcon from '../../assets/pics/addIcon.png';
-    import analysisIcon from '../../assets/pics/analysisIconn.png';
 export default {
     data() {
         return {
@@ -60,16 +59,6 @@ export default {
                     to: "/dicom/public/settings",
                     text: "Settings",
                     imgURL : settingsIcon
-                },
-                {
-                    to: "/dicom/public/add",
-                    text: "Add",
-                    imgURL : addIcon
-                },
-                {
-                    to: "/dicom/public/analysis",
-                    text: "Analysis",
-                    imgURL : analysisIcon,
                 },
                 {
                     to: "/dicom/public/log-in",
