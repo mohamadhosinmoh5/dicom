@@ -171,14 +171,14 @@ export default {
                 };
 
             axios
-                .post("http://localhost:3000/login", params)
+                .get("http://localhost:3000/login", params)
                 .then((response) => {
                     if (response.data.error) {
                         alert(response.data.error);
                         return;
                     }
                     if (response.data.success) {
-                        console.log("SUCCESS");
+                        this.$router.push('/dicom/public/image-viewer')
                     }
                 })
                 .catch((error) => {
