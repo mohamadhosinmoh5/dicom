@@ -67,7 +67,7 @@
                         for="remember"
                         class="remember flex gap-0.5 text-[13px] text-[#7f7070] font-normal cursor-pointer"
                     >
-                        <input type="checkbox" id="remember" class="remember" />
+                        <input type="checkbox" id="remember" class="remember" v-model="rememberMe" />
                         Remember me
                     </label>
                     <a
@@ -123,7 +123,7 @@ export default {
         return {
             loginWay: "username",
             username: {
-                value: "",
+                value: localStorage.getItem('gPhantomUsername'),
                 invalid: false,
             },
             password: {
@@ -138,6 +138,7 @@ export default {
                 value: "",
                 invalid: false,
             },
+            rememberMe: true,
         };
     },
     methods: {
@@ -178,7 +179,9 @@ export default {
                         alert(response.data.error);
                         return;
                     }
-                    if (response.data.success) {
+                    if (response.data.success){
+                        if(this.rememberMe && this.loginWay === "username")
+                            localStorage.setItem('gPhantomUsername', this.username.value);
                         this.$router.push('/dicom/public/image-viewer')
                     }
                 })
