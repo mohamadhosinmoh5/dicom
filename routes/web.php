@@ -18,6 +18,25 @@ use Illuminate\Support\Facades\Route;
 //     return view('master');
 // });
 
+
+// Route::POST('/post/login', [LoginController::class,'login']);
+
+Route::get('/dicom', function () {
+    return 1;
+    return view('dicom');
+});
+
+Route::get('/di', function () {
+    return view('dicom');
+});
+
+// Route::get('/image-viewer', function () {
+//     return view('master');
+// });
+
+// Route::group(['prefix' => 'admin'], function () {
+//     Voyager::routes();
+// });
 Route::get('/image-viewer', function () {
     return view('master');
 });
@@ -29,20 +48,6 @@ Route::get('/compare-data', function () {
 Route::get('/', function () {
     return view('master');
 });
-
-// Route::POST('/post/login', [LoginController::class,'login']);
-
-// Route::get('/dicom', function () {
-//     return view('dicom');
-// });
-
-// Route::get('/image-viewer', function () {
-//     return view('master');
-// });
-
-// Route::group(['prefix' => 'admin'], function () {
-//     Voyager::routes();
-// });
 
 
 Route::get('{any}', function(){
