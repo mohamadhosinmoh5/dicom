@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
 
-import DicomViewer from './pages/DicomViewer.vue';
+// import DicomViewer from './pages/DicomViewer.vue';
 import ThreeDViewer from './pages/ThreeDViewer.vue';
 import CompareData from './pages/CompareData.vue';
 import GenerateReport from './pages/GenerateReport.vue';
@@ -12,7 +12,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/dicom/public', redirect: '/dicom/public/image-viewer'},
-        {path: '/dicom/public/image-viewer', component: DicomViewer},
+        {path: '/dicom/public/image-viewer'},
         {path: '/dicom/public/three-d-viewer', component: ThreeDViewer},
         {path: '/dicom/public/compare-data', component: CompareData},
         {path: '/dicom/public/generate-report', component: GenerateReport},

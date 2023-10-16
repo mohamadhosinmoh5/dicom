@@ -217,7 +217,8 @@
     </label>
     <div id="magnifierDiv" style="z-index:40;position: absolute;pointer-events: none;"><canvas
         id="magnifierCanvas"></canvas></div>
-
+        <input type="file" multiple name="" id="wowwow">
+  </div>
         <script type="module">
           import { decodeImageFrame1 } from "{{url('')}}/assets/scripts/external/cornerstone/decode/decodeImageFrame.js";
           decodeImageFrame = decodeImageFrame1;
@@ -226,6 +227,7 @@
         <script src="{{url('assets')}}/scripts/plugin/plugin.js"></script>
         <script src="{{url('assets')}}/scripts/newscript/measure.js"></script>
         <script src="{{url('assets')}}/scripts/newscript/angle.js"></script>
+        <script src="{{url('js')}}/dicomViewer.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <template>
     <footer
-        class="h-[30vh] grid grid-rows-[1fr_20px] gap-[2px] px-[3%] py-[1%]"
+        class="h-[20vh] grid grid-rows-[1fr_20px] gap-[2px] px-[3%] py-[1%]"
     >
         <div class="overflow-auto">
             <Table :headers="table.headers" :data="table.data" />

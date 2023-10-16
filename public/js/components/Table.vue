@@ -34,9 +34,9 @@
 <script>
 export default {
     props: ['headers', 'data'],
-    mounted(){
-        console.log(this.$refs);
-    }
+    // mounted(){
+    //     console.log(this.$refs);
+    // }
 }
 </script>
 

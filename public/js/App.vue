@@ -1,22 +1,27 @@
 <template>
-    <div class="admin-panel-app bg-ghostWhite min-h-screen max-h-screen h-screen grid grid-cols-[6%_1fr] grid-rows-[70vh_30vh] overflow-hidden bg-[#E9F0FF] border-t border-t-[#4E51FE] border-b border-b-[#4E51FE]">
+    <div
+        class="admin-panel-app bg-ghostWhite min-h-screen max-h-screen h-screen grid grid-cols-[6%_1fr] grid-rows-[80vh_20vh] overflow-hidden bg-[#E9F0FF] border-t border-t-[#4E51FE] border-b border-b-[#4E51FE]"
+    >
         <Sidebar v-if="$route.path !== '/dicom/public/log-in'" />
+        <DicomViewer v-show="$route.path === '/dicom/public/image-viewer'" />
         <router-view></router-view>
-        <Footer v-if="$route.path !== '/dicom/public/log-in'"/>
+        <Footer v-if="$route.path !== '/dicom/public/log-in'" />
     </div>
 </template>
 <script>
-import Sidebar from './components/Sidebar.vue';
-import Footer from './components/Footer.vue';
+import Sidebar from "./components/Sidebar.vue";
+import Footer from "./components/Footer.vue";
+import DicomViewer from "./pages/DicomViewer.vue";
 
 export default {
     components: {
         Sidebar,
+        DicomViewer,
         Footer,
     },
-    mounted()
-    {
-        console.log(this.$route);
-    }
+    // mounted()
+    // {
+    //     console.log(this.$route);
+    // }
 };
 </script>
