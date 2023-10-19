@@ -68,16 +68,16 @@
   </style>
 </head>
 
-<body style="background-color:#000000;" onmousewheel="/*return false;*/">
+<body style="background-color:#3E5E9F33;" onmousewheel="/*return false;*/">
   <input type="hidden" id="assets" value="{{url('assets')}}">
   <input type="hidden" id="baseURL" value="{{url('')}}">
   <header class="page-header" id="page-header">
     <span id="icon-list">
-      <span id="openFile_span"><img class="img" type="file" alt="開檔" id="openFile"
+      <span id="openFile_span" style="display: none;"><img class="img" type="file" alt="開檔" id="openFile"
           src="{{url('assets')}}/image/icon/black/openfile.png" width="50" height="50"></span>
-      <span id="MouseOperation_span"><img class="img VR MPR SEG" alt="平移與縮放" id="MouseOperation"
+      <span id="MouseOperation_span" style="display: none;"><img class="img VR MPR SEG" alt="平移與縮放" id="MouseOperation"
           src="{{url('assets')}}/image/icon/black/b_Pan.png" width="50" height="50"></span>
-      <span id="b_Scroll_span"><img class="img MPR" alt="b_Scroll" id="b_Scroll" src="{{url('assets')}}/image/icon/black/b_Scroll.png"
+      <span id="b_Scroll_span" style="display: none;"><img class="img MPR" alt="b_Scroll" id="b_Scroll" src="{{url('assets')}}/image/icon/black/b_Scroll.png"
           width="50" height="50"></span>
       <span id="annotation1_span"><img class="img" alt="分隔" id="annotation1"
           src="{{url('assets')}}/image/icon/black/b_LayoutWithinViewport.png" width="50" height="50"></span>
@@ -111,7 +111,7 @@
         </div>
       </span>
 
-      <span id="playvideo_span"><img class="img" alt="播放" id="playvideo" src="{{url('assets')}}/image/icon/black/b_CinePlay.png"
+      <span id="playvideo_span" style="display: none;"><img class="img" alt="播放" id="playvideo" src="{{url('assets')}}/image/icon/black/b_CinePlay.png"
           width="50" height="50"></span>
       <span id="MarkButton_span"><img class="img VR MPR" alt="標記" id="MarkButton" src="{{url('assets')}}/image/icon/black/fist0.png"
           width="50" height="50"></span>
@@ -170,8 +170,7 @@
     </div>
 
     <div id="SplitViewportDiv" style="background-color:#4D000044;">
-      <font color="white">1x1:<input type="radio" class="split_radio" name="split_radio" id="radio_1x1"
-          checked="true" />　</font>
+      <font color="white">1x1:<input type="radio" class="split_radio" name="split_radio" id="radio_1x1" checked="true" />　</font>
       <font color="white">1x2:<input type="radio" class="split_radio" name="split_radio" id="radio_1x2" />　</font>
       <font color="white">2x1:<input type="radio" class="split_radio" name="split_radio" id="radio_2x1" />　</font>
       <font color="white">2x2:<input type="radio" class="split_radio" name="split_radio" id="radio_2x2" />　</font>
@@ -200,7 +199,7 @@
     <input type="file" id="myfile" multiple="multiple" style='display:none'>
   </header>
   <div class="form-group" id="form-group">
-    <label class="control-label col-sm-1" for="wadoURL">URL</label>
+    <!-- <label class="control-label col-sm-1" for="wadoURL">URL</label> -->
     <div class="container">
       <div id="LeftPicture"
         style="overflow-y: scroll;display: flex;flex-direction: column;position: absolute;z-index: 9;height:100%-50px;"
