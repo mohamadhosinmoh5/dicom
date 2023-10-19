@@ -109,15 +109,12 @@
         <div id="openMeasureDIv" style="position:absolute;left: 0;top: 50px; white-space:nowrap;z-index: 100; width: 500; display: none;background: #80a2e8; padding: 5px; border-radius: 5px;">
           <span id="removeRuler_span">
             <span id="removeRuler" class="material-icons material-icons-round"> disabled_by_default </span>
-            <!-- <img alt="清除測量" id="removeRuler" src="{{url('assets')}}/image/icon/black/X.png" width="50" height="50"> -->
           </span>
           <span id="MeasureRuler_span">
             <span id="MeasureRuler" class="material-icons material-icons-round">straighten</span>
-            <!-- <img alt="測量" id="MeasureRuler" src="{{url('assets')}}/image/icon/black/b_DistanceMeasurement.png" width="50" height="50"> -->
           </span>
           <span id="AngleRuler_span">
             <span id="AngleRuler" class="material-icons material-icons-round">square_foot</span>
-            <!-- <img alt="角度"  src="{{url('assets')}}/image/icon/black/b_AngleMeasurement.png" width="50" height="50"> -->
           </span>
         </div>
       </span>
