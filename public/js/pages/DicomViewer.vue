@@ -12,24 +12,10 @@
 </template>
 
 <script>
-import '../../assets/scripts/html.js';
 export default {
     props: {
-        images: {
-            type: Array,
-            default: [],
-        },
-        
+
     },
-    mounted(){
-        let dicomIframe = this.$refs.dicomIframe
-        // const dicomIframe = 
-        setTimeout(() => {
-            console.log(dicomIframe.contentWindow.document.getElementById('myfile'));
-            // importImages(this.images);
-        }, 10000);
-        // console.log(getByid("markAlphaText"))
-    }
 };
 </script>
 
