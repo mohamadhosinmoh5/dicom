@@ -242,7 +242,7 @@ function exitMPR2()
     o3dImage = [];
     thicknessList_MPR = [];
 
-    getByid("MouseOperation").click();
+    getByid("b_Scroll_span").click();
 }
 function initMPR2()
 {
