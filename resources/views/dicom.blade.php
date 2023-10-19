@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
   <link rel="stylesheet" type="text/css" href="{{url('assets')}}/css/vr.css">
+  <link rel="stylesheet" type="text/css" href="{{url('js')}}/app.css">
   <link rel="icon" href="{{url('assets')}}/image/icon/title/bluelight.png" type="image/x-icon" />
 
   <script src="{{url('assets')}}/scripts/external/other/lodash.min.js"></script>
@@ -79,34 +80,44 @@
           src="{{url('assets')}}/image/icon/black/b_Pan.png" width="50" height="50"></span>
       <span id="b_Scroll_span" style="display: none;"><img class="img MPR" alt="b_Scroll" id="b_Scroll" src="{{url('assets')}}/image/icon/black/b_Scroll.png"
           width="50" height="50"></span>
-      <span id="annotation1_span"><img class="img" alt="分隔" id="annotation1"
-          src="{{url('assets')}}/image/icon/black/b_LayoutWithinViewport.png" width="50" height="50"></span>
-      <span id="MouseRotate_span"><img class="img MPR" alt="旋轉" id="MouseRotate"
-          src="{{url('assets')}}/image/icon/black/b_Rotate 90 degrees clockwise.png" width="50" height="50"></span>
-      <span id="WindowRevision_span"><img class="img VR MPR SEG" alt="Window Level" id="WindowRevision"
-          src="{{url('assets')}}/image/icon/black/b_Window.png" width="50" height="50"></span>
-      <span id="zoom_span"><img class="img" alt="放大鏡" id="zoom" src="{{url('assets')}}/image/icon/black/b_Zoom.png" width="50"
-          height="50"></span>
-      <span id="horizontal_flip_span"><img class="img" alt="水平翻轉" id="horizontal_flip"
-          src="{{url('assets')}}/image/icon/black/b_FlipHorizontally.png" width="50" height="50"></span>
-      <span id="vertical_flip_span"><img class="img" alt="垂直翻轉" id="vertical_flip" src="{{url('assets')}}/image/icon/black/b_垂直翻轉.png"
-          width="50" height="50"></span>
-      <span id="color_invert_span"><img class="img" alt="色彩反轉" id="color_invert"
-          src="{{url('assets')}}/image/icon/black/b_InvertGrayscale.png" width="50" height="50"></span>
-      <span id="unlink_span"><img class="img" alt="連接" id="unlink"
-          src="{{url('assets')}}/image/icon/black/b_unlink translation synchronization.png" width="50" height="50"></span>
+      <span id="annotation1_span">
+        <span alt="annotation1" id="annotation1" class="material-icons material-icons-round img"> grid_view </span>
+      </span>
+      <span id="MouseRotate_span">
+        <span id="MouseRotate" class="material-icons material-icons-round img MPR">refresh</span>
+      </span>
+      <span id="WindowRevision_span">
+          <span id="WindowRevision" class="material-icons material-icons-round img VR MPR SEG">brightness_6</span>
+      </span>
+      <span id="zoom_span">
+        <span id="zoom" class="material-icons material-icons-round img">search</span>
+      </span>
+      <span id="horizontal_flip_span">
+        <span id="horizontal_flip" class="material-icons material-icons-round img">360</span>
+      </span>
+      <span id="vertical_flip_span">
+        <span id="vertical_flip" id="horizontal_flip" class="material-icons material-icons-round img" style="transform: rotate(90deg)">360</span>
+      </span>
+      <span id="color_invert_span">
+        <span id="color_invert" class="material-icons material-icons-round img">invert_colors</span>
+      </span>
+      <span id="unlink_span">
+        <span id="unlink" class="material-icons material-icons-round img">link</span>
+      </span>
       <span style="position:relative;">
-        <img class="img" id="openMeasureImg" src="{{url('assets')}}/image/icon/black/M.png" width="50" height="50">
-        <div id="openMeasureDIv" style="position:absolute;left: 0;white-space:nowrap;z-index: 100;
-        width: 500; display: none;background-color: black;">
+        <span id="openMeasureImg" class="material-icons material-icons-round img">square_foot</span>
+        <div id="openMeasureDIv" style="position:absolute;left: 0;top: 50px; white-space:nowrap;z-index: 100; width: 500; display: none;background: #80a2e8; padding: 5px; border-radius: 5px;">
           <span id="removeRuler_span">
-            <img alt="清除測量" id="removeRuler" src="{{url('assets')}}/image/icon/black/X.png" width="50" height="50">
+            <span id="removeRuler" class="material-icons material-icons-round"> disabled_by_default </span>
+            <!-- <img alt="清除測量" id="removeRuler" src="{{url('assets')}}/image/icon/black/X.png" width="50" height="50"> -->
           </span>
           <span id="MeasureRuler_span">
-            <img alt="測量" id="MeasureRuler" src="{{url('assets')}}/image/icon/black/b_DistanceMeasurement.png" width="50" height="50">
+            <span id="MeasureRuler" class="material-icons material-icons-round">straighten</span>
+            <!-- <img alt="測量" id="MeasureRuler" src="{{url('assets')}}/image/icon/black/b_DistanceMeasurement.png" width="50" height="50"> -->
           </span>
           <span id="AngleRuler_span">
-            <img alt="角度" id="AngleRuler" src="{{url('assets')}}/image/icon/black/b_AngleMeasurement.png" width="50" height="50">
+            <span id="AngleRuler" class="material-icons material-icons-round">square_foot</span>
+            <!-- <img alt="角度"  src="{{url('assets')}}/image/icon/black/b_AngleMeasurement.png" width="50" height="50"> -->
           </span>
         </div>
       </span>

@@ -71,3 +71,20 @@
     /* -webkit-font-feature-settings: 'liga'; */
     -webkit-font-smoothing: antialiased;
 }
+
+#icon-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 50px;
+}
+
+#icon-list > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    color: rgb(41, 41, 250);
+    cursor: pointer;
+}
