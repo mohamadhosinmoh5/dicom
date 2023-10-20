@@ -9,54 +9,60 @@ var assetsUrl = document.getElementById('assets').value;
 var buffer_mpr_X = 0;
 var buffer_mpr_Y = 0;
 
-function loadMPR() {
+function loadMPR()
+{
     var span = document.createElement("SPAN");
-    span.innerHTML = `<img class="img MPR" alt="3d" id="ImgMPR" src="${assetsUrl}/image/icon/black/b_AdvancedMode_off.png" width="50" height="50">`;
+    span.innerHTML = '<span id="ImgMPR" class="material-icons material-icons-round img MPR"> equalizer </span>';
+    // span.innerHTML = `<img class="img MPR" alt="3d" id="ImgMPR" src="${assetsUrl}/image/icon/black/b_AdvancedMode_off.png" width="50" height="50">`;
     getByid("icon-list").appendChild(span);
 
     var span = document.createElement("SPAN");
-    span.innerHTML = `<label style="color: #ffffff;" id="mprLightLabel">position<input type="checkbox" checked="true" name="mprLight"
-    id="mprLight"></label>`
+    span.innerHTML = `<label style="color: #ffffff;" id="mprLightLabel">position<input type="checkbox" checked="true" name="mprLight" id="mprLight"></label>`;
     getByid("page-header").appendChild(span);
     getByid("mprLightLabel").style.display = "none";
 }
 loadMPR();
 
-function loadMPR_UI() {
-    if (!getByid("MouseOperation_MPR")) {
+function loadMPR_UI()
+{
+    if (!getByid("MouseOperation_MPR"))
+    {
         var img = document.createElement("IMG");
         img.src = getByid("MouseOperation").src;
         img.id = "MouseOperation_MPR";
         img.className = "MPR_icon";
         img.width = img.height = "50";
-        img.style.filter = "sepia(100%)"
+        img.style.filter = "sepia(100%)";
         getByid("MouseOperation_span").appendChild(img);
     }
-    if (!getByid("WindowRevision_MPR")) {
+    if (!getByid("WindowRevision_MPR"))
+    {
         var img = document.createElement("IMG");
         img.src = getByid("WindowRevision").src;
         img.id = "WindowRevision_MPR";
         img.className = "MPR_icon";
         img.width = img.height = "50";
-        img.style.filter = "sepia(100%)"
+        img.style.filter = "sepia(100%)";
         getByid("WindowRevision_span").appendChild(img);
     }
-    if (!getByid("b_Scroll_MPR")) {
+    if (!getByid("b_Scroll_MPR"))
+    {
         var img = document.createElement("IMG");
         img.src = getByid("b_Scroll").src;
         img.id = "b_Scroll_MPR";
         img.className = "MPR_icon";
         img.width = img.height = "50";
-        img.style.filter = "sepia(100%)"
+        img.style.filter = "sepia(100%)";
         getByid("b_Scroll_span").appendChild(img);
     }
-    if (!getByid("MouseRotate_MPR")) {
+    if (!getByid("MouseRotate_MPR"))
+    {
         var img = document.createElement("IMG");
         img.src = getByid("MouseRotate").src;
         img.id = "MouseRotate_MPR";
         img.className = "MPR_icon";
         img.width = img.height = "50";
-        img.style.filter = "sepia(100%)"
+        img.style.filter = "sepia(100%)";
         getByid("MouseRotate_span").appendChild(img);
     }
 }
@@ -67,7 +73,8 @@ getByid("b_Scroll_MPR").style.display = "none";
 getByid("MouseRotate_MPR").style.display = "none";
 //getByid("WindowLevelDiv_MPR").style.display = "none";
 
-function enterMPR_UI() {
+function enterMPR_UI()
+{
     getByid("MouseOperation_MPR").style.display = "";
     getByid("WindowRevision_MPR").style.display = "";
     getByid("b_Scroll_MPR").style.display = "";
@@ -81,7 +88,8 @@ function enterMPR_UI() {
     openLeftImgClick = false;
 }
 
-function exitMPR_UI() {
+function exitMPR_UI()
+{
     getByid("MouseOperation_MPR").style.display = "none";
     getByid("WindowRevision_MPR").style.display = "none";
     getByid("b_Scroll_MPR").style.display = "none";
@@ -95,27 +103,32 @@ function exitMPR_UI() {
     openLeftImgClick = true;
 }
 
-function drawBorderMPR(element) {
+function drawBorderMPR(element)
+{
     var MPR_icon = getClass("MPR_icon");
-    for (var i = 0; i < MPR_icon.length; i++) Css(MPR_icon[i], 'border', "");
+    for (var i = 0;i < MPR_icon.length;i++) Css(MPR_icon[i], 'border', "");
     Css(element, 'border', 3 + "px #FFFFFF solid");
     Css(element, 'borderRadius', "3px 3px 3px 3px");
 }
 
-getByid("b_Scroll_MPR").onclick = function () {
+getByid("b_Scroll_MPR").onclick = function ()
+{
     if (this.enable == false) return;
     //BL_mode = 'scroll';
     set_BL_model('scroll');
-    scroll(); 
-    Touchmove = function (e, e2) {
+    scroll();
+    Touchmove = function (e, e2)
+    {
 
         var currX = getCurrPoint(e)[0];
         var currY = getCurrPoint(e)[1];
-        if (e2) {
+        if (e2)
+        {
             var currX2 = getCurrPoint(e2)[0];
             var currY2 = getCurrPoint(e2)[1];
         }
-        if (TouchDownCheck == true && rightTouchDown == false) {
+        if (TouchDownCheck == true && rightTouchDown == false)
+        {
             var nextInstanceNumber = -1;
             var sop = GetViewport().sop;
             let index = SearchUid2Index(sop);
@@ -125,29 +138,38 @@ getByid("b_Scroll_MPR").onclick = function () {
                 k = index[2];
             var Onum = parseInt(Patient.Study[i].Series[j].Sop[k].InstanceNumber);
             var list = sortInstance(sop);
-            for (l = 0; l < list.length; l++) {
-                if (list[l].InstanceNumber == Onum) {
+            for (l = 0;l < list.length;l++)
+            {
+                if (list[l].InstanceNumber == Onum)
+                {
                     break;
                 }
             }
-            if (Math.abs(currY - GetViewport().originalPointY) < Math.abs(currX - GetViewport().originalPointX)) {
-                if (currX < GetViewport().originalPointX - 3) {
+            if (Math.abs(currY - GetViewport().originalPointY) < Math.abs(currX - GetViewport().originalPointX))
+            {
+                if (currX < GetViewport().originalPointX - 3)
+                {
                     nextFrame(viewportNumber, -1);
                     if (l - 1 < 0) nextInstanceNumber = list.length - 1;
                     else nextInstanceNumber = l - 1;
-                } else if (currX > GetViewport().originalPointX + 3) {
+                } else if (currX > GetViewport().originalPointX + 3)
+                {
                     nextFrame(viewportNumber, 1);
-                    if (list[l].InstanceNumber == Onum) {
+                    if (list[l].InstanceNumber == Onum)
+                    {
                         if (l + 1 >= list.length) nextInstanceNumber = 0;
                         else nextInstanceNumber = l + 1;
                     }
                 }
-            } else {
-                if (currY < GetViewport().originalPointY - 3) {
+            } else
+            {
+                if (currY < GetViewport().originalPointY - 3)
+                {
                     nextFrame(viewportNumber, -1);
                     if (l - 1 < 0) nextInstanceNumber = list.length - 1;
                     else nextInstanceNumber = l - 1;
-                } else if (currY > GetViewport().originalPointY + 3) {
+                } else if (currY > GetViewport().originalPointY + 3)
+                {
                     nextFrame(viewportNumber, 1);
                     if (l + 1 >= list.length) nextInstanceNumber = 0;
                     else nextInstanceNumber = l + 1;
@@ -155,67 +177,77 @@ getByid("b_Scroll_MPR").onclick = function () {
             }
             GetViewport().originalPointX = currX;
             GetViewport().originalPointY = currY;
-            if (openMPR == true && nextInstanceNumber > -1) {
+            if (openMPR == true && nextInstanceNumber > -1)
+            {
                 Anatomical_Section(nextInstanceNumber);
                 Anatomical_Section2(nextInstanceNumber);
             }
         }
-    }
+    };
     drawBorderMPR(this);
-}
+};
 
-getByid("WindowRevision_MPR").onclick = function () {
+getByid("WindowRevision_MPR").onclick = function ()
+{
     if (this.enable == false) return;
     //BL_mode = 'scroll';
     set_BL_model('windowlevel');
     windowlevel();
     drawBorderMPR(this);
-}
+};
 
-getByid("MouseRotate_MPR").onclick = function () {
+getByid("MouseRotate_MPR").onclick = function ()
+{
     if (this.enable == false) return;
     //BL_mode = 'scroll';
     set_BL_model('rotate');
     rotate();
     drawBorderMPR(this);
-}
+};
 
-getByid("MouseOperation_MPR").onclick = function () {
+getByid("MouseOperation_MPR").onclick = function ()
+{
     if (this.enable == false) return;
     //BL_mode = 'mouseTool_MPR';
     var MPR_div = getClass("MPR_div");
-    for (var i = 0; i < MPR_div.length; i++) MPR_div[i].style.display = "none";
+    for (var i = 0;i < MPR_div.length;i++) MPR_div[i].style.display = "none";
     set_BL_model('mouseTool_MPR');
     GetViewport(2).removeEventListener("mousemove", Mousemove, false);
     GetViewport(2).removeEventListener("mousedown", Mousedown, false);
     GetViewport(2).removeEventListener("mouseup", Mouseup, false);
-   /// GetViewport(2).removeEventListener("touchstart", TouchstartF, false);
-   /// GetViewport(2).removeEventListener("touchmove", TouchmoveF, false);
-   /// GetViewport(2).removeEventListener("touchend", TouchendF, false);
+    /// GetViewport(2).removeEventListener("touchstart", TouchstartF, false);
+    /// GetViewport(2).removeEventListener("touchmove", TouchmoveF, false);
+    /// GetViewport(2).removeEventListener("touchend", TouchendF, false);
     GetViewport(2).removeEventListener("wheel", Wheel, false);
 
-    Wheel = function (e) {
+    Wheel = function (e)
+    {
         if (!openMPR) return;
         var viewport = GetViewport(), canvas = viewport.canvas();
         var nextInstanceNumber = 0;
         var break1 = false;
         var viewportNum = viewportNumber;
 
-        for (var z = 0; z < Viewport_Total; z++) {
+        for (var z = 0;z < Viewport_Total;z++)
+        {
             var break1 = false;
             if (openLink == true) viewportNum = z;
             var currX1 = (e.pageX - canvas.getBoundingClientRect().left - GetViewport().newMousePointX - 100) * (GetViewport().imageWidth / parseInt(GetViewport().canvas().style.width));
             var currY1 = (e.pageY - canvas.getBoundingClientRect().top - GetViewport().newMousePointY - 100) * (GetViewport().imageHeight / parseInt(GetViewport().canvas().style.height));
             var sop = GetViewport(viewportNum).sop;
-            try { var [i, j, k] = SearchUid2Index(viewport.sop) } catch (ex) { return; }
+            try {var [i, j, k] = SearchUid2Index(viewport.sop);} catch (ex) {return;}
             var Onum = parseInt(Patient.Study[i].Series[j].Sop[k].InstanceNumber);
             var list = sortInstance(sop);
             if (list.length <= 1) continue;
-            if (e.deltaY < 0) {
-                for (var l = 0; l < list.length; l++) {
+            if (e.deltaY < 0)
+            {
+                for (var l = 0;l < list.length;l++)
+                {
                     if (break1 == true) break;
-                    if (list[l].InstanceNumber == Onum) {
-                        if (l - 1 < 0) {
+                    if (list[l].InstanceNumber == Onum)
+                    {
+                        if (l - 1 < 0)
+                        {
                             loadAndViewImage(list[list.length - 1].imageId, viewportNum);
                             nextInstanceNumber = list.length - 1;
                             break1 = true;
@@ -227,11 +259,15 @@ getByid("MouseOperation_MPR").onclick = function () {
                         break;
                     }
                 }
-            } else {
-                for (var l = 0; l < list.length; l++) {
+            } else
+            {
+                for (var l = 0;l < list.length;l++)
+                {
                     if (break1 == true) break;
-                    if (list[l].InstanceNumber == Onum) {
-                        if (l + 1 >= list.length) {
+                    if (list[l].InstanceNumber == Onum)
+                    {
+                        if (l + 1 >= list.length)
+                        {
                             loadAndViewImage(list[0].imageId, viewportNum);
                             nextInstanceNumber = 0;
                             break1 = true;
@@ -250,7 +286,8 @@ getByid("MouseOperation_MPR").onclick = function () {
         Anatomical_Section2(nextInstanceNumber);
     };
 
-    Mousedown = function (e) {
+    Mousedown = function (e)
+    {
         if (e.which == 1) MouseDownCheck = true;
         else if (e.which == 3) rightMouseDown = true;
         windowMouseX = GetmouseX(e);
@@ -259,12 +296,15 @@ getByid("MouseOperation_MPR").onclick = function () {
         GetViewport().originalPointY = getCurrPoint(e)[1];
     };
 
-    Mousemove = function (e) {
+    Mousemove = function (e)
+    {
         if (BL_mode != 'mouseTool_MPR') return;
         var viewport = GetViewport(), canvas = viewport.canvas();
         if (!viewport.openMark) GetViewportMark().getContext("2d").clearRect(0, 0, GetViewportMark().width, GetViewportMark().height);
-        if (openMPR == true && openWindow != true && openChangeFile != true) {
-            if (MouseDownCheck == true) {
+        if (openMPR == true && openWindow != true && openChangeFile != true)
+        {
+            if (MouseDownCheck == true)
+            {
                 viewportNumber = 2;
                 let angle2point = rotateCalculation(e);
                 currX11M = angle2point[0];
@@ -273,7 +313,8 @@ getByid("MouseOperation_MPR").onclick = function () {
                 o3DPointY = currY11M;
                 AngleXY0 = [currX11M, 0];
                 AngleXY1 = [currX11M, viewport.imageHeight];
-                if (openMPR == true) {
+                if (openMPR == true)
+                {
                     Anatomical_Section();
                     Anatomical_Section2();
                 }
@@ -281,21 +322,25 @@ getByid("MouseOperation_MPR").onclick = function () {
                 display3DLine(0, currY11M, viewport.imageWidth, currY11M, "rgb(221,53,119)");
             }
         }
-    }
+    };
 
-    Mouseup = function (e) {
+    Mouseup = function (e)
+    {
         MouseDownCheck = false;
         rightMouseDown = false;
-    }
+    };
 
-    Touchmove = function (e, e2) {
+    Touchmove = function (e, e2)
+    {
         if (BL_mode != 'mouseTool_MPR') return;
         var viewport = GetViewport(), canvas = viewport.canvas();
         if (!viewport.openMark) GetViewportMark().getContext("2d").clearRect(0, 0, GetViewportMark().width, GetViewportMark().height);
         if (openDisplayMarkup && (getByid("DICOMTagsSelect").selected || getByid("AIMSelect").selected)) return;
 
-        if (openMPR == true) {
-            if (TouchDownCheck == true) {
+        if (openMPR == true)
+        {
+            if (TouchDownCheck == true)
+            {
                 viewportNumber = 2;
                 let angle2point = rotateCalculation(e);
                 currX11M = angle2point[0];
@@ -304,7 +349,8 @@ getByid("MouseOperation_MPR").onclick = function () {
                 o3DPointY = currY11M;
                 AngleXY0 = [currX11M, 0];
                 AngleXY1 = [currX11M, viewport.imageHeight];
-                if (openMPR == true) {
+                if (openMPR == true)
+                {
                     Anatomical_Section();
                     Anatomical_Section2();
                 }
@@ -312,7 +358,7 @@ getByid("MouseOperation_MPR").onclick = function () {
                 display3DLine(0, currY11M, viewport.imageWidth, currY11M, "rgb(221,53,119)");
             }
         }
-    }
+    };
     GetViewport(2).addEventListener("mousemove", Mousemove, false);
     GetViewport(2).addEventListener("mousedown", Mousedown, false);
     GetViewport(2).addEventListener("mouseup", Mouseup, false);
@@ -321,26 +367,30 @@ getByid("MouseOperation_MPR").onclick = function () {
     //GetViewport(2).addEventListener("touchend", TouchendF, false);
     GetViewport(2).addEventListener("wheel", Wheel, false);
     drawBorderMPR(this);
-}
+};
 
-getByid("ImgMPR").onclick = function (catchError) {
+getByid("ImgMPR").onclick = function (catchError)
+{
     if (this.enable == false) return;
     openMPR = !openMPR;
     if (catchError == "error") openMPR = false;
     img2darkByClass("MPR", !openMPR);
     initMPR();
-}
+};
 
-function Anatomical_Section2(nextInstanceNumber) {
+function Anatomical_Section2(nextInstanceNumber)
+{
     var viewport = GetViewport(), canvas = viewport.canvas();
     if (openMPR == false) return;
     cancelTools();
 
     var NewCanvas;
-    if (!getByid("MprCanvas2")) {
+    if (!getByid("MprCanvas2"))
+    {
         NewCanvas = document.createElement("CANVAS");
         NewCanvas.id = "MprCanvas2";
-    } else {
+    } else
+    {
         NewCanvas = getByid("MprCanvas2");
     }
 
@@ -353,10 +403,11 @@ function Anatomical_Section2(nextInstanceNumber) {
         (o3DListLength * (parseInt(canvas.style.height) / parseFloat(GetViewport().imageHeight)) * VrDistance / 2) +
         "px 0 0 -" + (parseInt(canvas.style.width) / 2) + "px;transform:scaleY(" + (-1 * Direction_VR) + ");";
     GetViewport(1).appendChild(NewCanvas);
-    try {
+    try
+    {
         GetViewport(1).canvas().style.display = "none";
         GetViewportMark(1).style.display = "none";
-    } catch (ex) { };
+    } catch (ex) {};
 
     var o3Dcanvas = getByid("3DDiv" + 0).canvas();
     NewCanvas.height = o3DListLength;
@@ -373,14 +424,18 @@ function Anatomical_Section2(nextInstanceNumber) {
     if (nextInstanceNumber >= 0) nowInstanceNumber = nextInstanceNumber;
     else nowInstanceNumber = getNowInstance();
 
-    if (getByid("mprLight").checked == true) {
-        for (var l = 0; l < o3DListLength; l++) {
+    if (getByid("mprLight").checked == true)
+    {
+        for (var l = 0;l < o3DListLength;l++)
+        {
             var canvas1 = getByid("3DDiv" + l).canvas();
             var ctxData0 = canvas1.getContext("2d").createImageData(NewCanvas.width, 1);
             var ctxData = canvas1.getContext("2d").createImageData(NewCanvas.width, 1);
 
-            for (var dataH = l; dataH == l; dataH += 1) {
-                for (var dataW = 0; dataW < NewCanvas.width * 4; dataW += 4) {
+            for (var dataH = l;dataH == l;dataH += 1)
+            {
+                for (var dataW = 0;dataW < NewCanvas.width * 4;dataW += 4)
+                {
                     ctxData0.data[dataW] = Uint8Canvas[l][(buffer_mpr_Y_t) * o3Dcanvas.width * 4 + dataW + 0];
                     ctxData0.data[dataW + 1] = Uint8Canvas[l][(buffer_mpr_Y_t) * o3Dcanvas.width * 4 + dataW + 1];
                     ctxData0.data[dataW + 2] = Uint8Canvas[l][(buffer_mpr_Y_t) * o3Dcanvas.width * 4 + dataW + 2];
@@ -397,20 +452,26 @@ function Anatomical_Section2(nextInstanceNumber) {
         buffer_mpr_Y = PointY;
     }
     // var SeriesCount = getSeriesAmount();
-    for (var l = 0; l < o3DListLength; l++) {
-        for (var dataH = l; dataH == l; dataH += 1) {
-            for (var dataW = 0; dataW < NewCanvas.width * 4; dataW += 4) {
-                if (dataW == PointX * 4) {
+    for (var l = 0;l < o3DListLength;l++)
+    {
+        for (var dataH = l;dataH == l;dataH += 1)
+        {
+            for (var dataW = 0;dataW < NewCanvas.width * 4;dataW += 4)
+            {
+                if (dataW == PointX * 4)
+                {
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW] = 38;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 1] = 140;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 2] = 191;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 3] = 255;
-                } else if (dataH == parseInt(nowInstanceNumber * (o3DListLength / SeriesCount)) + 0) {
+                } else if (dataH == parseInt(nowInstanceNumber * (o3DListLength / SeriesCount)) + 0)
+                {
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW] = 255;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 1] = 255;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 2] = 0;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 3] = 255;
-                } else {
+                } else
+                {
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW] = Uint8Canvas[l][(PointY) * o3Dcanvas.width * 4 + dataW + 0];
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 1] = Uint8Canvas[l][(PointY) * o3Dcanvas.width * 4 + dataW + 1];
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 2] = Uint8Canvas[l][(PointY) * o3Dcanvas.width * 4 + dataW + 2];
@@ -422,15 +483,18 @@ function Anatomical_Section2(nextInstanceNumber) {
     NewCanvas.getContext("2d").putImageData(imgData2, 0, 0);
 }
 
-function Anatomical_Section(nextInstanceNumber) {
+function Anatomical_Section(nextInstanceNumber)
+{
     var viewport = GetViewport(), canvas = viewport.canvas();
     if (openMPR == false) return;
     cancelTools();
     var NewCanvas;
-    if (!getByid("MprCanvas1")) {
+    if (!getByid("MprCanvas1"))
+    {
         NewCanvas = document.createElement("CANVAS");
         NewCanvas.id = "MprCanvas1";
-    } else {
+    } else
+    {
         NewCanvas = getByid("MprCanvas1");
     }
 
@@ -445,10 +509,11 @@ function Anatomical_Section(nextInstanceNumber) {
         "transform:rotate(" + (-90) + "deg) scaleY(" + (1) + ") scaleX(" + (Direction_VR) + ");";
 
     GetViewport(0).appendChild(NewCanvas);
-    try {
+    try
+    {
         GetViewport(0).canvas().style.display = "none";
         GetViewportMark(0).style.display = "none";
-    } catch (ex) { };
+    } catch (ex) {};
 
     var o3Dcanvas = getByid("3DDiv" + 0).canvas();
     //NewCanvas.style.imageRendering = "-moz-crisp-edges";
@@ -466,13 +531,17 @@ function Anatomical_Section(nextInstanceNumber) {
     var PointX_t = PointX;
     if (nextInstanceNumber >= 0) nowInstanceNumber = nextInstanceNumber;
     else nowInstanceNumber = getNowInstance();
-    if (getByid("mprLight").checked == true) {
-        for (var l = 0; l < o3DListLength; l++) {
+    if (getByid("mprLight").checked == true)
+    {
+        for (var l = 0;l < o3DListLength;l++)
+        {
             var canvas1 = getByid("3DDiv" + l).canvas();
             var ctxData0 = canvas1.getContext("2d").createImageData(1, NewCanvas.height);
             var ctxData = canvas1.getContext("2d").createImageData(1, NewCanvas.height);
-            for (var dataH = 0; dataH < NewCanvas.height; dataH += 1) {
-                for (var dataW = l * 4; dataW == l * 4; dataW += 4) {
+            for (var dataH = 0;dataH < NewCanvas.height;dataH += 1)
+            {
+                for (var dataW = l * 4;dataW == l * 4;dataW += 4)
+                {
                     ctxData0.data[dataH * 4] = Uint8Canvas[l][dataH * o3Dcanvas.width * 4 + (buffer_mpr_X_t) * 4];
                     ctxData0.data[dataH * 4 + 1] = Uint8Canvas[l][dataH * o3Dcanvas.width * 4 + (buffer_mpr_X_t) * 4 + 1];
                     ctxData0.data[dataH * 4 + 2] = Uint8Canvas[l][dataH * o3Dcanvas.width * 4 + (buffer_mpr_X_t) * 4 + 2];
@@ -488,20 +557,26 @@ function Anatomical_Section(nextInstanceNumber) {
         }
         buffer_mpr_X = PointX;
     }
-    for (var l = 0; l < o3DListLength; l++) {
-        for (var dataH = 0; dataH < NewCanvas.height; dataH += 1) {
-            for (var dataW = l * 4; dataW == l * 4; dataW += 4) {
-                if (dataH == PointY) {
+    for (var l = 0;l < o3DListLength;l++)
+    {
+        for (var dataH = 0;dataH < NewCanvas.height;dataH += 1)
+        {
+            for (var dataW = l * 4;dataW == l * 4;dataW += 4)
+            {
+                if (dataH == PointY)
+                {
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW] = 221;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 1] = 53;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 2] = 119;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 3] = 255;
-                } else if (l == parseInt(nowInstanceNumber * (o3DListLength / SeriesCount)) + 0) {
+                } else if (l == parseInt(nowInstanceNumber * (o3DListLength / SeriesCount)) + 0)
+                {
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW] = 255;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 1] = 255;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 2] = 0;
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 3] = 255;
-                } else {
+                } else
+                {
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW] = Uint8Canvas[l][dataH * o3Dcanvas.width * 4 + (PointX) * 4];
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 1] = Uint8Canvas[l][dataH * o3Dcanvas.width * 4 + (PointX) * 4 + 1];
                     imgData2.data[dataH * NewCanvas.width * 4 + dataW + 2] = Uint8Canvas[l][dataH * o3Dcanvas.width * 4 + (PointX) * 4 + 2];
@@ -513,12 +588,16 @@ function Anatomical_Section(nextInstanceNumber) {
     NewCanvas.getContext("2d").putImageData(imgData2, 0, 0);
 }
 
-function initMPR() {
-    if (openMPR == false) {
+function initMPR()
+{
+    if (openMPR == false)
+    {
         exitMPR_UI();
         VIEWPORT.fixRow = VIEWPORT.fixCol = null;
-        for (var ll = 0; ll < o3DListLength; ll++) {
-            try {
+        for (var ll = 0;ll < o3DListLength;ll++)
+        {
+            try
+            {
                 var elem = getByid("3DDiv" + ll);
                 elem.canvas().width = 2;
                 elem.canvas().height = 2;
@@ -526,10 +605,12 @@ function initMPR() {
                 delete elem.canvas();
                 elem.parentElement.removeChild(elem);
                 delete elem;
-            } catch (ex) { }
+            } catch (ex) {}
         }
-        for (var ll = 0; ll < o3d_3degree; ll++) {
-            try {
+        for (var ll = 0;ll < o3d_3degree;ll++)
+        {
+            try
+            {
                 var elem = getByid("3DDiv2_" + ll);
                 elem.canvas().width = 2;
                 elem.canvas().height = 2;
@@ -540,10 +621,10 @@ function initMPR() {
                 elem.canvas().height = 2;
                 elem.getElementsByClassName("VrCanvas")[0] = null;
                 delete elem;
-            } catch (ex) { }
+            } catch (ex) {}
         }
         VIEWPORT.lockViewportList = [];
-        window.removeEventListener("resize",resizeVR, false);
+        window.removeEventListener("resize", resizeVR, false);
         GetViewport(3).removeEventListener("mousemove", mousemove3D, false);
         GetViewport(3).removeEventListener("mousedown", mousedown3D, false);
         GetViewport(3).removeEventListener("mouseup", mouseup3D, false);
@@ -564,15 +645,18 @@ function initMPR() {
         getByid("ImgMPR").src = "../image/icon/black/b_AdvancedMode_off.png";
         getByid("3dDisplay").style.display = "none";
         getByid("mprLightLabel").style.display = "none";
-        try {
+        try
+        {
             getByid("MprCanvas1").style.display = "none";
             getByid("MprCanvas2").style.display = "none";
-        } catch (ex) { }
-        if (getByid("OutSide3dDiv")) {
+        } catch (ex) {}
+        if (getByid("OutSide3dDiv"))
+        {
             delete getByid("OutSide3dDiv");
             getByid("OutSide3dDiv").parentElement.removeChild(getByid("OutSide3dDiv"));
         }
-        for (var i = 0; i < Viewport_Total; i++) {
+        for (var i = 0;i < Viewport_Total;i++)
+        {
             GetViewport(i).removeEventListener("contextmenu", contextmenuF, false);
             GetViewport(i).removeEventListener("mousemove", Mousemove, false);
             GetViewport(i).removeEventListener("mousedown", Mousedown, false);
@@ -598,7 +682,8 @@ function initMPR() {
             loadAndViewImage(Patient.Study[uid0.studyuid].Series[uid0.sreiesuid].Sop[uid0.sopuid].imageId, 0);
         //canvas = GetViewport().canvas()
         getByid("MouseOperation").click();
-    } else if (openMPR == true) {
+    } else if (openMPR == true)
+    {
         enterMPR_UI();
         VIEWPORT.fixRow = VIEWPORT.fixCol = 2;
         openLink = false;
@@ -615,13 +700,14 @@ function initMPR() {
         var uid = SearchUid2Json(sop);
         //NowResize = true;
         GetViewport().NowCanvasSizeWidth = GetViewport().NowCanvasSizeHeight = null;
-        for (var c = 0; c < 4; c++)
+        for (var c = 0;c < 4;c++)
             GetViewport(c).canvas().style.display = GetViewportMark(c).style.display = "none";
         viewportNumber = 2;
         loadAndViewImage(Patient.Study[uid.studyuid].Series[uid.sreiesuid].Sop[uid.sopuid].imageId);
         VIEWPORT.lockViewportList = [0, 1, 3];
-        window.addEventListener("resize",resizeVR, false);
-        for (var i1 = 0; i1 < Viewport_Total; i1++) {
+        window.addEventListener("resize", resizeVR, false);
+        for (var i1 = 0;i1 < Viewport_Total;i1++)
+        {
             GetViewport(i1).removeEventListener("contextmenu", contextmenuF, false);
             GetViewport(i1).removeEventListener("mousemove", Mousemove, false);
             GetViewport(i1).removeEventListener("mousedown", Mousedown, false);
@@ -660,16 +746,20 @@ function initMPR() {
         GetViewport(1).addEventListener("mouseup", Anatomical_SectionMouseMouseup, false);
         GetViewport(1).addEventListener("wheel", Wheel, false);
 
-        for (var ll = 0; ll < o3DListLength; ll++) {
+        for (var ll = 0;ll < o3DListLength;ll++)
+        {
             var elem = getByid("3DDiv" + ll);
             GetViewport(3).appendChild(elem);
         }
         var list = sortInstance(sop);
         //var WandH = getFixSize(window.innerWidth, window.innerHeight, GetViewport(0));
         var WandH = getViewportFixSize(window.innerWidth, window.innerHeight, 2, 2);
-        if (o3DListLength != list.length) {
-            for (var ll = 0; ll < o3DListLength; ll++) {
-                try {
+        if (o3DListLength != list.length)
+        {
+            for (var ll = 0;ll < o3DListLength;ll++)
+            {
+                try
+                {
                     var elem = getByid("3DDiv" + ll);
                     elem.canvas().width = 2;
                     elem.canvas().height = 2;
@@ -677,12 +767,15 @@ function initMPR() {
                     delete elem.canvas();
                     elem.parentElement.removeChild(elem);
                     delete elem;
-                } catch (ex) { }
+                } catch (ex) {}
             }
         }
-        if (o3d_3degree >= 0) {
-            for (var ll = 0; ll < o3d_3degree; ll++) {
-                try {
+        if (o3d_3degree >= 0)
+        {
+            for (var ll = 0;ll < o3d_3degree;ll++)
+            {
+                try
+                {
                     var elem = getByid("3DDiv2_" + ll);
                     elem.canvas().width = 2;
                     elem.canvas().height = 2;
@@ -690,10 +783,12 @@ function initMPR() {
                     delete elem.canvas();
                     elem.parentElement.removeChild(elem);
                     delete elem;
-                } catch (ex) { }
+                } catch (ex) {}
             }
-            for (var ll = 0; ll < o3d_3degree; ll++) {
-                try {
+            for (var ll = 0;ll < o3d_3degree;ll++)
+            {
+                try
+                {
                     var elem = getByid("3DDiv3_" + ll);
                     elem.canvas().width = 2;
                     elem.canvas().height = 2;
@@ -701,7 +796,7 @@ function initMPR() {
                     delete elem.canvas();
                     elem.parentElement.removeChild(elem);
                     delete elem;
-                } catch (ex) { }
+                } catch (ex) {}
             }
         }
 
@@ -715,55 +810,66 @@ function initMPR() {
         openRendering = true;
         img2darkByClass("Rendering", !openRendering);
 
-        function sleep(time) {
+        function sleep(time)
+        {
             return new Promise((resolve) => setTimeout(resolve, time));
         }
         var catchError = false;
-        function onImageRendered() {
-            if (catchError == true && openMPR == true) {
+        function onImageRendered()
+        {
+            if (catchError == true && openMPR == true)
+            {
                 openRendering = false;
                 img2darkByClass("MPR", !openMPR);
                 getByid("ImgMPR").click();
                 return;
             }
 
-            sleep(100).then(() => {
+            sleep(100).then(() =>
+            {
                 Direction_VR = 1;
-                if ((getByid("3DDiv" + (o3DListLength - 1)).thickness - Thickness) - (getByid("3DDiv" + 0).thickness - Thickness) < 0) {
+                if ((getByid("3DDiv" + (o3DListLength - 1)).thickness - Thickness) - (getByid("3DDiv" + 0).thickness - Thickness) < 0)
+                {
                     Direction_VR = -1;
                     var thicknessList = [];
-                    for (var ll = 0; ll < o3DListLength; ll++) {
+                    for (var ll = 0;ll < o3DListLength;ll++)
+                    {
                         var div1 = getByid("3DDiv" + ll);
                         thicknessList.push(div1.thickness);
                     }
-                    for (var ll = 0; ll < o3DListLength; ll++) {
+                    for (var ll = 0;ll < o3DListLength;ll++)
+                    {
                         var div1 = getByid("3DDiv" + ll);
                         div1.thickness = thicknessList[o3DListLength - ll - 1];
                     }
                 }
                 Alpha3D();
-                sleep(100).then(() => {
+                sleep(100).then(() =>
+                {
                     openRendering = false;
                     img2darkByClass("MPR", !openMPR);
                     setTimeout(getByid("MouseOperation_MPR").click(), 100);
-                })
-            })
+                });
+            });
         }
 
 
-        function displayCanvasFor3D(DicomCanvas, image, pixelData) {
+        function displayCanvasFor3D(DicomCanvas, image, pixelData)
+        {
             DicomCanvas.width = image.width;
-            DicomCanvas.height = image.height
+            DicomCanvas.height = image.height;
             DicomCanvas.style.width = image.width + "px";
             DicomCanvas.style.height = image.height + "px";
             var ctx2 = DicomCanvas.getContext("2d");
             var imgData2 = ctx2.createImageData(image.width, image.height);
             var windowWidth = image.windowWidth;
             var windowCenter = image.windowCenter;
-            if (getByid("o3DAngio").selected == true) {
+            if (getByid("o3DAngio").selected == true)
+            {
                 windowWidth = 332;
                 windowCenter = 287;
-            } else if (getByid("o3DAirways").selected == true) {
+            } else if (getByid("o3DAirways").selected == true)
+            {
                 //如果是肺氣管模型，使用對應的Window Level
                 windowWidth = 409;
                 windowCenter = -538;
@@ -776,8 +882,10 @@ function initMPR() {
             if (CheckNull(slope)) slope = 1;
 
             var _firstNumber = 0;
-            if (image.color == true) {
-                for (var i = 0; i < imgData2.data.length; i += 4) {
+            if (image.color == true)
+            {
+                for (var i = 0;i < imgData2.data.length;i += 4)
+                {
                     _firstNumber = pixelData[i];
                     _firstNumber = parseInt(((_firstNumber * slope - low + intercept) / (high - low)) * 255);
                     imgData2.data[i + 0] = _firstNumber;
@@ -790,14 +898,18 @@ function initMPR() {
                     imgData2.data[i + 3] = 255;
                 }
             }
-            else if ((image.invert != true && GetViewport().openInvert == true) || (image.invert == true && GetViewport().openInvert == false)) {
-                for (var i = 0, j = 0; i < imgData2.data.length; i += 4, j++) {
-                    imgData2.data[i + 0] = imgData2.data[i + 1] = imgData2.data[i + 2] = 255 - parseInt(((pixelData[j] * slope - low + intercept) / (high - low)) * 255)
+            else if ((image.invert != true && GetViewport().openInvert == true) || (image.invert == true && GetViewport().openInvert == false))
+            {
+                for (var i = 0, j = 0;i < imgData2.data.length;i += 4, j++)
+                {
+                    imgData2.data[i + 0] = imgData2.data[i + 1] = imgData2.data[i + 2] = 255 - parseInt(((pixelData[j] * slope - low + intercept) / (high - low)) * 255);
                     imgData2.data[i + 3] = 255;
                 }
             }
-            else {
-                for (var i = 0, j = 0; i < imgData2.data.length; i += 4, j++) {
+            else
+            {
+                for (var i = 0, j = 0;i < imgData2.data.length;i += 4, j++)
+                {
                     imgData2.data[i + 0] = imgData2.data[i + 1] = imgData2.data[i + 2] = parseInt(((pixelData[j] * slope - low + intercept) / (high - low)) * 255);
                     imgData2.data[i + 3] = 255;
                 }
@@ -815,11 +927,13 @@ function initMPR() {
 
         Thickness = -Thickness + big;
 
-        for (var l = 0; l < list.length; l++) {
+        for (var l = 0;l < list.length;l++)
+        {
             const l2 = l;
             const image = getPatientbyImageID[list[l2].imageId].image;
             const pixelData = getPatientbyImageID[list[l2].imageId].pixelData;
-            try {
+            try
+            {
                 var NewDiv = document.createElement("DIV");
                 NewDiv.addEventListener("contextmenu", contextmenuF, false);
                 //NewDiv.addEventListener('cornerstoneimagerendered', onImageRendered);
@@ -848,21 +962,25 @@ function initMPR() {
                 NewDiv.style.width = WandH[0] + "px";
                 NewDiv.style.height = WandH[1] + "px";
                 //NewDiv.style = "transform:rotate3d(0, 0, 0 , 0deg) translateZ(-" + l2 + "px);;position:absolute;width:" + WandH[0] + "px;height:" + WandH[1] + "px;"; //z-index:" + l2 + ";";
-                NewDiv.canvas = function () {
+                NewDiv.canvas = function ()
+                {
                     if (this.getElementsByClassName("VrCanvas")[0])
                         return this.getElementsByClassName("VrCanvas")[0];
                     else
                         return null;
-                }
-                NewDiv.ctx = function () {
+                };
+                NewDiv.ctx = function ()
+                {
                     if (this.getElementsByClassName("VrCanvas")[0])
                         return this.getElementsByClassName("VrCanvas")[0].getContext("2d");
                     else
                         return null;
-                }
-            } catch (ex) {
+                };
+            } catch (ex)
+            {
                 catchError = true;
-                if (openMPR == true) {
+                if (openMPR == true)
+                {
                     openMPR = false;
                     alert("Error, this image may not support 3D.");
                 };
@@ -877,7 +995,8 @@ function initMPR() {
     }
 }
 
-function display3DLine(x0, y0, x1, y1, color) {
+function display3DLine(x0, y0, x1, y1, color)
+{
     if (!color) color = "#00FF00";
     if (!openMPR) return;
 
@@ -886,13 +1005,16 @@ function display3DLine(x0, y0, x1, y1, color) {
 
     var lineWid = parseFloat(MarkCanvas.width) / parseFloat(Css(MarkCanvas, 'width'));
     var sizeCheck = false;
-    if (sizeCheck == true && lineWid <= 0) {
+    if (sizeCheck == true && lineWid <= 0)
+    {
         lineWid = parseFloat(Css(MarkCanvas, 'width')) / parseFloat(MarkCanvas.width);
         if (lineWid <= 1.5) lineWid = 1.5;
         lineWid *= Math.abs(parseFloat(MarkCanvas.width) / parseFloat(Css(MarkCanvas, 'width')));
-    } else if (sizeCheck == true) {
+    } else if (sizeCheck == true)
+    {
         lineWid *= Math.abs(parseFloat(Css(MarkCanvas, 'width')) / parseFloat(MarkCanvas.width));
-    } else if (lineWid <= 0) {
+    } else if (lineWid <= 0)
+    {
         lineWid = parseFloat(Css(MarkCanvas, 'width')) / parseFloat(MarkCanvas.width);
     }
     if (lineWid <= 1.5) lineWid = 1.5;
@@ -906,7 +1028,8 @@ function display3DLine(x0, y0, x1, y1, color) {
     tempctx.moveTo(x0, y0);
     tempctx.lineTo(x1, y1);
     tempctx.stroke();
-    if (openAngle == 2) {
+    if (openAngle == 2)
+    {
         tempctx.moveTo(x0, y0);
         tempctx.lineTo(x2, y2);
         tempctx.stroke();
@@ -914,10 +1037,13 @@ function display3DLine(x0, y0, x1, y1, color) {
     tempctx.closePath();
 }
 
-function o3dWindowLevel() {
+function o3dWindowLevel()
+{
     var sop = GetViewport().sop;
-    if (o3Dcount != o3DListLength) {
-        for (var ll = o3DListLength - 1; ll >= o3Dcount; ll--) {
+    if (o3Dcount != o3DListLength)
+    {
+        for (var ll = o3DListLength - 1;ll >= o3Dcount;ll--)
+        {
             var elem = getByid("3DDiv" + ll);
             elem.canvas().width = 2;
             elem.canvas().height = 2;
@@ -925,15 +1051,19 @@ function o3dWindowLevel() {
         }
     }
     o3DListLength = o3Dcount;
-    for (var ll = 0; ll < o3DListLength; ll++) {
-        try {
+    for (var ll = 0;ll < o3DListLength;ll++)
+    {
+        try
+        {
             var elem = getByid("3DDiv" + ll);
             elem.canvas().width = 2;
             elem.canvas().height = 2;
-        } catch (ex) { }
+        } catch (ex) {}
     }
-    if (o3d_3degree >= 0) {
-        for (var ll = 0; ll < o3d_3degree; ll++) {
+    if (o3d_3degree >= 0)
+    {
+        for (var ll = 0;ll < o3d_3degree;ll++)
+        {
             var elem = getByid("3DDiv2_" + ll);
             elem.canvas().width = 2;
             elem.canvas().height = 2;
@@ -942,7 +1072,8 @@ function o3dWindowLevel() {
             elem.parentElement.removeChild(elem);
             delete elem;
         }
-        for (var ll = 0; ll < o3d_3degree; ll++) {
+        for (var ll = 0;ll < o3d_3degree;ll++)
+        {
             var elem = getByid("3DDiv3_" + ll);
             elem.canvas().width = 2;
             elem.canvas().height = 2;
@@ -965,39 +1096,47 @@ function o3dWindowLevel() {
     openRendering = true;
     img2darkByClass("Rendering", !openRendering);
 
-    function sleep(time) {
+    function sleep(time)
+    {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
-    function onImageRendered() {
+    function onImageRendered()
+    {
         Direction_VR = 1;
-        sleep(100).then(() => {
-            if ((getByid("3DDiv" + (o3DListLength - 1)).thickness - Thickness) - (getByid("3DDiv" + 0).thickness - Thickness) < 0) {
+        sleep(100).then(() =>
+        {
+            if ((getByid("3DDiv" + (o3DListLength - 1)).thickness - Thickness) - (getByid("3DDiv" + 0).thickness - Thickness) < 0)
+            {
                 var thicknessList = [];
                 Direction_VR = -1;
-                for (var ll = 0; ll < o3DListLength; ll++) {
+                for (var ll = 0;ll < o3DListLength;ll++)
+                {
                     var div1 = getByid("3DDiv" + ll);
                     thicknessList.push(div1.thickness);
                 }
-                for (var ll = 0; ll < o3DListLength; ll++) {
+                for (var ll = 0;ll < o3DListLength;ll++)
+                {
                     var div1 = getByid("3DDiv" + ll);
                     div1.thickness = thicknessList[o3DListLength - ll - 1];
                 }
             }
             Alpha3D();
-            sleep(100).then(() => {
+            sleep(100).then(() =>
+            {
                 openRendering = false;
                 if (openMPR) img2darkByClass("MPR", !openMPR);
                 else if (openVR) img2darkByClass("VR", !openVR);
-            })
-        })
+            });
+        });
 
     }
 
     Thickness = 0;
     var big = 10000000000000000000;
     Thickness = -Thickness + big;
-    for (var l = 0; l < list.length; l++) {
+    for (var l = 0;l < list.length;l++)
+    {
         const l2 = l;
         const image = getPatientbyImageID[list[l2].imageId].image;
         const pixelData = getPatientbyImageID[list[l2].imageId].pixelData;
@@ -1031,24 +1170,27 @@ function o3dWindowLevel() {
         NewDiv.style.height = WandH[1] + "px";
         //NewDiv.style = "transform:rotate3d(0, 0, 0 , 0deg) translateZ(-" + l2 + "px);;position:absolute;width:" + WandH[0] + "px;height:" + WandH[1] + "px;"; //z-index:" + l2 + ";";
 
-        NewDiv.canvas = function () {
+        NewDiv.canvas = function ()
+        {
             if (this.getElementsByClassName("VrCanvas")[0])
                 return this.getElementsByClassName("VrCanvas")[0];
             else
                 return null;
-        }
-        NewDiv.ctx = function () {
+        };
+        NewDiv.ctx = function ()
+        {
             if (this.getElementsByClassName("VrCanvas")[0])
                 return this.getElementsByClassName("VrCanvas")[0].getContext("2d");
             else
                 return null;
-        }
+        };
     }
     onImageRendered();
     return;
 }
 
-Anatomical_SectionMouseDown0 = function (e) {
+Anatomical_SectionMouseDown0 = function (e)
+{
     if (e.which == 1) MouseDownCheck = true;
     else if (e.which == 3) rightMouseDown = true;
     windowMouseX = GetmouseX(e);
@@ -1057,15 +1199,19 @@ Anatomical_SectionMouseDown0 = function (e) {
     GetViewport().originalPointY = getCurrPoint(e)[1];
 };
 
-Anatomical_SectionMouseMouseup = function (e) {
+Anatomical_SectionMouseMouseup = function (e)
+{
     var currX = getCurrPoint(e)[0];
     var currY = getCurrPoint(e)[1];
     MouseDownCheck = false;
     rightMouseDown = false;
-}
-Anatomical_SectionMouseMove = function (e) {
-    if (openMPR == true && openWindow != true && openChangeFile != true) {
-        if (MouseDownCheck == true) {
+};
+Anatomical_SectionMouseMove = function (e)
+{
+    if (openMPR == true && openWindow != true && openChangeFile != true)
+    {
+        if (MouseDownCheck == true)
+        {
             // viewportNumber = 0;
             let angle2point = rotateCalculation(e);
             currX11M = angle2point[0];
@@ -1074,7 +1220,8 @@ Anatomical_SectionMouseMove = function (e) {
             o3DPointY = currY11M;
             AngleXY0 = [currX11M, 0];
             AngleXY1 = [currX11M, GetViewport(1).imageHeight];
-            if (openMPR == true) {
+            if (openMPR == true)
+            {
                 var sop = GetViewport().sop;
                 var index = SearchUid2Index(sop);
                 var i = index[0],
@@ -1089,8 +1236,9 @@ Anatomical_SectionMouseMove = function (e) {
             //  display3DLine(0, currY11M, GetViewport(0).imageWidth, currY11M, "rgb(221,53,119)");
         }
     }
-}
-Anatomical_SectionMouseDown = function (e) {
+};
+Anatomical_SectionMouseDown = function (e)
+{
     if (e.which == 1) MouseDownCheck = true;
     else if (e.which == 3) rightMouseDown = true;
     windowMouseX = GetmouseX(e);
@@ -1099,15 +1247,19 @@ Anatomical_SectionMouseDown = function (e) {
     GetViewport().originalPointY = getCurrPoint(e)[1];
 };
 
-Anatomical_SectionMouseMouseup0 = function (e) {
+Anatomical_SectionMouseMouseup0 = function (e)
+{
     var currX = getCurrPoint(e)[0];
     var currY = getCurrPoint(e)[1];
     MouseDownCheck = false;
     rightMouseDown = false;
-}
-Anatomical_SectionMouseMove0 = function (e) {
-    if (openMPR == true && openWindow != true && openChangeFile != true) {
-        if (MouseDownCheck == true) {
+};
+Anatomical_SectionMouseMove0 = function (e)
+{
+    if (openMPR == true && openWindow != true && openChangeFile != true)
+    {
+        if (MouseDownCheck == true)
+        {
             // viewportNumber = 0;
             let angle2point = rotateCalculation(e);
             currX11M = angle2point[1];
@@ -1116,7 +1268,8 @@ Anatomical_SectionMouseMove0 = function (e) {
             o3DPointY = currY11M;
             AngleXY1 = [currX11M, 0];
             AngleXY0 = [currX11M, GetViewport(0).imageHeight];
-            if (openMPR == true) {
+            if (openMPR == true)
+            {
                 var sop = GetViewport().sop;
                 var index = SearchUid2Index(sop);
                 var i = index[0],
@@ -1131,4 +1284,4 @@ Anatomical_SectionMouseMove0 = function (e) {
             display3DLine(0, currY11M, GetViewport().imageWidth, currY11M, "rgb(221,53,119)");
         }
     }
-}
+};

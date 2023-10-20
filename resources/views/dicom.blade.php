@@ -106,7 +106,7 @@
       </span>
       <span style="position:relative;">
         <span id="openMeasureImg" class="material-icons material-icons-round img">square_foot</span>
-        <div id="openMeasureDIv" style="position:absolute;left: 0;top: 50px; white-space:nowrap;z-index: 100; width: 500; display: none;background: #80a2e8; padding: 5px; border-radius: 5px;">
+        <div id="openMeasureDIv" style="position:absolute;left: 0;top: 50px; white-space:nowrap;z-index: 100; width: 500; display: none;background: #fff; padding: 5px; border-radius: 5px;">
           <span id="removeRuler_span">
             <span id="removeRuler" class="material-icons material-icons-round"> disabled_by_default </span>
           </span>
@@ -119,14 +119,18 @@
         </div>
       </span>
 
-      <span id="playvideo_span" style="display: none;"><img class="img" alt="播放" id="playvideo" src="{{url('assets')}}/image/icon/black/b_CinePlay.png"
-          width="50" height="50"></span>
-      <span id="MarkButton_span"><img class="img VR MPR" alt="標記" id="MarkButton" src="{{url('assets')}}/image/icon/black/fist0.png"
-          width="50" height="50"></span>
-      <span id="annotation_span"><img class="img" alt="標籤" id="annotation" src="{{url('assets')}}/image/icon/black/b_Annotation.png"
-          width="50" height="50"></span>
-      <span id="MarkupImg_span"><img class="img VR MPR" alt="AIM" id="MarkupImg"
-          src="{{url('assets')}}/image/icon/black/b_ShowReport.png" width="50" height="50"></span>
+      <span id="playvideo_span" style="display: none;">
+        <img class="img" alt="播放" id="playvideo" src="{{url('assets')}}/image/icon/black/b_CinePlay.png" width="50" height="50">
+      </span>
+      <span id="MarkButton_span">
+        <img style="display: none" class="img VR MPR" alt="標記" id="MarkButton" src="{{url('assets')}}/image/icon/black/fist0.png" width="50" height="50">
+      </span>
+      <span id="annotation_span">
+        <span id="annotation" class="material-icons-round img">format_list_bulleted</span>
+      </span>
+      <span id="MarkupImg_span">
+        <span id="MarkupImg" class="material-icons-round img VR MPR">format_align_right</span>
+      </span>
     </span>
     <span id="rwdImgTag_span"> <img class="img VR MPR XML PEN" alt="RWD" id="rwdImgTag"
         src="{{url('assets')}}/image/icon/black/b_CineTools.png" style="display:none;" width="50" height="50"></span>

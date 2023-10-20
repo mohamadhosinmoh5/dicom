@@ -1,13 +1,13 @@
 //代表SEG標記模式為開啟狀態
 var openWriteSEG = false;
 var assetsUrl = document.getElementById('assets').value;
-function loadWriteSEG() {
-    var span = document.createElement("SPAN")
-    span.innerHTML =
-        `<img class="img SEG" alt="writeSEG" id="writeSEG" src="${assetsUrl}/image/icon/black/seg_off.png" width="50" height="50">`;
+function loadWriteSEG()
+{
+    var span = document.createElement("SPAN");
+    span.innerHTML = `<img style="display: none;" class="img SEG" alt="writeSEG" id="writeSEG" src="${assetsUrl}/image/icon/black/seg_off.png" width="50" height="50">`;
     getByid("icon-list").appendChild(span);
 
-    var span = document.createElement("SPAN")
+    var span = document.createElement("SPAN");
     span.innerHTML =
         `<div id="SegStyleDiv" style="background-color:#30306044;">
     <font color="white">ManufacturerModelName：</font><input type="text" id="SegManufacturerModelName"
@@ -17,14 +17,15 @@ function loadWriteSEG() {
     <font color="white">SegmentLabel</font><input type="text" id="SegSegmentLabel" value="SegmentLabel" size="8" />
     <font color="white">Brush Size</font><input type="text" id="SegBrushSizeText" value="10" size="2" />
     &nbsp;&nbsp;<button id="overlay2seg" sytle="">OverLay to Seg</button>
-  </div>`
+  </div>`;
     getByid("page-header").appendChild(span);
     getByid("SegStyleDiv").style.display = "none";
 }
 loadWriteSEG();
 
 
-getByid("overlay2seg").onclick = function () {
+getByid("overlay2seg").onclick = function ()
+{
     getByid("overlay2seg").style.display = "none";
     var sop = GetViewport().sop;
     //if (o3DElement) sop = o3DElement.sop;
@@ -33,11 +34,16 @@ getByid("overlay2seg").onclick = function () {
     let i = index[0],
         j = index[1],
         k = index[2];
-    for (var n = 0; n < PatientMark.length; n++) {
-        if (PatientMark[n].series == Patient.Study[i].Series[j].SeriesUID) {
-            for (var l = 0; l < Patient.Study[i].Series[j].SopAmount; l++) {
-                for (var m = 0; m < PatientMark[n].mark.length; m++) {
-                    if (PatientMark[n].mark[m].type == "Overlay" && PatientMark[n].sop == Patient.Study[i].Series[j].Sop[l].SopUID) {
+    for (var n = 0;n < PatientMark.length;n++)
+    {
+        if (PatientMark[n].series == Patient.Study[i].Series[j].SeriesUID)
+        {
+            for (var l = 0;l < Patient.Study[i].Series[j].SopAmount;l++)
+            {
+                for (var m = 0;m < PatientMark[n].mark.length;m++)
+                {
+                    if (PatientMark[n].mark[m].type == "Overlay" && PatientMark[n].sop == Patient.Study[i].Series[j].Sop[l].SopUID)
+                    {
                         let Uid = GetNowUid();
                         var dcm = {};
                         dcm.study = Uid.study;
@@ -51,7 +57,8 @@ getByid("overlay2seg").onclick = function () {
                         dcm.sop = Patient.Study[i].Series[j].Sop[l].SopUID;
                         var DcmMarkLength = dcm.mark.length - 1;
                         dcm.mark[DcmMarkLength].type = "SEG";
-                        function jsonDeepClone(obj) {
+                        function jsonDeepClone(obj)
+                        {
                             return JSON.parse(JSON.stringify(obj));
                         }
                         dcm.mark[DcmMarkLength].canvas = PatientMark[n].mark[m].canvas;
@@ -66,16 +73,18 @@ getByid("overlay2seg").onclick = function () {
         }
     }
     refreshMarkFromSop(GetNowUid().sop);
-}
+};
 
-getByid("writeSEG").onclick = function () {
+getByid("writeSEG").onclick = function ()
+{
     if (this.enable == false) return;
     cancelTools();
     openWriteSEG = !openWriteSEG;
     img2darkByClass("SEG", !openWriteSEG);
     openLeftImgClick = !openWriteSEG;
-    this.src = openWriteSEG == true ? ''+assetsUrl+'/image/icon/black/seg_on.png' : '../image/icon/black/seg_off.png';
-    if (openWriteSEG == true) {
+    this.src = openWriteSEG == true ? '' + assetsUrl + '/image/icon/black/seg_on.png' : '../image/icon/black/seg_off.png';
+    if (openWriteSEG == true)
+    {
         getByid("overlay2seg").style.display = "";
         getByid('SegStyleDiv').style.display = 'flex';
         set_BL_model('writeSeg');
@@ -88,7 +97,8 @@ getByid("writeSEG").onclick = function () {
     if (openWriteSEG == true) return;
     // else Graphic_now_choose = null;
 
-    function download(text, name, type) {
+    function download(text, name, type)
+    {
         let a = document.createElement('a');
         let file = new Blob([text], {
             type: type
@@ -98,7 +108,8 @@ getByid("writeSEG").onclick = function () {
         a.download = name;
         a.click();
     }
-    function download2(text, name, type) {
+    function download2(text, name, type)
+    {
         let a = document.createElement('a');
         let file = new File([text], name + ".xml", {
             type: type
@@ -111,20 +122,23 @@ getByid("writeSEG").onclick = function () {
         var formData = new FormData();
         formData.append("files", file);
         xhr.send(formData);
-        xhr.onload = function () {
-            if (xhr.status == 200) {
+        xhr.onload = function ()
+        {
+            if (xhr.status == 200)
+            {
                 let data = JSON.parse(xhr.responseText);
-                for (let url of data) {
+                for (let url of data)
+                {
                     window.open(url);
                 }
             }
-        }
+        };
     }
     set_SEG_context();
     if (ConfigLog.Xml2Dcm.enableXml2Dcm == true) download2(String(get_SEG_context()), "" + CreateSecurePassword(), 'text/plain');
     else download(String(get_SEG_context()), 'filename_SEG.xml', 'text/plain');
     getByid('MouseOperation').click();
-}
+};
 
 
 var SEG_format =
@@ -266,7 +280,7 @@ var SEG_format_tail_2 = `
                     <item card="2">
                         <element tag="0008,1150" vr="UI" vm="1" len="26" name="ReferencedSOPClassUID">1.2.840.10008.5.1.4.1.1.2</element>
                         <element tag="0008,1155" vr="UI" vm="1" len="___ReferencedSOPInstanceUID(len)___" name="ReferencedSOPInstanceUID">___ReferencedSOPInstanceUID___</element>
-                    </item>`
+                    </item>`;
 var SEG_format_tail_4 = `
     <item card="4">
     <sequence tag="0008,9124" vr="SQ" card="1" name="DerivationImageSequence">
@@ -312,9 +326,10 @@ var SEG_format_tail_4 = `
 var SEG_now_choose = null;
 var temp_SEG_format = "";
 //0062,0004
-function set_SEG_context() {
-    SEG_format_object_list = []
-    let temp = ""
+function set_SEG_context()
+{
+    SEG_format_object_list = [];
+    let temp = "";
     let tail4_list = "";
     let tail2_list = "";
     let index = SearchUid2Index(GetViewport().sop);
@@ -323,7 +338,8 @@ function set_SEG_context() {
         k = index[2];
     temp = "" + SEG_format;
 
-    function setTag(temp, replace, str, len) {
+    function setTag(temp, replace, str, len)
+    {
         str = Null2Empty(str);
         str = "" + str;
         temp = temp.replace("___" + replace + "___", "" + str);
@@ -333,8 +349,10 @@ function set_SEG_context() {
         return temp;
     }
 
-    function zero(num, Milliseconds) {
-        if (Milliseconds) {
+    function zero(num, Milliseconds)
+    {
+        if (Milliseconds)
+        {
             if (num < 10) return "" + "00" + num;
             else if (num < 100) return "" + "0" + num;
             return "" + num;
@@ -343,17 +361,22 @@ function set_SEG_context() {
     }
 
     var sopList = getAllSop();
-    for (var s = 0; s < sopList.length; s++) {
+    for (var s = 0;s < sopList.length;s++)
+    {
         let tail2 = "" + SEG_format_tail_2;
         // tail2 = tail2.replace("___ReferencedSOPInstanceUID___", sopList[s]);
         tail2 = setTag(tail2, "ReferencedSOPInstanceUID", sopList[s], true);
         tail2_list += tail2;
     }
     var segCount = 0;
-    for (var n = 0; n < PatientMark.length; n++) {
-        for (var m = 0; m < PatientMark[n].mark.length; m++) {
-            if (PatientMark[n].series == Patient.Study[i].Series[j].SeriesUID) {
-                if (PatientMark[n].mark[m].type == "SEG") {
+    for (var n = 0;n < PatientMark.length;n++)
+    {
+        for (var m = 0;m < PatientMark[n].mark.length;m++)
+        {
+            if (PatientMark[n].series == Patient.Study[i].Series[j].SeriesUID)
+            {
+                if (PatientMark[n].mark[m].type == "SEG")
+                {
                     segCount++;
                 }
             }
@@ -364,14 +387,19 @@ function set_SEG_context() {
     temp = setTag(temp, "SegmentNumber", segCount, true);
     var mark_xy = "";
     var temp_segCount = 0;
-    for (var n = 0; n < PatientMark.length; n++) {
-        if (PatientMark[n].series == Patient.Study[i].Series[j].SeriesUID) {
-            for (var m = 0; m < PatientMark[n].mark.length; m++) {
-                if (PatientMark[n].mark[m].type == "SEG") {
+    for (var n = 0;n < PatientMark.length;n++)
+    {
+        if (PatientMark[n].series == Patient.Study[i].Series[j].SeriesUID)
+        {
+            for (var m = 0;m < PatientMark[n].mark.length;m++)
+            {
+                if (PatientMark[n].mark[m].type == "SEG")
+                {
                     temp_segCount++;
                     var tail4 = "" + SEG_format_tail_4;
                     var tempMark = PatientMark[n].mark[m];
-                    for (var o = 0; o < tempMark.pixelData.length; o += 1) {
+                    for (var o = 0;o < tempMark.pixelData.length;o += 1)
+                    {
                         if (o == 0 && temp_segCount == 1) mark_xy += "0" + tempMark.pixelData[o];
                         else mark_xy += "\\" + "0" + tempMark.pixelData[o];
                     }
@@ -384,7 +412,8 @@ function set_SEG_context() {
         }
         var createSopUid = CreateUid("sop");
         var createSeriesUid = CreateUid("series");
-        for (var c = 0; c < 5; c++) {
+        for (var c = 0;c < 5;c++)
+        {
             temp = setTag(temp, "StudyDate", GetViewport().StudyDate, true);
             temp = setTag(temp, "StudyTime", GetViewport().StudyTime, true);
             temp = setTag(temp, "StudyInstanceUID", Patient.Study[i].StudyUID, true);
@@ -414,9 +443,12 @@ function set_SEG_context() {
 
             temp = setTag(temp, "ImagePositionPatient", "" + GetViewport().ImagePositionPatient, true);
 
-            function setTagByElTag(temp, replace, len) {
-                for (var d = 0; d < GetViewport().DicomTagsList.length; d++) {
-                    if (GetViewport().DicomTagsList[d][1] == replace) {
+            function setTagByElTag(temp, replace, len)
+            {
+                for (var d = 0;d < GetViewport().DicomTagsList.length;d++)
+                {
+                    if (GetViewport().DicomTagsList[d][1] == replace)
+                    {
                         temp = ("" + temp).replace("___" + replace + "___", "" + GetViewport().DicomTagsList[d][2]);
                         var length = ("" + GetViewport().DicomTagsList[d][2]).length;
                         if (length % 2 != 0) length++;
@@ -460,15 +492,18 @@ function set_SEG_context() {
     SEG_format_object_list.push(temp);
 }
 
-function get_SEG_context() {
+function get_SEG_context()
+{
     var temp_str = "";
-    for (var i = 0; i < SEG_format_object_list.length; i++) {
+    for (var i = 0;i < SEG_format_object_list.length;i++)
+    {
         temp_str += SEG_format_object_list[i];
     }
     return temp_str;
 }
 
-function Line_setSEG2PixelData(point1, point2) {
+function Line_setSEG2PixelData(point1, point2)
+{
     if (!point1 || !point2) return;
     var distance = (Math.sqrt(((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]))));
 
@@ -481,26 +516,34 @@ function Line_setSEG2PixelData(point1, point2) {
         var y = parseInt(Reduce_Y + ((Up_Y - Reduce_Y) / distance) * i);
         setSEG2PixelData([x, y]);
     }*/
-    if (point1[0] == Reduce_X && point1[1] == Reduce_Y) {
-        for (var i = 0; i < parseInt(distance); i++) {
+    if (point1[0] == Reduce_X && point1[1] == Reduce_Y)
+    {
+        for (var i = 0;i < parseInt(distance);i++)
+        {
             var x = parseInt(Reduce_X + ((Up_X - Reduce_X) / distance) * i);
             var y = parseInt(Reduce_Y + ((Up_Y - Reduce_Y) / distance) * i);
             setSEG2PixelData([x, y]);
         }
-    } else if (point1[0] == Up_X && point1[1] == Up_Y) {
-        for (var i = 0; i < parseInt(distance); i++) {
+    } else if (point1[0] == Up_X && point1[1] == Up_Y)
+    {
+        for (var i = 0;i < parseInt(distance);i++)
+        {
             var x = parseInt(Up_X - ((Up_X - Reduce_X) / distance) * i);
             var y = parseInt(Up_Y - ((Up_Y - Reduce_Y) / distance) * i);
             setSEG2PixelData([x, y]);
         }
-    } else if (point1[0] == Reduce_X && point1[1] == Up_Y) {
-        for (var i = 0; i < parseInt(distance); i++) {
+    } else if (point1[0] == Reduce_X && point1[1] == Up_Y)
+    {
+        for (var i = 0;i < parseInt(distance);i++)
+        {
             var x = parseInt(Reduce_X + ((Up_X - Reduce_X) / distance) * i);
             var y = parseInt(Up_Y - ((Up_Y - Reduce_Y) / distance) * i);
             setSEG2PixelData([x, y]);
         }
-    } else if (point1[0] == Up_X && point1[1] == Reduce_Y) {
-        for (var i = 0; i < parseInt(distance); i++) {
+    } else if (point1[0] == Up_X && point1[1] == Reduce_Y)
+    {
+        for (var i = 0;i < parseInt(distance);i++)
+        {
             var x = parseInt(Up_X - ((Up_X - Reduce_X) / distance) * i);
             var y = parseInt(Reduce_Y + ((Up_Y - Reduce_Y) / distance) * i);
             setSEG2PixelData([x, y]);
@@ -508,17 +551,21 @@ function Line_setSEG2PixelData(point1, point2) {
     }
 };
 
-function writeSeg() {
-    if (BL_mode == 'writeSeg') {
+function writeSeg()
+{
+    if (BL_mode == 'writeSeg')
+    {
         DeleteMouseEvent();
-        Mousedown = function (e) {
+        Mousedown = function (e)
+        {
             if (e.which == 1) MouseDownCheck = true;
             else if (e.which == 3) rightMouseDown = true;
             windowMouseX = GetmouseX(e);
             windowMouseY = GetmouseY(e);
             GetViewport().originalPointX = getCurrPoint(e)[0];
             GetViewport().originalPointY = getCurrPoint(e)[1];
-            if (openWindow != true) {
+            if (openWindow != true)
+            {
                 var sop = GetViewport().sop;
                 var index_Seg = SearchUid2Index(sop);
                 if (!index_Seg) return;
@@ -526,18 +573,23 @@ function writeSeg() {
                     j_s = index_Seg[1],
                     k_s = index_Seg[2];
                 var break1 = false;
-                for (var n_s = 0; n_s < PatientMark.length; n_s++) {
-                    if (PatientMark[n_s].sop == Patient.Study[i_s].Series[j_s].Sop[k_s].SopUID) {
-                        for (var m_s = 0; m_s < PatientMark[n_s].mark.length; m_s++) {
+                for (var n_s = 0;n_s < PatientMark.length;n_s++)
+                {
+                    if (PatientMark[n_s].sop == Patient.Study[i_s].Series[j_s].Sop[k_s].SopUID)
+                    {
+                        for (var m_s = 0;m_s < PatientMark[n_s].mark.length;m_s++)
+                        {
                             if (break1 == true) break;
-                            if (PatientMark[n_s].mark[m_s].type == "SEG") {
+                            if (PatientMark[n_s].mark[m_s].type == "SEG")
+                            {
                                 SEG_now_choose = PatientMark[n_s].mark[m_s];
                                 break1 = true;
                             }
                         }
                     }
                 }
-                if (break1 == false) {
+                if (break1 == false)
+                {
                     let Uid = GetNowUid();
                     var dcm = {};
                     dcm.study = Uid.study;
@@ -552,7 +604,8 @@ function writeSeg() {
                     var DcmMarkLength = dcm.mark.length - 1;
                     dcm.mark[DcmMarkLength].type = "SEG";
                     dcm.mark[DcmMarkLength].pixelData = new Uint8ClampedArray(GetViewport().imageWidth * GetViewport().imageHeight);
-                    if (!dcm.mark[DcmMarkLength].canvas) {
+                    if (!dcm.mark[DcmMarkLength].canvas)
+                    {
                         dcm.mark[DcmMarkLength].canvas = document.createElement("CANVAS");
                         dcm.mark[DcmMarkLength].canvas.width = GetViewport().imageWidth;
                         dcm.mark[DcmMarkLength].canvas.height = GetViewport().imageHeight;
@@ -560,8 +613,10 @@ function writeSeg() {
 
                         var pixelData = dcm.mark[DcmMarkLength].ctx.getImageData(0, 0, dcm.mark[DcmMarkLength].canvas.width, dcm.mark[DcmMarkLength].canvas.height);
 
-                        for (var i = 0, j = 0; i < pixelData.data.length; i += 4, j++) {
-                            if (dcm.mark[DcmMarkLength].pixelData[j] != 0) {
+                        for (var i = 0, j = 0;i < pixelData.data.length;i += 4, j++)
+                        {
+                            if (dcm.mark[DcmMarkLength].pixelData[j] != 0)
+                            {
                                 pixelData.data[i] = 0;
                                 pixelData.data[i + 1] = 0;
                                 pixelData.data[i + 2] = 255;
@@ -577,33 +632,37 @@ function writeSeg() {
                     setSEG2PixelData(angle2point);
                     refreshMark(dcm);
                 }
-                for (var i = 0; i < Viewport_Total; i++)
+                for (var i = 0;i < Viewport_Total;i++)
                     displayMark(i);
             }
         };
         var Previous_angle2point;
 
-        Mousemove = function (e) {
+        Mousemove = function (e)
+        {
             var currX = getCurrPoint(e)[0];
             var currY = getCurrPoint(e)[1];
             var labelXY = getClass('labelXY'); {
                 let angle2point = rotateCalculation(e);
                 labelXY[viewportNumber].innerText = "X: " + parseInt(angle2point[0]) + " Y: " + parseInt(angle2point[1]);
             }
-            if (MouseDownCheck && !rightMouseDown && SEG_now_choose && openWindow != true) {
+            if (MouseDownCheck && !rightMouseDown && SEG_now_choose && openWindow != true)
+            {
                 let angle2point = rotateCalculation(e);
-                if (Previous_angle2point && (Previous_angle2point[0] != angle2point[0] || Previous_angle2point[1] != angle2point[1])) {
+                if (Previous_angle2point && (Previous_angle2point[0] != angle2point[0] || Previous_angle2point[1] != angle2point[1]))
+                {
                     setSEG2PixelData(angle2point);
                     Line_setSEG2PixelData(Previous_angle2point, angle2point);
 
                     let Uid = GetNowUid();
                     refreshMark(Uid.sop);
-                    for (var i = 0; i < Viewport_Total; i++)
+                    for (var i = 0;i < Viewport_Total;i++)
                         displayMark(i);
                 }
                 Previous_angle2point = angle2point;
             }
-            if (!rightMouseDown && openWindow != true) {
+            if (!rightMouseDown && openWindow != true)
+            {
                 var rect = getByid("SegBrushSizeText").value;
                 rect = parseInt(rect);
                 if (isNaN(rect) || rect < 1 || rect > 1024) rect = getByid("SegBrushSizeText").value = 10;
@@ -619,8 +678,9 @@ function writeSeg() {
                 segCtx.closePath();
             }
 
-        }
-        Mouseup = function (e) {
+        };
+        Mouseup = function (e)
+        {
             Previous_angle2point = undefined;
             var currX = getCurrPoint(e)[0];
             var currY = getCurrPoint(e)[1];
@@ -630,27 +690,33 @@ function writeSeg() {
             rightMouseDown = false;
             magnifierDiv.style.display = "none";
 
-            if (openLink) {
-                for (var i = 0; i < Viewport_Total; i++)
+            if (openLink)
+            {
+                for (var i = 0;i < Viewport_Total;i++)
                     displayRuler(i);
             }
-        }
+        };
         AddMouseEvent();
         return;
     }
 }
 
-function setSEG2PixelData(angle2point) {
+function setSEG2PixelData(angle2point)
+{
     var rect = getByid("SegBrushSizeText").value;
     rect = parseInt(rect);
     if (isNaN(rect) || rect < 1 || rect > 1024) rect = getByid("SegBrushSizeText").value = 10;
 
     var pixelData = SEG_now_choose.ctx.getImageData(parseInt(angle2point[0]) - rect, parseInt(angle2point[1]) - rect, rect * 2, rect * 2);
     var p = 0;
-    if (KeyCode_ctrl == true) {
-        for (var s = -rect; s < rect; s++) {
-            for (var s2 = -rect; s2 < rect; s2++) {
-                if ((s * s) + (s2 * s2) < rect * rect) {
+    if (KeyCode_ctrl == true)
+    {
+        for (var s = -rect;s < rect;s++)
+        {
+            for (var s2 = -rect;s2 < rect;s2++)
+            {
+                if ((s * s) + (s2 * s2) < rect * rect)
+                {
                     SEG_now_choose.pixelData[Math.floor(angle2point[1] + s) * GetViewport().imageWidth + Math.floor(angle2point[0] + s2)] = 0;
                     pixelData.data[p] = 0;
                     pixelData.data[p + 1] = 0;
@@ -660,10 +726,14 @@ function setSEG2PixelData(angle2point) {
                 p += 4;
             }
         }
-    } else {
-        for (var s = -rect; s < rect; s++) {
-            for (var s2 = -rect; s2 < rect; s2++) {
-                if ((s * s) + (s2 * s2) < rect * rect) {
+    } else
+    {
+        for (var s = -rect;s < rect;s++)
+        {
+            for (var s2 = -rect;s2 < rect;s2++)
+            {
+                if ((s * s) + (s2 * s2) < rect * rect)
+                {
                     SEG_now_choose.pixelData[Math.floor(angle2point[1] + s) * GetViewport().imageWidth + Math.floor(angle2point[0] + s2)] = 1;
                     pixelData.data[p] = 0;
                     pixelData.data[p + 1] = 0;

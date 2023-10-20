@@ -18,7 +18,8 @@ function loadMPR2()
 {
     var span = document.createElement("SPAN");
     span.id = "ImgMPR2_span";
-    span.innerHTML = `<img class="img MPR2 MPR_icon" alt="3d" id="ImgMPR2" src="${assetsUrl}/image/icon/black/b_LocalizerLines.png" width="50" height="50">`;
+    span.innerHTML = '<span id="ImgMPR2" class="material-icons material-icons-round img MPR2 MPR_icon">accessibility</span >';
+    // span.innerHTML = `<img class="img MPR2 MPR_icon" alt="3d" id="ImgMPR2" src="${assetsUrl}/image/icon/black/b_LocalizerLines.png" width="50" height="50">`;
     getByid("icon-list").appendChild(span);
 
     /*var span = document.createElement("SPAN");
@@ -73,13 +74,20 @@ function loadMPR2_UI()
     }
     if (!getByid("ImgMPR2_MPR"))
     {
-        var img = document.createElement("IMG");
-        img.src = getByid("ImgMPR2").src;
-        img.id = "ImgMPR2_MPR";
-        img.className = "MPR_icon";
-        img.width = img.height = "50";
-        img.style.filter = "sepia(100%)";
-        getByid("ImgMPR2_span").appendChild(img);
+        var icon = document.createElement('span');
+        icon.className = 'material-icons material-icons-round MPR_icon';
+        icon.id = "ImgMPR2_MPR";
+        icon.textContent = 'accessibility_new';
+        getByid("ImgMPR2_span").appendChild(icon);
+
+
+        // var img = document.createElement("IMG");
+        // img.src = getByid("ImgMPR2").src;
+        // img.id = "ImgMPR2_MPR";
+        // img.className = "MPR_icon";
+        // img.width = img.height = "50";
+        // img.style.filter = "sepia(100%)";
+        // getByid("ImgMPR2_span").appendChild(img);
     }
 }
 loadMPR2_UI();

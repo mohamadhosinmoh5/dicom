@@ -1,33 +1,36 @@
 var openWriteTAG = false;
 var assetsUrl = document.getElementById('assets').value;
 var url = document.getElementById('baseURL').value;
-function loadWriteTAG() {
-    var span = document.createElement("SPAN")
-    span.innerHTML =
-        `<img class="img TAG" alt="writeTAG" id="writeTAG" src="${assetsUrl}/image/icon/black/tag_off.png" width="50" height="50">`;
+function loadWriteTAG()
+{
+    var span = document.createElement("SPAN");
+    span.innerHTML = `<img style="display: none;" class="img TAG" alt="writeTAG" id="writeTAG" src="${assetsUrl}/image/icon/black/tag_off.png" width="50" height="50">`;
     getByid("icon-list").appendChild(span);
 
-    var span = document.createElement("SPAN")
+    var span = document.createElement("SPAN");
     span.innerHTML =
         `<div id="TagStyleDiv" style="background-color:#30306044;">
         <span style="color: white;" id="medicalSpecialtyTagSpan">Medical specialty：</span>
         <select id="medicalSpecialtyTag">
         </select>
-      </div>`
+      </div>`;
     getByid("page-header").appendChild(span);
     getByid("TagStyleDiv").style.display = "none";
 }
 loadWriteTAG();
 
-function readImageTags(url) {
+function readImageTags(url)
+{
     let request = new XMLHttpRequest();
     request.open('GET', url);
     request.responseType = 'json';
     request.send();
-    request.onload = function () {
+    request.onload = function ()
+    {
         let response = Object.entries(request.response['medicalSpecialty']);
 
-        response.forEach(medicalSpecialityObject => {
+        response.forEach(medicalSpecialityObject =>
+        {
             let [key, value] = medicalSpecialityObject;
 
             let medicalSpecialtyName = value['name'];
@@ -44,7 +47,8 @@ function readImageTags(url) {
             tagDiv.appendChild(diseasesDiv);
 
             let diseases = Object.entries(value['diseases']);
-            diseases.forEach(diseaseObject => {
+            diseases.forEach(diseaseObject =>
+            {
                 let [diseaseKey, diseaseValue] = diseaseObject;
                 let span = document.createElement("span");
                 let diseaseName = diseaseValue['name'];
@@ -55,13 +59,15 @@ function readImageTags(url) {
                 let select = document.createElement('select');
                 select.id = "diseaseSelectorTag" + diseaseName.replace(/ /g, "");
 
-                let selectDiseaseTagNumber = document.querySelectorAll('[id^=diseaseSelectorTag]').length
-                if (selectDiseaseTagNumber > 0) {
+                let selectDiseaseTagNumber = document.querySelectorAll('[id^=diseaseSelectorTag]').length;
+                if (selectDiseaseTagNumber > 0)
+                {
                     diseasesDiv.hidden = true;
                 }
                 diseasesDiv.appendChild(select);
 
-                diseaseValue['tags'].forEach(tag => {
+                diseaseValue['tags'].forEach(tag =>
+                {
                     let opt = document.createElement('option');
                     opt.id = tag;
                     opt.textContent = tag;
@@ -69,36 +75,42 @@ function readImageTags(url) {
                 });
             });
         });
-    }
+    };
 }
-readImageTags(""+url+"/data/imageTags.json");
+readImageTags("" + url + "/data/imageTags.json");
 
-getByid("medicalSpecialtyTag").onchange = function () {
+getByid("medicalSpecialtyTag").onchange = function ()
+{
 
     let disabledDiseaseDiv = document.getElementById("TagStyleDiv").querySelectorAll("div");
-    disabledDiseaseDiv.forEach((elem) => {
+    disabledDiseaseDiv.forEach((elem) =>
+    {
         elem.hidden = true;
     });
 
     let enabledDiseaseDiv = document.querySelectorAll("div[id='" + this.value + "']");
-    enabledDiseaseDiv.forEach((elem) => {
+    enabledDiseaseDiv.forEach((elem) =>
+    {
         elem.hidden = false;
     });
-}
+};
 
-getByid("writeTAG").onclick = function () {
+getByid("writeTAG").onclick = function ()
+{
     cancelTools();
     openWriteTAG = !openWriteTAG;
     img2darkByClass("TAG", !openWriteTAG);
     this.src = openWriteTAG == true ? '../image/icon/black/tag_on.png' : '../image/icon/black/tag_off.png';
-    if (openWriteTAG == true) {
+    if (openWriteTAG == true)
+    {
         getByid('TagStyleDiv').style.display = '';
         set_BL_model('writeTAG');
     } else getByid('TagStyleDiv').style.display = 'none';
     displayMark(viewportNumber);
     if (openWriteTAG == true) return;
 
-    function download(text, name, type) {
+    function download(text, name, type)
+    {
         let a = document.createElement('a');
         let file = new Blob([text], {
             type: type
@@ -108,7 +120,8 @@ getByid("writeTAG").onclick = function () {
         a.click();
     }
 
-    function download2(text, name, type) {
+    function download2(text, name, type)
+    {
         let a = document.createElement('a');
         let file = new File([text], name + ".xml", {
             type: type
@@ -120,14 +133,17 @@ getByid("writeTAG").onclick = function () {
         var formData = new FormData();
         formData.append("files", file);
         xhr.send(formData);
-        xhr.onload = function () {
-            if (xhr.status == 200) {
+        xhr.onload = function ()
+        {
+            if (xhr.status == 200)
+            {
                 let data = JSON.parse(xhr.responseText);
-                for (let url of data) {
+                for (let url of data)
+                {
                     window.open(url);
                 }
             }
-        }
+        };
     }
     let index = SearchUid2Index(GetViewport().sop);
     let i = index[0],
@@ -137,14 +153,16 @@ getByid("writeTAG").onclick = function () {
 
     set_TAG_context(index);
 
-    if (ConfigLog.Xml2Dcm.enableXml2Dcm == true) {
+    if (ConfigLog.Xml2Dcm.enableXml2Dcm == true)
+    {
         download2(String(get_TAG_context()), "" + CreateRandom(), 'text/plain');
-    } else {
+    } else
+    {
         download(String(get_TAG_context()), sopUID + ".xml", 'text/plain');
     }
 
     getByid('MouseOperation').click();
-}
+};
 
 
 var TAG_format =
@@ -166,14 +184,16 @@ var TAG_format =
 
 var TAG_format_object_list = [];
 
-function set_TAG_context(index) {
-    TAG_format_object_list = []
+function set_TAG_context(index)
+{
+    TAG_format_object_list = [];
     let temp = "" + TAG_format;
     let i = index[0],
         j = index[1],
         k = index[2];
 
-    function setTag(temp, replace, str, len) {
+    function setTag(temp, replace, str, len)
+    {
         str = Null2Empty(str);
         str = "" + str;
         temp = temp.replace("___" + replace + "___", "" + str);
@@ -186,8 +206,10 @@ function set_TAG_context(index) {
     let selectedTag;
     let disabledDiseaseDivs = document.getElementById("TagStyleDiv").querySelectorAll("div");
 
-    disabledDiseaseDivs.forEach((elem) => {
-        if (elem.hidden === false) {
+    disabledDiseaseDivs.forEach((elem) =>
+    {
+        if (elem.hidden === false)
+        {
             //TODO Currently supported just only one disease
             let selector = elem.querySelectorAll("[id^=diseaseSelectorTag]")[0];
             selectedTag = selector.value;
@@ -197,13 +219,15 @@ function set_TAG_context(index) {
     temp = setTag(temp, "SOPInstanceUID", sopDcm.SopUID, true);
     temp = setTag(temp, "InstanceNumber", sopDcm.InstanceNumber, true);
     temp = setTag(temp, "StudyInstanceUID", Patient.Study[i].StudyUID, true);
-    temp = setTag(temp, "ImageTag", selectedTag, true)
+    temp = setTag(temp, "ImageTag", selectedTag, true);
     TAG_format_object_list.push(temp);
 }
 
-function get_TAG_context() {
+function get_TAG_context()
+{
     var temp_str = "";
-    for (var i = 0; i < TAG_format_object_list.length; i++) {
+    for (var i = 0;i < TAG_format_object_list.length;i++)
+    {
         temp_str += TAG_format_object_list[i];
     }
     return temp_str;

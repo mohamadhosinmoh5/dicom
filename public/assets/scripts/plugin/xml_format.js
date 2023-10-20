@@ -1,28 +1,30 @@
 //代表XML標記模式為開啟狀態
 var openWriteXML = false;
 var assetsUrl = document.getElementById('assets').value;
-function loadxml_format() {
-  var span = document.createElement("SPAN")
-  span.innerHTML =
-    `<img class="img XML" alt="writeXML" id="writeXML" src="${assetsUrl}/image/icon/black/xml_off.png" width="50" height="50">`;
+function loadxml_format()
+{
+  var span = document.createElement("SPAN");
+  span.innerHTML = `<img style="display: none;" class="img XML" alt="writeXML" id="writeXML" src="${assetsUrl}/image/icon/black/xml_off.png" width="50" height="50">`;
   getByid("icon-list").appendChild(span);
 
-  var span = document.createElement("SPAN")
+  var span = document.createElement("SPAN");
   span.innerHTML =
-    `<label style="color: #ffffff;" id="xmlMarkName">name<input type="text" id="xmlMarkNameText" value="noName" /></label>`
+    `<label style="color: #ffffff;" id="xmlMarkName">name<input type="text" id="xmlMarkNameText" value="noName" /></label>`;
   getByid("page-header").appendChild(span);
   getByid("xmlMarkName").style.display = "none";
 }
 loadxml_format();
 
-getByid("writeXML").onclick = function () {
+getByid("writeXML").onclick = function ()
+{
   if (this.enable == false) return;
   cancelTools();
   openWriteXML = !openWriteXML;
   img2darkByClass("XML", !openWriteXML);
   openLeftImgClick = !openWriteXML;
   this.src = openWriteXML == true ? '../image/icon/black/xml_on.png' : '../image/icon/black/xml_off.png';
-  if (openWriteXML == true) {
+  if (openWriteXML == true)
+  {
     getByid('xmlMarkName').style.display = '';
     set_BL_model('writexml');
     writexml();
@@ -32,7 +34,8 @@ getByid("writeXML").onclick = function () {
   if (openWriteXML == true) return;
   else xml_now_choose = null;
 
-  function download(text, name, type) {
+  function download(text, name, type)
+  {
     let a = document.createElement('a');
     let file = new Blob([text], {
       type: type
@@ -44,11 +47,13 @@ getByid("writeXML").onclick = function () {
   setXml_context();
   download(String(getXml_context()), 'filename.xml', 'text/plain');
   getByid('MouseOperation').click();
-}
+};
 
-window.addEventListener('keydown', (KeyboardKeys) => {
-  var key = KeyboardKeys.which
-  if ((openWriteXML) && xml_now_choose && (key === 46 || key === 110)) {
+window.addEventListener('keydown', (KeyboardKeys) =>
+{
+  var key = KeyboardKeys.which;
+  if ((openWriteXML) && xml_now_choose && (key === 46 || key === 110))
+  {
     PatientMark.splice(PatientMark.indexOf(xml_now_choose.reference), 1);
     displayMark();
     xml_now_choose = null;
@@ -57,19 +62,22 @@ window.addEventListener('keydown', (KeyboardKeys) => {
   xml_now_choose = null;
 });
 
-getByid("xmlMarkNameText").onchange = function () {
-  if (xml_now_choose) {
+getByid("xmlMarkNameText").onchange = function ()
+{
+  if (xml_now_choose)
+  {
     xml_now_choose.reference.showName = '' + this.value;
     xml_now_choose.reference.hideName = xml_now_choose.reference.showName;
     refreshMark(xml_now_choose.reference);
     xml_now_choose = null;
     //this.value = '';
-    for (var i = 0; i < Viewport_Total; i++)
+    for (var i = 0;i < Viewport_Total;i++)
       displayMark(i);
   }
-}
+};
 
-function drawXML_mark_Write(obj) {
+function drawXML_mark_Write(obj)
+{
   var canvas = obj.canvas, mark = obj.mark, showName = obj.showName;
   if (mark.type != "XML_mark") return;
   var ctx = canvas.getContext("2d");
@@ -78,8 +86,10 @@ function drawXML_mark_Write(obj) {
   ctx.globalAlpha = 1.0;
   ctx.font = "" + (parseInt(ctx.lineWidth) * 12) + "px Arial";
   ctx.fillStyle = "red";
-  if (openWriteXML == true) {
-    for (var o = 0; o < mark.markX.length; o += 2) {
+  if (openWriteXML == true)
+  {
+    for (var o = 0;o < mark.markX.length;o += 2)
+    {
       ctx.strokeStyle = "" + mark.parent.color;
       ctx.beginPath();
       var x1 = mark.markX[o] * 1;
@@ -94,10 +104,12 @@ function drawXML_mark_Write(obj) {
       ctx.stroke();
 
       ctx.closePath();
-      if (openWriteXML == true) {
+      if (openWriteXML == true)
+      {
         ctx.lineWidth = "" + parseInt(ctx.lineWidth) * 2;
         ctx.beginPath();
-        if (xml_now_choose && xml_now_choose.mark == mark) {
+        if (xml_now_choose && xml_now_choose.mark == mark)
+        {
           ctx.strokeStyle = "#00FFFF";
           ctx.arc(x1 / 2 + x2 / 2, y1, parseInt(ctx.lineWidth), 0, 2 * Math.PI);
           ctx.stroke();
@@ -147,8 +159,10 @@ function drawXML_mark_Write(obj) {
         ctx.lineWidth = "" + parseInt(ctx.lineWidth) / 2;
       }
     }
-  } else {
-    for (var o = 0; o < mark.markX.length; o += 2) {
+  } else
+  {
+    for (var o = 0;o < mark.markX.length;o += 2)
+    {
       ctx.strokeStyle = "" + mark.parent.color;
       ctx.beginPath();
       var x1 = mark.markX[o] * 1;
@@ -162,7 +176,8 @@ function drawXML_mark_Write(obj) {
       ctx.rect(x1, y1, x2 - x1, y2 - y1);
       ctx.stroke();
       ctx.closePath();
-      if (openWriteXML == true) {
+      if (openWriteXML == true)
+      {
         ctx.lineWidth = "" + parseInt(ctx.lineWidth) * 2;
         ctx.beginPath();
         ctx.fillStyle = "#FF0000";
@@ -238,7 +253,7 @@ var xml_format_title = `
     <height>_height_</height>
     <depth>3</depth>
   </size>
-  <segmented>0</segmented>`
+  <segmented>0</segmented>`;
 var xml_format_object = `
   <object>
     <name>_name_</name>
@@ -252,7 +267,7 @@ var xml_format_object = `
       <ymax>_ymax_</ymax>
     </bndbox>
   </object>
-`
+`;
 var xml_format_object_list = [];
 var xml_format_tail = `
 </annotation>
@@ -260,21 +275,27 @@ var xml_format_tail = `
 var xml_now_choose = null;
 var temp_xml_format = "";
 
-function setXml_context() {
-  xml_format_object_list = []
-  let temp = ""
+function setXml_context()
+{
+  xml_format_object_list = [];
+  let temp = "";
   // x1 = parseInt(x1); x2 = parseInt(x2); y1 = parseInt(y1); y2 = parseInt(y2);
   let index = SearchUid2Index(GetViewport().sop);
   let i = index[0],
     j = index[1],
     k = index[2];
-  for (var n = 0; n < PatientMark.length; n++) {
+  for (var n = 0;n < PatientMark.length;n++)
+  {
     temp = "" + xml_format_object;
-    if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID) {
-      for (var m = 0; m < PatientMark[n].mark.length; m++) {
-        if (PatientMark[n].mark[m].type == "XML_mark") {
+    if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID)
+    {
+      for (var m = 0;m < PatientMark[n].mark.length;m++)
+      {
+        if (PatientMark[n].mark[m].type == "XML_mark")
+        {
           var tempMark = PatientMark[n].mark[m];
-          for (var o = 0; o < PatientMark[n].mark[m].markX.length; o += 2) {
+          for (var o = 0;o < PatientMark[n].mark[m].markX.length;o += 2)
+          {
             var x1 = parseInt(tempMark.markX[o]);
             var y1 = parseInt(tempMark.markY[o]);
             var x2 = parseInt(tempMark.markX[o + 1]);
@@ -292,33 +313,42 @@ function setXml_context() {
   }
 }
 
-function getXml_context() {
+function getXml_context()
+{
   var temp_str = "";
-  for (var i = 0; i < xml_format_object_list.length; i++) {
+  for (var i = 0;i < xml_format_object_list.length;i++)
+  {
     temp_str += xml_format_object_list[i];
   }
   return xml_format_title.replace("_width_", GetViewport().imageWidth).replace("_height_", GetViewport().imageHeight) +
     temp_str + xml_format_tail;
 }
 
-function xml_pounch(currX, currY) {
+function xml_pounch(currX, currY)
+{
   let block_size = getMarkSize(GetViewportMark(), false) * 4;
   let index = SearchUid2Index(GetViewport().sop);
   let i = index[0],
     j = index[1],
     k = index[2];
-  for (var n = 0; n < PatientMark.length; n++) {
+  for (var n = 0;n < PatientMark.length;n++)
+  {
     //  temp = "" + xml_format_object;
-    if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID) {
-      for (var m = 0; m < PatientMark[n].mark.length; m++) {
-        if (PatientMark[n].mark[m].type == "XML_mark") {
+    if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID)
+    {
+      for (var m = 0;m < PatientMark[n].mark.length;m++)
+      {
+        if (PatientMark[n].mark[m].type == "XML_mark")
+        {
           var tempMark = PatientMark[n].mark[m];
-          for (var o = 0; o < PatientMark[n].mark[m].markX.length; o += 2) {
+          for (var o = 0;o < PatientMark[n].mark[m].markX.length;o += 2)
+          {
             var x1 = parseInt(tempMark.markX[o]);
             var y1 = parseInt(tempMark.markY[o]);
             var x2 = parseInt(tempMark.markX[o + 1]);
             var y2 = parseInt(tempMark.markY[o + 1]);
-            if (currY + block_size >= y1 && currX + block_size >= x1 / 2 + x2 / 2 && currY < y1 + block_size && currX < x1 / 2 + x2 / 2 + block_size) {
+            if (currY + block_size >= y1 && currX + block_size >= x1 / 2 + x2 / 2 && currY < y1 + block_size && currX < x1 / 2 + x2 / 2 + block_size)
+            {
               xml_now_choose = {
                 reference: PatientMark[n],
                 mark: tempMark,
@@ -326,7 +356,8 @@ function xml_pounch(currX, currY) {
               };
               getByid("xmlMarkNameText").value = "" + PatientMark[n].showName;
               return true;
-            } else if (currY + block_size >= y2 && currX + block_size >= x1 / 2 + x2 / 2 && currY < y2 + block_size && currX < x1 / 2 + x2 / 2 + block_size) {
+            } else if (currY + block_size >= y2 && currX + block_size >= x1 / 2 + x2 / 2 && currY < y2 + block_size && currX < x1 / 2 + x2 / 2 + block_size)
+            {
               xml_now_choose = {
                 reference: PatientMark[n],
                 mark: tempMark,
@@ -334,7 +365,8 @@ function xml_pounch(currX, currY) {
               };
               getByid("xmlMarkNameText").value = "" + PatientMark[n].showName;
               return true;
-            } else if (currY + block_size >= y1 / 2 + y2 / 2 && currX + block_size >= x1 && currY < y1 / 2 + y2 / 2 + block_size && currX < x1 + block_size) {
+            } else if (currY + block_size >= y1 / 2 + y2 / 2 && currX + block_size >= x1 && currY < y1 / 2 + y2 / 2 + block_size && currX < x1 + block_size)
+            {
               xml_now_choose = {
                 reference: PatientMark[n],
                 mark: tempMark,
@@ -342,7 +374,8 @@ function xml_pounch(currX, currY) {
               };
               getByid("xmlMarkNameText").value = "" + PatientMark[n].showName;
               return true;
-            } else if (currY + block_size >= y1 / 2 + y2 / 2 && currX + block_size >= x2 && currY < y1 / 2 + y2 / 2 + block_size && currX < x2 + block_size) {
+            } else if (currY + block_size >= y1 / 2 + y2 / 2 && currX + block_size >= x2 && currY < y1 / 2 + y2 / 2 + block_size && currX < x2 + block_size)
+            {
               xml_now_choose = {
                 reference: PatientMark[n],
                 mark: tempMark,
@@ -361,43 +394,54 @@ function xml_pounch(currX, currY) {
   return false;
 }
 
-function deleteXml() {
+function deleteXml()
+{
   let index = SearchUid2Index(GetViewport().sop);
   let i = index[0],
     j = index[1],
     k = index[2];
   var list = [];
-  for (var n = 0; n < PatientMark.length; n++) {
-    if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID) {
-      for (var m = 0; m < PatientMark[n].mark.length; m++) {
-        if (PatientMark[n].mark[m].type == "XML_mark") {
+  for (var n = 0;n < PatientMark.length;n++)
+  {
+    if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID)
+    {
+      for (var m = 0;m < PatientMark[n].mark.length;m++)
+      {
+        if (PatientMark[n].mark[m].type == "XML_mark")
+        {
           list.push(PatientMark[n]);
         }
       }
     }
   }
-  for (var l = 0; l < list.length; l++) {
+  for (var l = 0;l < list.length;l++)
+  {
     PatientMark.splice(PatientMark.indexOf(list), 1);
   }
   refreshMarkFromSop(Patient.Study[i].Series[j].Sop[k].SopUID);
   displayMark();
 }
 
-function importXml(url) {
+function importXml(url)
+{
   var oReq = new XMLHttpRequest();
-  try {
+  try
+  {
     oReq.open("get", url, false);
-  } catch (err) { }
+  } catch (err) {}
   oReq.responseType = "xml";
-  oReq.onreadystatechange = function (oEvent) {
-    try {
+  oReq.onreadystatechange = function (oEvent)
+  {
+    try
+    {
       var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(oReq.response, "text/xml");
       var objlist = xmlDoc.getElementsByTagName("annotation")[0].getElementsByTagName("object");
 
       let Uid = SearchNowUid();
 
-      for (var i = 0; i < objlist.length; i++) {
+      for (var i = 0;i < objlist.length;i++)
+      {
         var dcm = {};
         dcm.study = Uid.studyuid;
         dcm.series = Uid.sreiesuid;
@@ -420,15 +464,17 @@ function importXml(url) {
 
       refreshMark(dcm);
       setXml_context();
-    } catch (ex) { }
-  }
+    } catch (ex) {}
+  };
   oReq.send();
 }
 
 
-function writexml() {
+function writexml()
+{
 
-  if (BL_mode == 'writexml') {
+  if (BL_mode == 'writexml')
+  {
     DeleteMouseEvent();
     //this.angle_=1;
     //cancelTools();
@@ -440,7 +486,8 @@ function writexml() {
        // document.documentElement.ontouchmove = DivDraw;
         set_BL_model.onchange1 = function () { return 0; };
     }*/
-    Mousedown = function (e) {
+    Mousedown = function (e)
+    {
       if (e.which == 1) MouseDownCheck = true;
       else if (e.which == 3) rightMouseDown = true;
       var currX = getCurrPoint(e)[0];
@@ -452,31 +499,37 @@ function writexml() {
       if (xml_pounch(currX, currY) == true) displayMark();
     };
 
-    Mousemove = function (e) {
+    Mousemove = function (e)
+    {
       var currX = getCurrPoint(e)[0];
       var currY = getCurrPoint(e)[1];
       var labelXY = getClass('labelXY'); {
         let angle2point = rotateCalculation(e);
         labelXY[viewportNumber].innerText = "X: " + parseInt(angle2point[0]) + " Y: " + parseInt(angle2point[1]);
       }
-      if (rightMouseDown == true) {
+      if (rightMouseDown == true)
+      {
         scale_size(e, currX, currY);
       }
 
-      if (openLink == true) {
-        for (var i = 0; i < Viewport_Total; i++) {
+      if (openLink == true)
+      {
+        for (var i = 0;i < Viewport_Total;i++)
+        {
           GetViewport(i).newMousePointX = GetViewport().newMousePointX;
           GetViewport(i).newMousePointY = GetViewport().newMousePointY;
         }
       }
       putLabel();
-      for (var i = 0; i < Viewport_Total; i++)
+      for (var i = 0;i < Viewport_Total;i++)
         displayRuler(i);
 
-      if (MouseDownCheck) {
+      if (MouseDownCheck)
+      {
         windowMouseX = GetmouseX(e);
         windowMouseY = GetmouseY(e);
-        if (!xml_now_choose) {
+        if (!xml_now_choose)
+        {
           let Uid = SearchNowUid();
           var dcm = {};
           dcm.study = Uid.studyuid;
@@ -497,33 +550,40 @@ function writexml() {
           dcm.mark[DcmMarkLength].markY.push(currY);
           PatientMark.push(dcm);
           refreshMark(dcm);
-          for (var i = 0; i < Viewport_Total; i++)
+          for (var i = 0;i < Viewport_Total;i++)
             displayMark(i);
           displayAngleRuler();
           PatientMark.splice(PatientMark.indexOf(dcm), 1);
-        } else {
-          if (xml_now_choose.value == "up") {
+        } else
+        {
+          if (xml_now_choose.value == "up")
+          {
             xml_now_choose.mark.markY[0] = currY;
-          } else if (xml_now_choose.value == "down") {
+          } else if (xml_now_choose.value == "down")
+          {
             xml_now_choose.mark.markY[1] = currY;
-          } else if (xml_now_choose.value == "left") {
+          } else if (xml_now_choose.value == "left")
+          {
             xml_now_choose.mark.markX[0] = currX;
-          } else if (xml_now_choose.value == "right") {
+          } else if (xml_now_choose.value == "right")
+          {
             xml_now_choose.mark.markX[1] = currX;
           }
           //setXml_context();
-          for (var i = 0; i < Viewport_Total; i++)
+          for (var i = 0;i < Viewport_Total;i++)
             displayMark(i);
 
         }
       }
-    }
-    Mouseup = function (e) {
+    };
+    Mouseup = function (e)
+    {
       var currX = getCurrPoint(e)[0];
       var currY = getCurrPoint(e)[1];
       MouseDownCheck = false;
       rightMouseDown = false;
-      if (openWriteXML == true && !xml_now_choose) {
+      if (openWriteXML == true && !xml_now_choose)
+      {
         let Uid = SearchNowUid();
         var dcm = {};
         dcm.study = Uid.studyuid;
@@ -544,12 +604,12 @@ function writexml() {
         dcm.mark[DcmMarkLength].markY.push(currY);
         PatientMark.push(dcm);
         refreshMark(dcm);
-        for (var i = 0; i < Viewport_Total; i++)
+        for (var i = 0;i < Viewport_Total;i++)
           displayMark(i);
         displayAngleRuler();
         //setXml_context();
       }
-    }
+    };
   }
   AddMouseEvent();
 }

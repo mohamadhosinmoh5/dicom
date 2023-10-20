@@ -4,13 +4,13 @@ var openWriteGSPS = false;
 var openWriteGraphic = false;
 var assetsUrl = document.getElementById('assets').value;
 
-function loadWriteGraphic() {
-    var span = document.createElement("SPAN")
-    span.innerHTML =
-        `<img class="img GSPS" alt="writeGSPS" id="writeGSPS" src="${assetsUrl}/image/icon/black/gsps_off.png" width="50" height="50">`;
+function loadWriteGraphic()
+{
+    var span = document.createElement("SPAN");
+    span.innerHTML = `<img style="display: none;" class="img GSPS" alt="writeGSPS" id="writeGSPS" src="${assetsUrl}/image/icon/black/gsps_off.png" width="50" height="50">`;
     getByid("icon-list").appendChild(span);
 
-    var span = document.createElement("SPAN")
+    var span = document.createElement("SPAN");
     span.innerHTML =
         `<div id="GspsStyleDiv" style="background-color:#30306044;">
         <select id="GSPScolorSelect" style="background-color:#929292;font-weight:bold;font-size:16px;">
@@ -32,15 +32,17 @@ function loadWriteGraphic() {
           <option id="GspsCIRCLE">Circle</option>
           <option id="GspsLINE">Line</option>
         </select>
-      </div>`
+      </div>`;
     getByid("page-header").appendChild(span);
     getByid("GspsStyleDiv").style.display = "none";
 }
 loadWriteGraphic();
 
-window.addEventListener('keydown', (KeyboardKeys) => {
-    var key = KeyboardKeys.which
-    if ((openWriteGSPS || openWriteGraphic) && Graphic_now_choose && (key === 46 || key === 110)) {
+window.addEventListener('keydown', (KeyboardKeys) =>
+{
+    var key = KeyboardKeys.which;
+    if ((openWriteGSPS || openWriteGraphic) && Graphic_now_choose && (key === 46 || key === 110))
+    {
         PatientMark.splice(PatientMark.indexOf(Graphic_now_choose.reference), 1);
         displayMark();
         Graphic_now_choose = null;
@@ -48,7 +50,8 @@ window.addEventListener('keydown', (KeyboardKeys) => {
     }
 });
 
-function GetGraphicColor() {
+function GetGraphicColor()
+{
     //if (getByid("Graphicselected").selected) return "#0000FF";
     if (getByid("GraphicBlackSelect").selected) return "#000000";
     else if (getByid("GraphicBlueSelect").selected) return "#0000FF";
@@ -64,7 +67,8 @@ function GetGraphicColor() {
     else return "#0000FF";
 }
 
-function GetGSPSColor() {
+function GetGSPSColor()
+{
     //if (getByid("Graphicselected").selected) return "#0000FF";
     if (getByid("GSPSBlackSelect").selected) return "#000000";
     else if (getByid("GSPSBlueSelect").selected) return "#0000FF";
@@ -80,7 +84,8 @@ function GetGSPSColor() {
     else return "#0000FF";
 }
 
-function GetGraphicName() {
+function GetGraphicName()
+{
     //if (getByid("Graphicselected").selected) return "T8";
     if (getByid("GraphicBlackSelect").selected) return "T7";
     else if (getByid("GraphicBlueSelect").selected) return "T8";
@@ -97,18 +102,21 @@ function GetGraphicName() {
 }
 
 
-getByid("GspsTypeSelect").onchange = function () {
+getByid("GspsTypeSelect").onchange = function ()
+{
     displayMark();
-}
+};
 
-getByid("writeGSPS").onclick = function () {
+getByid("writeGSPS").onclick = function ()
+{
     if (this.enable == false) return;
     cancelTools();
     openWriteGSPS = !openWriteGSPS;
     img2darkByClass("GSPS", !openWriteGSPS);
     openLeftImgClick = !openWriteGSPS;
     this.src = openWriteGSPS == true ? '../image/icon/black/gsps_on.png' : '../image/icon/black/gsps_off.png';
-    if (openWriteGSPS == true) {
+    if (openWriteGSPS == true)
+    {
         getByid('GspsStyleDiv').style.display = '';
         set_BL_model('writegsps');
         writegsps();
@@ -118,7 +126,8 @@ getByid("writeGSPS").onclick = function () {
     if (openWriteGSPS == true) return;
     // else GSPS_now_choose = null;
 
-    function download(text, name, type) {
+    function download(text, name, type)
+    {
         let a = document.createElement('a');
         let file = new Blob([text], {
             type: type
@@ -128,7 +137,8 @@ getByid("writeGSPS").onclick = function () {
         a.download = name;
         a.click();
     }
-    function download2(text, name, type) {
+    function download2(text, name, type)
+    {
         let a = document.createElement('a');
         let file = new File([text], name + ".xml", {
             type: type
@@ -141,14 +151,17 @@ getByid("writeGSPS").onclick = function () {
         var formData = new FormData();
         formData.append("files", file);
         xhr.send(formData);
-        xhr.onload = function () {
-            if (xhr.status == 200) {
+        xhr.onload = function ()
+        {
+            if (xhr.status == 200)
+            {
                 let data = JSON.parse(xhr.responseText);
-                for (let url of data) {
+                for (let url of data)
+                {
                     window.open(url);
                 }
             }
-        }
+        };
     }
     set_GSPS_context();
     if (ConfigLog.Xml2Dcm.enableXml2Dcm == true) download2(String(get_Graphic_context()), "" + CreateSecurePassword(), 'text/plain');
@@ -156,7 +169,7 @@ getByid("writeGSPS").onclick = function () {
     //download(String(get_Graphic_context()), 'filename_GSPS.xml', 'text/plain');
 
     getByid('MouseOperation').click();
-}
+};
 
 
 var Graphic_Annotation_format =
@@ -247,22 +260,27 @@ var Graphic_format_tail = `
 var Graphic_format_rotation = `
 
                         <element tag="0071,0230" vr="FD" vm="1" len="8" name="RotationAngle">___RotationAngle___</element>
-                        <element tag="0071,0273" vr="FL" vm="2" len="8" name="RotationPoint">___RotationPoint___</element>`
+                        <element tag="0071,0273" vr="FL" vm="2" len="8" name="RotationPoint">___RotationPoint___</element>`;
 var Graphic_now_choose = null;
 var temp_xml_format = "";
 
 
-function Graphic_pounch(currX, currY, dcm) {
+function Graphic_pounch(currX, currY, dcm)
+{
     let block_size = getMarkSize(GetViewportMark(), false) * 4;
     let index = SearchUid2Index(GetViewport().sop);
     let i = index[0],
         j = index[1],
         k = index[2];
-    for (var n = 0; n < PatientMark.length; n++) {
+    for (var n = 0;n < PatientMark.length;n++)
+    {
         if (dcm && PatientMark[n] != dcm) continue;
-        if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID) {
-            for (var m = 0; m < PatientMark[n].mark.length; m++) {
-                if (PatientMark[n].mark[m].type == "POLYLINE") {
+        if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID)
+        {
+            for (var m = 0;m < PatientMark[n].mark.length;m++)
+            {
+                if (PatientMark[n].mark[m].type == "POLYLINE")
+                {
                     var tempMark = PatientMark[n].mark[m];
                     var Max_X = -999999,
                         Max_Y = -999999,
@@ -272,27 +290,34 @@ function Graphic_pounch(currX, currY, dcm) {
                         Max_Y_list = [],
                         Min_X_list = [],
                         Min_Y_list = [];
-                    for (var o = 0; o < PatientMark[n].mark[m].markX.length; o += 1) {
+                    for (var o = 0;o < PatientMark[n].mark[m].markX.length;o += 1)
+                    {
                         if (parseInt(tempMark.markX[o]) >= Max_X) Max_X = parseInt(tempMark.markX[o]);
                         if (parseInt(tempMark.markX[o]) <= Min_X) Min_X = parseInt(tempMark.markX[o]);
                     }
-                    for (var o = 0; o < PatientMark[n].mark[m].markX.length; o += 1) {
+                    for (var o = 0;o < PatientMark[n].mark[m].markX.length;o += 1)
+                    {
                         if (equal_TOL(Max_X, parseInt(tempMark.markX[o]), block_size)) Max_X_list.push(o);
                         if (equal_TOL(Min_X, parseInt(tempMark.markX[o]), block_size)) Min_X_list.push(o);
                     }
-                    for (var o = 0; o < PatientMark[n].mark[m].markY.length; o += 1) {
+                    for (var o = 0;o < PatientMark[n].mark[m].markY.length;o += 1)
+                    {
                         if (parseInt(tempMark.markY[o]) >= Max_Y) Max_Y = parseInt(tempMark.markY[o]);
                         if (parseInt(tempMark.markY[o]) <= Min_Y) Min_Y = parseInt(tempMark.markY[o]);
                     }
-                    for (var o = 0; o < PatientMark[n].mark[m].markX.length; o += 1) {
+                    for (var o = 0;o < PatientMark[n].mark[m].markX.length;o += 1)
+                    {
                         if (equal_TOL(Max_Y, parseInt(tempMark.markY[o]), block_size)) Max_Y_list.push(o);
                         if (equal_TOL(Min_Y, parseInt(tempMark.markY[o]), block_size)) Min_Y_list.push(o);
                     }
-                    for (var o = 0; o < PatientMark[n].mark[m].markX.length - 1; o += 1) {
+                    for (var o = 0;o < PatientMark[n].mark[m].markX.length - 1;o += 1)
+                    {
                         var x_middle = (parseInt(tempMark.markX[o]) + parseInt(tempMark.markX[o + 1])) / 2;
                         var y_middle = (parseInt(tempMark.markY[o]) + parseInt(tempMark.markY[o + 1])) / 2;
-                        if (currY + block_size >= y_middle && currX + block_size >= x_middle && currY < y_middle + block_size && currX < x_middle + block_size) {
-                            if (equal_TOL(y_middle, Max_Y, block_size)) {
+                        if (currY + block_size >= y_middle && currX + block_size >= x_middle && currY < y_middle + block_size && currX < x_middle + block_size)
+                        {
+                            if (equal_TOL(y_middle, Max_Y, block_size))
+                            {
                                 Graphic_now_choose = {
                                     reference: PatientMark[n],
                                     point: Max_Y_list,
@@ -301,7 +326,8 @@ function Graphic_pounch(currX, currY, dcm) {
                                     value: 'up'
                                 };
                                 return true;
-                            } else if (equal_TOL(y_middle, Min_Y, block_size)) {
+                            } else if (equal_TOL(y_middle, Min_Y, block_size))
+                            {
                                 Graphic_now_choose = {
                                     reference: PatientMark[n],
                                     point: Min_Y_list,
@@ -310,7 +336,8 @@ function Graphic_pounch(currX, currY, dcm) {
                                     value: 'down'
                                 };
                                 return true;
-                            } else if (equal_TOL(x_middle, Min_X, block_size)) {
+                            } else if (equal_TOL(x_middle, Min_X, block_size))
+                            {
                                 Graphic_now_choose = {
                                     reference: PatientMark[n],
                                     point: Min_X_list,
@@ -319,7 +346,8 @@ function Graphic_pounch(currX, currY, dcm) {
                                     value: 'left'
                                 };
                                 return true;
-                            } else if (equal_TOL(x_middle, Max_X, block_size)) {
+                            } else if (equal_TOL(x_middle, Max_X, block_size))
+                            {
                                 Graphic_now_choose = {
                                     reference: PatientMark[n],
                                     point: Max_X_list,
@@ -339,27 +367,33 @@ function Graphic_pounch(currX, currY, dcm) {
     return false;
 }
 
-function set_Graphic_context() {
-    Graphic_format_object_list = []
-    let temp = ""
+function set_Graphic_context()
+{
+    Graphic_format_object_list = [];
+    let temp = "";
     let tail_list = "";
     let index = SearchUid2Index(GetViewport().sop);
     let i = index[0],
         j = index[1],
         k = index[2];
     temp = "" + Graphic_Annotation_format;
-    for (var n = 0; n < PatientMark.length; n++) {
-        if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID) {
-            for (var m = 0; m < PatientMark[n].mark.length; m++) {
-                if (PatientMark[n].mark[m].type == "POLYLINE") {
+    for (var n = 0;n < PatientMark.length;n++)
+    {
+        if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID)
+        {
+            for (var m = 0;m < PatientMark[n].mark.length;m++)
+            {
+                if (PatientMark[n].mark[m].type == "POLYLINE")
+                {
                     let tail = "" + Graphic_format_tail;
                     var tempMark = PatientMark[n].mark[m];
                     var mark_xy = "";
-                    for (var o = 0; o < tempMark.markX.length; o += 1) {
+                    for (var o = 0;o < tempMark.markX.length;o += 1)
+                    {
                         var tempX = 0,
                             tempY = 0;
                         if (tempMark.RotationAngle && tempMark.RotationPoint)
-                            [tempX, tempY] = rotatePoint([tempMark.markX[o], tempMark.markY[o]], tempMark.RotationAngle, tempMark.RotationPoint)
+                            [tempX, tempY] = rotatePoint([tempMark.markX[o], tempMark.markY[o]], tempMark.RotationAngle, tempMark.RotationPoint);
                         else
                             [tempX, tempY] = [tempMark.markX[o], tempMark.markY[o]];
                         tempX = parseInt(tempX) + ".0123";
@@ -373,19 +407,23 @@ function set_Graphic_context() {
                     tail = tail.replace("___PatternOnColorCIELabValue___", "" + SetGraphicColor(PatientMark[n].color));
                     tail = tail.replace("___GraphicType___", "POLYLINE");
                     tail = setTag(tail, "NumberOfGraphicPoints", 5, true);
-                    if (tempMark.RotationAngle && tempMark.RotationPoint) {
+                    if (tempMark.RotationAngle && tempMark.RotationPoint)
+                    {
                         var rotation = ("" + Graphic_format_rotation).replace("___RotationAngle___", tempMark.RotationAngle);
                         rotation = rotation.replace("___RotationPoint___", "" + tempMark.RotationPoint[0] + "\\" + tempMark.RotationPoint[1]);
                         tail = tail.replace("___rotation___", rotation);
-                    } else {
+                    } else
+                    {
                         tail = tail.replace("___rotation___", "");
                     }
                     tail_list += tail;
                 }
                 var date = new Date();
 
-                function zero(num, Milliseconds) {
-                    if (Milliseconds) {
+                function zero(num, Milliseconds)
+                {
+                    if (Milliseconds)
+                    {
                         if (num < 10) return "" + "00" + num;
                         else if (num < 100) return "" + "0" + num;
                         return "" + num;
@@ -393,7 +431,8 @@ function set_Graphic_context() {
                     return "" + (num < 10 ? '0' : '') + num;
                 }
 
-                function setTag(temp, replace, str, len) {
+                function setTag(temp, replace, str, len)
+                {
                     str = Null2Empty(str);
                     temp = temp.replace("___" + replace + "___", "" + str);
                     var length = ("" + str).length;
@@ -403,7 +442,8 @@ function set_Graphic_context() {
                 }
                 var createSopUid = CreateUid("sop");
                 var createSeriesUid = CreateUid("series");
-                for (var c = 0; c < 5; c++) {
+                for (var c = 0;c < 5;c++)
+                {
                     temp = setTag(temp, "StudyDate", GetViewport().StudyDate, true);
                     temp = setTag(temp, "StudyTime", GetViewport().StudyTime, true);
                     temp = setTag(temp, "StudyInstanceUID", Patient.Study[i].StudyUID, true);
@@ -426,9 +466,11 @@ function set_Graphic_context() {
     Graphic_format_object_list.push(temp);
 }
 
-function get_Graphic_context() {
+function get_Graphic_context()
+{
     var temp_str = "";
-    for (var i = 0; i < Graphic_format_object_list.length; i++) {
+    for (var i = 0;i < Graphic_format_object_list.length;i++)
+    {
         temp_str += Graphic_format_object_list[i];
     }
     return temp_str;
@@ -436,9 +478,10 @@ function get_Graphic_context() {
 
 
 
-function set_GSPS_context() {
-    Graphic_format_object_list = []
-    let temp = ""
+function set_GSPS_context()
+{
+    Graphic_format_object_list = [];
+    let temp = "";
     let tail_list = "";
     let index = SearchUid2Index(GetViewport().sop);
     let i = index[0],
@@ -446,7 +489,8 @@ function set_GSPS_context() {
         k = index[2];
     temp = "" + Graphic_Annotation_format;
 
-    function setTag(temp, replace, str, len) {
+    function setTag(temp, replace, str, len)
+    {
         str = Null2Empty(str);
         temp = temp.replace("___" + replace + "___", "" + str);
         var length = ("" + str).length;
@@ -454,18 +498,23 @@ function set_GSPS_context() {
         if (len == true) temp = temp.replace("___" + replace + "(len)___", length);
         return temp;
     }
-    for (var n = 0; n < PatientMark.length; n++) {
-        if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID) {
-            for (var m = 0; m < PatientMark[n].mark.length; m++) {
-                if (PatientMark[n].mark[m].type == "POLYLINE") {
+    for (var n = 0;n < PatientMark.length;n++)
+    {
+        if (PatientMark[n].sop == Patient.Study[i].Series[j].Sop[k].SopUID)
+        {
+            for (var m = 0;m < PatientMark[n].mark.length;m++)
+            {
+                if (PatientMark[n].mark[m].type == "POLYLINE")
+                {
                     let tail = "" + Graphic_format_tail;
                     var tempMark = PatientMark[n].mark[m];
                     var mark_xy = "";
-                    for (var o = 0; o < tempMark.markX.length; o += 1) {
+                    for (var o = 0;o < tempMark.markX.length;o += 1)
+                    {
                         var tempX = 0,
                             tempY = 0;
                         if (tempMark.RotationAngle && tempMark.RotationPoint)
-                            [tempX, tempY] = rotatePoint([tempMark.markX[o], tempMark.markY[o]], tempMark.RotationAngle, tempMark.RotationPoint)
+                            [tempX, tempY] = rotatePoint([tempMark.markX[o], tempMark.markY[o]], tempMark.RotationAngle, tempMark.RotationPoint);
                         else
                             [tempX, tempY] = [tempMark.markX[o], tempMark.markY[o]];
                         tempX = parseInt(tempX) + ".0123";
@@ -479,19 +528,23 @@ function set_GSPS_context() {
                     tail = tail.replace("___PatternOnColorCIELabValue___", "" + SetGraphicColor(PatientMark[n].color));
                     tail = tail.replace("___GraphicType___", "POLYLINE");
                     tail = setTag(tail, "NumberOfGraphicPoints", (tempMark.markX.length + tempMark.markY.length) / 2, true);
-                    if (tempMark.RotationAngle && tempMark.RotationPoint) {
+                    if (tempMark.RotationAngle && tempMark.RotationPoint)
+                    {
                         var rotation = ("" + Graphic_format_rotation).replace("___RotationAngle___", tempMark.RotationAngle);
                         rotation = rotation.replace("___RotationPoint___", "" + tempMark.RotationPoint[0] + "\\" + tempMark.RotationPoint[1]);
                         tail = tail.replace("___rotation___", rotation);
-                    } else {
+                    } else
+                    {
                         tail = tail.replace("___rotation___", "");
                     }
                     tail_list += tail;
-                } else if (PatientMark[n].mark[m].type == "CIRCLE") {
+                } else if (PatientMark[n].mark[m].type == "CIRCLE")
+                {
                     let tail = "" + Graphic_format_tail;
                     var tempMark = PatientMark[n].mark[m];
                     var mark_xy = "";
-                    for (var o = 0; o < tempMark.markX.length; o += 1) {
+                    for (var o = 0;o < tempMark.markX.length;o += 1)
+                    {
                         var tempX = 0,
                             tempY = 0;
                         [tempX, tempY] = [tempMark.markX[o], tempMark.markY[o]];
@@ -513,8 +566,10 @@ function set_GSPS_context() {
                 }
                 var date = new Date();
 
-                function zero(num, Milliseconds) {
-                    if (Milliseconds) {
+                function zero(num, Milliseconds)
+                {
+                    if (Milliseconds)
+                    {
                         if (num < 10) return "" + "00" + num;
                         else if (num < 100) return "" + "0" + num;
                         return "" + num;
@@ -524,7 +579,8 @@ function set_GSPS_context() {
 
                 var createSopUid = CreateUid("sop");
                 var createSeriesUid = CreateUid("series");
-                for (var c = 0; c < 5; c++) {
+                for (var c = 0;c < 5;c++)
+                {
                     temp = setTag(temp, "StudyDate", GetViewport().StudyDate, true);
                     temp = setTag(temp, "StudyTime", GetViewport().StudyTime, true);
                     temp = setTag(temp, "StudyInstanceUID", Patient.Study[i].StudyUID, true);
@@ -547,11 +603,14 @@ function set_GSPS_context() {
     Graphic_format_object_list.push(temp);
 }
 
-function writegsps() {
-    if (BL_mode == 'writegsps') {
+function writegsps()
+{
+    if (BL_mode == 'writegsps')
+    {
         DeleteMouseEvent();
 
-        Mousedown = function (e) {
+        Mousedown = function (e)
+        {
             if (e.which == 1) MouseDownCheck = true;
             else if (e.which == 3) rightMouseDown = true;
             var currX = getCurrPoint(e)[0];
@@ -560,16 +619,19 @@ function writegsps() {
             windowMouseY = GetmouseY(e);
             GetViewport().originalPointX = getCurrPoint(e)[0];
             GetViewport().originalPointY = getCurrPoint(e)[1];
-            if (!rightMouseDown && getByid("GspsPOLYLINE").selected == true) {
+            if (!rightMouseDown && getByid("GspsPOLYLINE").selected == true)
+            {
                 var currX = getCurrPoint(e)[0];
                 var currY = getCurrPoint(e)[1];
-                if (Graphic_pounch(currX, currY) == true) {
+                if (Graphic_pounch(currX, currY) == true)
+                {
                     displayMark();
                 };
             }
         };
 
-        Mousemove = function (e) {
+        Mousemove = function (e)
+        {
             var currX = getCurrPoint(e)[0];
             var currY = getCurrPoint(e)[1];
             var labelXY = getClass('labelXY'); {
@@ -580,17 +642,20 @@ function writegsps() {
             //      scale_size(e, currX, currY);
             // }
 
-            if (openLink == true) {
-                for (var i = 0; i < Viewport_Total; i++) {
+            if (openLink == true)
+            {
+                for (var i = 0;i < Viewport_Total;i++)
+                {
                     GetViewport(i).newMousePointX = GetViewport().newMousePointX;
                     GetViewport(i).newMousePointY = GetViewport().newMousePointY;
                 }
             }
             putLabel();
-            for (var i = 0; i < Viewport_Total; i++)
+            for (var i = 0;i < Viewport_Total;i++)
                 displayRuler(i);
 
-            if (MouseDownCheck == true && getByid("GspsCIRCLE").selected == true) { //flag
+            if (MouseDownCheck == true && getByid("GspsCIRCLE").selected == true)
+            { //flag
                 let Uid = SearchNowUid();
                 var dcm = {};
                 dcm.study = Uid.studyuid;
@@ -611,12 +676,13 @@ function writegsps() {
                 dcm.mark[DcmMarkLength].markY.push(GetViewport().originalPointY + Math.sqrt(Math.pow(Math.abs(GetViewport().originalPointX - currX), 2) + Math.pow(Math.abs(GetViewport().originalPointY - currY), 2) / 2));
                 PatientMark.push(dcm);
                 refreshMark(dcm);
-                for (var i = 0; i < Viewport_Total; i++)
+                for (var i = 0;i < Viewport_Total;i++)
                     displayMark(i);
                 displayAngleRuler();
                 PatientMark.splice(PatientMark.indexOf(dcm), 1);
             }
-            if (MouseDownCheck == true && getByid("GspsLINE").selected == true) {
+            if (MouseDownCheck == true && getByid("GspsLINE").selected == true)
+            {
                 let Uid = SearchNowUid();
                 var dcm = {};
                 dcm.study = Uid.studyuid;
@@ -637,12 +703,13 @@ function writegsps() {
                 dcm.mark[DcmMarkLength].markX.push(currX);
                 PatientMark.push(dcm);
                 refreshMark(dcm);
-                for (var i = 0; i < Viewport_Total; i++)
+                for (var i = 0;i < Viewport_Total;i++)
                     displayMark(i);
                 displayAngleRuler();
                 PatientMark.splice(PatientMark.indexOf(dcm), 1);
             }
-            if ((openWriteGraphic == true || (getByid("GspsPOLYLINE").selected == true)) && (MouseDownCheck == true || rightMouseDown == true)) {
+            if ((openWriteGraphic == true || (getByid("GspsPOLYLINE").selected == true)) && (MouseDownCheck == true || rightMouseDown == true))
+            {
                 if (currX <= 0)
                     currX = 0;
                 if (currY <= 0)
@@ -659,7 +726,8 @@ function writegsps() {
                     GetViewport().originalPointX = GetViewport().imageWidth;
                 if (GetViewport().originalPointY > GetViewport().imageHeight)
                     GetViewport().originalPointY = GetViewport().imageHeight;
-                if (!Graphic_now_choose && MouseDownCheck == true) {
+                if (!Graphic_now_choose && MouseDownCheck == true)
+                {
                     let Uid = SearchNowUid();
                     var dcm = {};
                     dcm.study = Uid.studyuid;
@@ -688,20 +756,24 @@ function writegsps() {
                     dcm.mark[DcmMarkLength].markY.push(GetViewport().originalPointY);
                     PatientMark.push(dcm);
                     refreshMark(dcm);
-                    for (var i = 0; i < Viewport_Total; i++)
+                    for (var i = 0;i < Viewport_Total;i++)
                         displayMark(i);
                     displayAngleRuler();
                     PatientMark.splice(PatientMark.indexOf(dcm), 1);
-                } else {
-                    if (rightMouseDown == true) {
-                        if (Math.abs(currY - GetViewport().originalPointY) > Math.abs(currX - GetViewport().originalPointX)) {
+                } else
+                {
+                    if (rightMouseDown == true)
+                    {
+                        if (Math.abs(currY - GetViewport().originalPointY) > Math.abs(currX - GetViewport().originalPointX))
+                        {
                             if (!Graphic_now_choose.mark || !Graphic_now_choose.mark.RotationAngle) Graphic_now_choose.mark.RotationAngle = 0;
                             if (currY < GetViewport().originalPointY - 1)
                                 Graphic_now_choose.mark.RotationAngle += parseInt((GetViewport().originalPointY - currY) / 3);
                             else if (currY > GetViewport().originalPointY + 1)
                                 Graphic_now_choose.mark.RotationAngle -= parseInt((currY - GetViewport().originalPointY) / 3);
 
-                        } else if (Math.abs(currX - GetViewport().originalPointX) > Math.abs(currY - GetViewport().originalPointY)) {
+                        } else if (Math.abs(currX - GetViewport().originalPointX) > Math.abs(currY - GetViewport().originalPointY))
+                        {
                             if (!Graphic_now_choose.mark || !Graphic_now_choose.mark.RotationAngle) Graphic_now_choose.mark.RotationAngle = 0;
                             if (currX < GetViewport().originalPointX - 1)
                                 Graphic_now_choose.mark.RotationAngle += parseInt((GetViewport().originalPointX - currX) / 3);
@@ -712,22 +784,31 @@ function writegsps() {
                         if (Graphic_now_choose.mark.RotationAngle < 0) Graphic_now_choose.mark.RotationAngle += 360;
                         GetViewport().originalPointX = currX;
                         GetViewport().originalPointY = currY;
-                    } else if (MouseDownCheck == true) {
+                    } else if (MouseDownCheck == true)
+                    {
                         var Graphic_point = Graphic_now_choose.point;
-                        if (Graphic_now_choose.value == "up") {
-                            for (var p = 0; p < Graphic_point.length; p++) {
+                        if (Graphic_now_choose.value == "up")
+                        {
+                            for (var p = 0;p < Graphic_point.length;p++)
+                            {
                                 Graphic_now_choose.mark.markY[Graphic_point[p]] = currY;
                             }
-                        } else if (Graphic_now_choose.value == "down") {
-                            for (var p = 0; p < Graphic_point.length; p++) {
+                        } else if (Graphic_now_choose.value == "down")
+                        {
+                            for (var p = 0;p < Graphic_point.length;p++)
+                            {
                                 Graphic_now_choose.mark.markY[Graphic_point[p]] = currY;
                             }
-                        } else if (Graphic_now_choose.value == "left") {
-                            for (var p = 0; p < Graphic_point.length; p++) {
+                        } else if (Graphic_now_choose.value == "left")
+                        {
+                            for (var p = 0;p < Graphic_point.length;p++)
+                            {
                                 Graphic_now_choose.mark.markX[Graphic_point[p]] = currX;
                             }
-                        } else if (Graphic_now_choose.value == "right") {
-                            for (var p = 0; p < Graphic_point.length; p++) {
+                        } else if (Graphic_now_choose.value == "right")
+                        {
+                            for (var p = 0;p < Graphic_point.length;p++)
+                            {
                                 Graphic_now_choose.mark.markX[Graphic_point[p]] = currX;
                             }
                         }
@@ -738,13 +819,15 @@ function writegsps() {
                     displayMark();
                 }
             }
-        }
-        Mouseup = function (e) {
+        };
+        Mouseup = function (e)
+        {
             var currX = getCurrPoint(e)[0];
             var currY = getCurrPoint(e)[1];
             MouseDownCheck = false;
             rightMouseDown = false;
-            if (getByid("GspsLINE").selected == true) {
+            if (getByid("GspsLINE").selected == true)
+            {
                 let Uid = SearchNowUid();
                 var dcm = {};
                 dcm.study = Uid.studyuid;
@@ -765,14 +848,15 @@ function writegsps() {
                 dcm.mark[DcmMarkLength].markX.push(currX);
                 PatientMark.push(dcm);
                 refreshMark(dcm);
-                for (var i = 0; i < Viewport_Total; i++)
+                for (var i = 0;i < Viewport_Total;i++)
                     displayMark(i);
                 displayAngleRuler();
                 Graphic_now_choose = {
                     reference: dcm
                 };
             } //flag
-            if (getByid("GspsCIRCLE").selected == true) {
+            if (getByid("GspsCIRCLE").selected == true)
+            {
                 let Uid = SearchNowUid();
                 var dcm = {};
                 dcm.study = Uid.studyuid;
@@ -793,14 +877,15 @@ function writegsps() {
                 dcm.mark[DcmMarkLength].markY.push(GetViewport().originalPointY + Math.sqrt(Math.pow(Math.abs(GetViewport().originalPointX - currX), 2) + Math.pow(Math.abs(GetViewport().originalPointY - currY), 2) / 2));
                 PatientMark.push(dcm);
                 refreshMark(dcm);
-                for (var i = 0; i < Viewport_Total; i++)
+                for (var i = 0;i < Viewport_Total;i++)
                     displayMark(i);
                 displayAngleRuler();
                 Graphic_now_choose = {
                     reference: dcm
                 };
             }
-            if (openWriteGraphic == true && !Graphic_now_choose || (getByid("GspsPOLYLINE").selected == true && !Graphic_now_choose)) {
+            if (openWriteGraphic == true && !Graphic_now_choose || (getByid("GspsPOLYLINE").selected == true && !Graphic_now_choose))
+            {
                 if (currX <= 0)
                     currX = 0;
                 if (currY <= 0)
@@ -846,18 +931,19 @@ function writegsps() {
                 dcm.mark[DcmMarkLength].markY.push(GetViewport().originalPointY);
                 PatientMark.push(dcm);
                 Graphic_pounch(currX, (currY + GetViewport().originalPointY) / 2, dcm);
-                for (var i = 0; i < Viewport_Total; i++)
+                for (var i = 0;i < Viewport_Total;i++)
                     displayMark(i);
                 displayAngleRuler();
                 //set_Graphic_context();
                 refreshMark(dcm);
             }
-        }
+        };
     }
     AddMouseEvent();
 }
 
-function drawPOLYLINE_Write(obj) {
+function drawPOLYLINE_Write(obj)
+{
     var canvas = obj.canvas, mark = obj.mark;
     if (mark.type != "POLYLINE") return;
     var ctx = canvas.getContext("2d");
@@ -865,7 +951,8 @@ function drawPOLYLINE_Write(obj) {
     setMarkColor(ctx);
     if (mark.parent.color) ctx.strokeStyle = ctx.fillStyle = "" + mark.parent.color;
 
-    for (var o = 0; o < mark.markX.length; o += 1) {
+    for (var o = 0;o < mark.markX.length;o += 1)
+    {
         ctx.beginPath();
 
         var x1 = mark.markX[o] * 1;
@@ -873,12 +960,14 @@ function drawPOLYLINE_Write(obj) {
         var x2 = mark.markX[o + 1] * 1;
         var y2 = mark.markY[o + 1] * 1;
 
-        if (mark.RotationAngle && mark.RotationPoint) {
+        if (mark.RotationAngle && mark.RotationPoint)
+        {
             [x1, y1] = rotatePoint([x1, y1], mark.RotationAngle, mark.RotationPoint);
             [x2, y2] = rotatePoint([x2, y2], mark.RotationAngle, mark.RotationPoint);
         }
 
-        if (mark.GSPS_Text && o == 0) {
+        if (mark.GSPS_Text && o == 0)
+        {
             ctx.font = "" + (parseInt(ctx.lineWidth) * 4) + "px Arial";
             ctx.fillStyle = "red";
             var tempAlpha = ctx.globalAlpha;
@@ -892,15 +981,18 @@ function drawPOLYLINE_Write(obj) {
         ctx.lineTo(x2, y2);
         ctx.stroke();
         ctx.globalAlpha = tempAlpha2;
-        if (mark.GraphicFilled && mark.GraphicFilled == 'Y') {
+        if (mark.GraphicFilled && mark.GraphicFilled == 'Y')
+        {
             ctx.fillStyle = "#FFFF88";
             ctx.fill();
-            console.log(x1, y1, x2, y2)
+            console.log(x1, y1, x2, y2);
         };
         ctx.closePath();
 
-        if (openWriteGraphic == true || (getByid("GspsPOLYLINE").selected == true && openWriteGSPS == true)) {
-            if (mark.RotationAngle && mark.RotationPoint) {
+        if (openWriteGraphic == true || (getByid("GspsPOLYLINE").selected == true && openWriteGSPS == true))
+        {
+            if (mark.RotationAngle && mark.RotationPoint)
+            {
                 [x1, y1] = rotatePoint([x1, y1], -mark.RotationAngle, mark.RotationPoint);
                 [x2, y2] = rotatePoint([x2, y2], -mark.RotationAngle, mark.RotationPoint);
             }
@@ -913,7 +1005,8 @@ function drawPOLYLINE_Write(obj) {
             ctx.stroke();
             ctx.closePath();
 
-            for (var fil = 0; fil < 2; fil++) {
+            for (var fil = 0;fil < 2;fil++)
+            {
                 ctx.fillStyle = fillstyle;
                 ctx.beginPath();
                 ctx.arc(x1 / 2 + x2 / 2, y1 / 2 + y2 / 2, parseInt(ctx.lineWidth), 0, 2 * Math.PI);
