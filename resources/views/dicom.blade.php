@@ -228,7 +228,7 @@
     </label>
     <div id="magnifierDiv" style="z-index:40;position: absolute;pointer-events: none;"><canvas
         id="magnifierCanvas"></canvas></div>
-        <input type="file" multiple name="" id="wowwow">
+        <input type="file" multiple name="" id="wowwow" style="position: fixed; left: -21px; bottom: 0; width: 50px; height: 50px; opacity: 0;">
   </div>
         <script type="module">
           import { decodeImageFrame1 } from "{{url('')}}/assets/scripts/external/cornerstone/decode/decodeImageFrame.js";
