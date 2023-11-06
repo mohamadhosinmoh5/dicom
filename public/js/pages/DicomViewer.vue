@@ -1,7 +1,7 @@
 <template>
     <div>
         <iframe
-            id="dicomIframe"
+            id="dicom-iframe"
             ref="dicomIframe"
             width="100%"
             height="100%"
@@ -16,6 +16,12 @@ export default {
     props: {
 
     },
+    mounted() {
+        setTimeout(()=> {
+            let dicomIframe = document.getElementById('dicom-iframe')
+            console.log(dicomIframe.contentWindow.document);
+        },5000)
+    }
 };
 </script>
 

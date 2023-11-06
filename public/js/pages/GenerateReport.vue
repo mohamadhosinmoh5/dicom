@@ -3,12 +3,8 @@
         <div id="appreport" ref="document">
             <div id="element-to-convert">
                 <center>
-                    <img width="400" src="../20220114_091418.jpg" />
-                    <img width="400" src="../20220114_091418.jpg" />
-                    <img width="400" src="../20220114_091418.jpg" />
-                    <img width="400" src="../20220114_091418.jpg" />
-                    <img width="400" src="../20220114_091418.jpg" />
-                    <img width="400" src="../20220114_091418.jpg" />
+                    <p>dicom viewer</p>
+                    <p></p>
                 </center>
             </div>
         </div>
@@ -17,7 +13,7 @@
 </template>
 
 <script>
-import html2pdf from "html2pdf.js";
+import html2pdf from "html2pdf.js"; 
 import Button from "../components/Button.vue";
 export default {
     components: {
