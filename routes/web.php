@@ -26,9 +26,11 @@ Route::get('/dicom', function () {
     return view('dicom');
 });
 
-Route::get('/di', function () {
-    return view('dicom');
-});
+// Route::get('/di', function () {
+//     return view('dicom');
+// });
+
+Route::post('/dicomFile', );
 
 // Route::get('/image-viewer', function () {
 //     return view('master');
@@ -37,17 +39,17 @@ Route::get('/di', function () {
 // Route::group(['prefix' => 'admin'], function () {
 //     Voyager::routes();
 // });
-Route::get('/image-viewer', function () {
-    return view('master');
-});
+// Route::get('/image-viewer', function () {
+//     return view('master');
+// });
 
-Route::get('/compare-data', function () {
-    return view('master');
-});
+// Route::get('/compare-data', function () {
+//     return view('master');
+// });
 
-Route::get('/', function () {
-    return view('master');
-});
+// Route::get('/', function () {
+//     return view('master');
+// });
 
 
 Route::get('{any}', function(){

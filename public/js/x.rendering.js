@@ -1,31 +1,6 @@
-/*
 
-    .----.                    _..._                                                     .-'''-.
-   / .--./    .---.        .-'_..._''.                          _______                '   _    \
-  ' '         |   |.--.  .' .'      '.\     __.....__           \  ___ `'.           /   /` '.   \_________   _...._
-  \ \         |   ||__| / .'            .-''         '.    ,.--. ' |--.\  \         .   |     \  '\        |.'      '-.
-   `.`'--.    |   |.--.. '             /     .-''"'-.  `. //    \| |    \  ' .-,.--.|   '      |  '\        .'```'.    '.
-     `'-. `.  |   ||  || |            /     /________\   \\\    /| |     |  '|  .-. \    \     / /  \      |       \     \
-         `. \ |   ||  || |            |                  | `'--' | |     |  || |  | |`.   ` ..' /    |     |        |    |
-           \ '|   ||  |. '            \    .-------------' ,.--. | |     ' .'| |  | |   '-...-'`     |      \      /    .
-            | |   ||  | \ '.          .\    '-.____...---.//    \| |___.' /' | |  '-                 |     |\`'-.-'   .'
-            | |   ||__|  '. `._____.-'/ `.             .' \\    /_______.'/  | |                     |     | '-....-'`
-           / /'---'        `-.______ /    `''-...... -'    `'--'\_______|/   | |                    .'     '.
-     /...-'.'                       `                                        |_|                  '-----------'
-    /--...-'
-
-    Slice:Drop - Instantly view scientific and medical imaging data in 3D.
-
-     http://slicedrop.com
-
-    Copyright (c) 2012 The Slice:Drop and X Toolkit Developers <dev@goXTK.com>
-
-    Slice:Drop is licensed under the MIT License:
-      http://www.opensource.org/licenses/mit-license.php
-
-    CREDITS: http://slicedrop.com/LICENSE
-
-*/
+var baseurl = document.getElementsByTagName('.baseUrl');
+var token = document.getElementsByTagName('.token');
 
 function initializeRenderers(){
 
@@ -383,7 +358,7 @@ function read(files,send) {
        
        if(send){
         // Add loader javasceipt?
-        sendFile(_data.volume.file);
+        sendFile(_data);
        }
 
      }
@@ -458,13 +433,21 @@ function startLoader() {
  }
 
 function sendFile(files){
+  
+  if(files.volume.filedata[0]){
+    var tags = dicomRead(files.volume.filedata[0])
+  }
+
+  var files = files.volume.file;
+  console.log(files,tags);
   $form = new FormData;
   $form.append('files[]',files);
+  $form.append('tags',tags);
 
   // startLoader();
     $.ajax({
       type: "post",
-      url: "http://128.0.0.1:8000/files",
+      url: baseurl+"/dicomFile",
       data: $form,
       dataType: "json",
       cache : false,
@@ -513,7 +496,8 @@ function dicomRead(dicomFile)
         
       // create a typed array on the pixel data (this example assumes 16 bit unsigned data)
       var pixelData = new Uint16Array(dataSet.byteArray.buffer, pixelDataElement.dataOffset, pixelDataElement.length / 2);
-  
+      
+      return dataTags;
      
   }
   catch(ex)
@@ -529,11 +513,6 @@ function dicomRead(dicomFile)
 // Parse file data and setup X.objects
 //
 function parse(data) {
-
-  console.log(data.volume);
-  if(data.volume.filedata[0]){
-    dicomRead(data.volume.filedata[0])
-  }
 
   // initialize renderers
   initializeRenderers();
