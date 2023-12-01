@@ -204,6 +204,9 @@ function readDicomOverlay(byteArray, dataSet, patientmark)
       patientmark.push(dcm);
       console.log(dataSet,dcm);
       refreshMark(dcm);
+      console.log(dcm);
+      console.log(mark);
+      // debugger;
     } catch (ex) {console.log(ex);}
   }
 }
@@ -308,6 +311,7 @@ function readDicom(url, patientmark, openfile)
         var dataSet = dicomParser.parseDicom(byteArray);
         
         readDicomOverlay(byteArray, dataSet, patientmark);
+        // debugger;
         ////暫時取消的功能
         /*
         if (openfile && openfile == true) {

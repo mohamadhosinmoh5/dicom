@@ -74,7 +74,8 @@
 
 </head>
 <body id='body' class='webgl_enabled'>
-
+  <input type="hidden" class="token" value="{{csrf_token()}}">
+  <input type="hidden" class="baseUrl" value="{{url('')}}">
 	<!-- The frontpage -->
 	<div id='frontpage' style=''>
 
