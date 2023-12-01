@@ -5,8 +5,11 @@ function importImages(images)
     // debugger;
     let reader = new FileReader();
     reader.readAsDataURL(images[k]);
-    reader.onloadend = function ()
+    reader.onloadend = function (file)
     {
+      var arrayBuffer = reader.result;
+      // Here we have the file data as an ArrayBuffer.  dicomParser requires as input a
+      // Uint8Array so we create that here
       resetViewport();
       loadAndViewImage('wadouri:' + reader.result);
       /*

@@ -292,6 +292,7 @@ function wadorsLoader(url, onlyload) {
                 var url = await stowMultipartRelated(string);
                 if (onlyload == true) onlyLoadImage("wadouri:" + url);
                 else loadAndViewImage("wadouri:" + url);
+                console.log(string);
             })
             .catch(function (err) {
                 //console.log(err);

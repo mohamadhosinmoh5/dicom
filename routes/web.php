@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // Route::POST('/post/login', [LoginController::class,'login']);
 
 Route::get('/dicom', function () {
-    return 1;
+   
     return view('dicom');
 });
 

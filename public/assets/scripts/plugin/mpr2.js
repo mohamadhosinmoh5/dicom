@@ -373,6 +373,7 @@ function initMPR2()
         } catch (ex)
         {
             catchError = true;
+            // openMPR2 = false;
             if (openMPR2 == true)
             {
                 openMPR2 = false;

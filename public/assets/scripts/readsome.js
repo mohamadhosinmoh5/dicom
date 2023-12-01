@@ -1,3 +1,5 @@
+var url = document.getElementById('baseURL').value;
+
 function readXML(url)
 {
   var oReq = new XMLHttpRequest();
@@ -200,6 +202,7 @@ function readDicomOverlay(byteArray, dataSet, patientmark)
         }
       mark.ctx.putImageData(pixelData, 0, 0);
       patientmark.push(dcm);
+      console.log(dataSet,dcm);
       refreshMark(dcm);
     } catch (ex) {console.log(ex);}
   }
@@ -303,6 +306,7 @@ function readDicom(url, patientmark, openfile)
       {
         var byteArray = new Uint8Array(oReq.response);
         var dataSet = dicomParser.parseDicom(byteArray);
+        
         readDicomOverlay(byteArray, dataSet, patientmark);
         ////暫時取消的功能
         /*
@@ -577,6 +581,7 @@ function readDicom(url, patientmark, openfile)
                         mark.point.push([tempDataSet[j].dataSet.float('x00700010', 0), tempDataSet[j].dataSet.float('x00700010', 1)]);
                         mark.point.push([tempDataSet[j].dataSet.float('x00700011', 0), tempDataSet[j].dataSet.float('x00700011', 1)]);
                         patientmark.push(dcm);
+                       
                         refreshMark(dcm, false);
                       }
                     }
@@ -623,10 +628,11 @@ function readDicom(url, patientmark, openfile)
                       }
                       patientmark.push(dcm);
                       //console.log(PatientMark);
+                      console.log(dcm);
                       refreshMark(dcm, false);
                     }
                   }
-
+                 
                 }
 
                 try

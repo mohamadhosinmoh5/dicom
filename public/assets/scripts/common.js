@@ -16,7 +16,7 @@ function cancelTools() {
     getByid("labelPlay").style.display = "none";
     getByid("textZoom").style.display = "none";
     getByid("textPlay").style.display = "none";
-    getByid('playvideo').src = '../image/icon/black/b_CinePlay.png';
+    getByid('playvideo').src = '../assets/image/icon/black/b_CinePlay.png';
     getByid("WindowDefault").selected = true;
     displayWindowLevel();
     displayMark();

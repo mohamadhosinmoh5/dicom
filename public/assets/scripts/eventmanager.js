@@ -22,9 +22,9 @@ var thisF = function () {
             MeasureXY[0] = MeasureXY[1] = MeasureXY2[0] = MeasureXY2[1] = 0;
             viewportNumber = i;
             if (GetViewport().openPlay == false) {
-                getByid('playvideo').src = '../image/icon/black/b_CinePlay.png';
+                getByid('playvideo').src = '../assets/image/icon/black/b_CinePlay.png';
             } else {
-                getByid('playvideo').src = '../image/icon/black/b_CinePause.png';
+                getByid('playvideo').src = '../assets/image/icon/black/b_CinePause.png';
             }
             changeMarkImg();
             var sop = GetViewport().sop;

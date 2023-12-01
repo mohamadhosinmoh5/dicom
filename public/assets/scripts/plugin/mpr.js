@@ -982,7 +982,7 @@ function initMPR()
                 if (openMPR == true)
                 {
                     openMPR = false;
-                    alert("Error, this image may not support 3D.");
+                    alert("Error, .");
                 };
                 openRendering = false;
                 getByid("ImgMPR").click('error');

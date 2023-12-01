@@ -48,9 +48,9 @@ function playVideo(dir) {
 
 var PlayTimer = function () {
     if (GetViewport().openPlay == false) {
-        getByid('playvideo').src = '../image/icon/black/b_CinePlay.png';
+        getByid('playvideo').src = '../assets/image/icon/black/b_CinePlay.png';
     } else {
-        getByid('playvideo').src = '../image/icon/black/b_CinePause.png';
+        getByid('playvideo').src = '../assets/image/icon/black/b_CinePause.png';
     }
     if (openLink == true || GetViewport().openPlay == false) {
         for (var i = 0; i < Viewport_Total; i++) {

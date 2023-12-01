@@ -318,6 +318,7 @@ function readDicomTags(url, setLabelPadding) {
     }
     //指派至全域變數
     Object.assign(DicomTags, dicomtags);
+   
     if (setLabelPadding) setLabelPadding();
   }
 }

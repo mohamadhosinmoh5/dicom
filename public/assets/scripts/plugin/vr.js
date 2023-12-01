@@ -682,7 +682,7 @@ function initVR()
                     openVR = false;
                     alert("Error, this image may not support 3D.");
                 };
-                openRendering = false;
+                openRendering = true;
                 //img2darkByClass("VR", !openVR);
                 getByid("ImgVR").onclick('error');
                 return;
