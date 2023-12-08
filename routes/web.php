@@ -19,45 +19,18 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-// Route::POST('/post/login', [LoginController::class,'login']);
+Route::POST('/login', [LoginController::class,'login']);
+Route::POST('/dicomFile',[dicomController::class,'dicomFile']);
+Route::middleware('auth')->get('/dicom',[dicomController::class,'showDicom']);
+Route::middleware('auth')->get('/dicom/{id}',[dicomController::class,'singleDicom']);
+Route::get('/dicom', function () { return view('dicom');});
 
-Route::get('/dicom', function () {
-   
-    return view('dicom');
+Route::get('/', function(){
+    return view('master');
 });
-
-// Route::get('/di', function () {
-//     return view('dicom');
-// });
-
-Route::post('/dicomFile', );
-
-// Route::get('/image-viewer', function () {
-//     return view('master');
-// });
-
-// Route::group(['prefix' => 'admin'], function () {
-//     Voyager::routes();
-// });
-// Route::get('/image-viewer', function () {
-//     return view('master');
-// });
-
-// Route::get('/compare-data', function () {
-//     return view('master');
-// });
-
-// Route::get('/', function () {
-//     return view('master');
-// });
-
 
 Route::get('{any}', function(){
     return view('master');
 });
 
-//     ->where('any', '.*');
-// Route::get('/login', function () {
-//     return view('login');
-// });
 

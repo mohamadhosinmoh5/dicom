@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('dicom_id')->references('id')->on('dicoms')->cascadeOnDelete();
             $table->string('Encoding')->nullable();
             $table->string('Strength')->nullable();
+            $table->string('date')->nullable();
             $table->string('Manufacture')->nullable();
             $table->string('Modality')->nullable();
             $table->string('Model')->nullable();
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('dicomInfos');
     }
 };

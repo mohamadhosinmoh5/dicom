@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
-class DicomInfo extends \TCG\Voyager\Models\User
+use Illuminate\Database\Eloquent\Model;
+class DicomInfo extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $table = "dicominfos";
 
     protected $fillable = [
         'dicom_id',
@@ -21,9 +23,11 @@ class DicomInfo extends \TCG\Voyager\Models\User
         'Model',
         'slicesCount',
         'Sequence',
+        'date',
         'Series',
         'UID',
         'bandwidth',
+        'Station'
     ];
 
     public function dicom()

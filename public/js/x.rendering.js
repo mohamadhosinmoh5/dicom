@@ -1,6 +1,6 @@
 
-var baseurl = document.getElementsByTagName('.baseUrl');
-var token = document.getElementsByTagName('.token');
+var baseurl = document.getElementById('baseUrl').value;
+var token = document.getElementById('token').value;
 
 function initializeRenderers(){
 
@@ -406,7 +406,7 @@ function read(files,send) {
 
 function startLoader() {
   const loader = document.createElement('div');
-  loader.style.position = 'fixed';
+  loader.style.position = 'relative';
   loader.style.top = '0';
   loader.style.left = '0';
   loader.style.right = '0';
@@ -414,12 +414,11 @@ function startLoader() {
   loader.style.display = 'flex';
   loader.style.alignItems = 'center';
   loader.style.justifyContent = 'center';
-  loader.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
   loader.style.zIndex = '9999';
  
   const loaderImage = document.createElement('img');
-  loaderImage.src = 'https://yourwebsite.com/path/to/loader.gif';
-  loaderImage.alt = 'Loading...';
+  loaderImage.src = baseurl+'/loader.gif';
+  loaderImage.alt = 'Uploading Datas in Server...';
  
   loader.appendChild(loaderImage);
   document.body.appendChild(loader);
@@ -439,22 +438,38 @@ function sendFile(files){
   }
 
   var files = files.volume.file;
-  console.log(files,tags);
   $form = new FormData;
-  $form.append('files[]',files);
-  $form.append('tags',tags);
+  
+  files.forEach((value, index) => {
+    console.log(value);
+    $form.append(`files[${index}]`,value);
+  })
 
-  // startLoader();
+  Object.keys(tags).forEach(key => {
+    $form.append(`${key}`,tags[key]);
+  });
+
+  // 
     $.ajax({
       type: "post",
-      url: baseurl+"/dicomFile",
+      url: baseurl+"/api/dicomFile",
       data: $form,
       dataType: "json",
       cache : false,
       processData: false,
+      contentType: false,
+      beforeSend: function(){
+        startLoader();
+      },
       success: function (response) {
+        stopLoader();
+        alert('Your All directory Uploaded in Server');
         console.log(response);
-        // stopLoader();
+      },
+      error: function(){
+        stopLoader();
+        alert('Error in uploading Directory in Server please try again');
+          return false;
       }
     });
 }
@@ -478,16 +493,16 @@ function dicomRead(dicomFile)
       var dataTags = {
         'Modality' :dataSet.string('x00080060'),
         'Series': dataSet.string('x0008103E'),
-        'Series date':dataSet.string('x00080021'),
+        'date':dataSet.string('x00080021'),
         'Sequence':dataSet.string('x00180024'),
         'bandwidth':dataSet.string('x00180095'),
-        'Field Strength(T)':dataSet.string('x00180087'),
+        'Field_T':dataSet.string('x00180087'),
         'Encoding':dataSet.string('x00181312'),
         'Manufacture':dataSet.string('x00080070'),
         'Model':dataSet.string('x00081090'),
-        'Number of slices':dataSet.string('x00201002'),
-        'Series UID':dataSet.string('x0020000E'),
-        'Station Name':dataSet.string('x00081010'),
+        'Number':dataSet.string('x00201002'),
+        'UID':dataSet.string('x0020000E'),
+        'Station':dataSet.string('x00081010'),
 
       };
       console.log(dataTags);

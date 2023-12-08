@@ -37,7 +37,7 @@
 <script type='text/javascript' src='{{url("")}}/js/bootstrap-modal.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/x.controller.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/x.examples.js'></script>
-<script type='text/javascript' src='{{url("")}}/js/x.rendering.js'></script>
+
 <script type='text/javascript' src='{{url("")}}/js/x.scene.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/x.share.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/x.realtime.js'></script>
@@ -74,8 +74,8 @@
 
 </head>
 <body id='body' class='webgl_enabled'>
-  <input type="hidden" class="token" value="{{csrf_token()}}">
-  <input type="hidden" class="baseUrl" value="{{url('')}}">
+  <input type="hidden" id="token" value="{{csrf_token('')}}">
+  <input type="hidden" id="baseUrl" value="{{url('/')}}">
 	<!-- The frontpage -->
 	<div id='frontpage' style=''>
 
@@ -415,6 +415,6 @@
     <div id='log'></div>
 
 	</div>
-
+	<script type='text/javascript' src='{{url("")}}/js/x.rendering.js'></script>
 </body>
 </html>
