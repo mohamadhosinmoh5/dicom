@@ -260,12 +260,37 @@ function createData() {
   };
 
 }
-
+async function url2blob(url) {
+  try {
+    // const data = await fetch(url);
+    // const blob = await data.blob();
+    await fetch(url).then(response => {
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response;
+  })
+  .then(textContent => {
+      // get the text.
+      const result = textContent;
+      console.log(textContent);
+  })
+  .catch(error => {
+      console.error('Fetch error:', error);
+  });
+  } catch (err) {
+    console.error(err.name, err.message);
+  }
+}
 //
 // Reading files using the HTML5 FileReader.
 //
 function read(files,send) {
-
+  console.log('content');
+  if(!send){
+    // console.log();
+    url2blob(baseurl+`/`+files+`IM-0001-0001.dcm`)
+  }
   createData();
 
   // show share button
@@ -402,11 +427,23 @@ function read(files,send) {
 
 };
 
+// module.exports = {
+//   log : require('console'),
+//   fs : require('fs'),
+//   /* some other modules you want */
+// }
+// const { log } = require("console");
 //
+
+// var modules = require('./modules.js');
+
+
+
 
 function startLoader() {
   const loader = document.createElement('div');
   loader.style.position = 'relative';
+  loader.className = 'laoder';
   loader.style.top = '0';
   loader.style.left = '0';
   loader.style.right = '0';
@@ -425,7 +462,7 @@ function startLoader() {
  }
  
  function stopLoader() {
-  const loader = document.querySelector('div[style*="position: fixed;"]');
+  const loader = document.querySelector('div.laoder');
   if (loader) {
      document.body.removeChild(loader);
   }
@@ -448,11 +485,12 @@ function sendFile(files){
   Object.keys(tags).forEach(key => {
     $form.append(`${key}`,tags[key]);
   });
+  $form.append(`_token`,token);
 
   // 
     $.ajax({
       type: "post",
-      url: baseurl+"/api/dicomFile",
+      url: baseurl+"/dicomFile",
       data: $form,
       dataType: "json",
       cache : false,

@@ -8,7 +8,7 @@ use App\Models\DicomInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\Eloquent\Builder;
 use function PHPUnit\Framework\directoryExists;
 
 class dicomController extends Controller
@@ -107,7 +107,7 @@ class dicomController extends Controller
     public function showDicom(Request $request)
     {
         if(Auth::user()){
-            $dicom = Dicom::where('user_id', Auth::user()->id)->paginate(15);
+            $dicom = Dicom::where('user_id', Auth::user()->id)->With('dicomInfo')->paginate(15);
 
             return response()->json(['data' => $dicom]);
         }
@@ -126,6 +126,15 @@ class dicomController extends Controller
         }
         else{
             return response()->json(['error' => 'Unauthorized'], 40);
+        }
+    }
+
+    public function dicom()
+    {
+        if($_GET['path']){
+            return view('dicom2');
+        }else{
+            return view('dicom');
         }
     }
 }

@@ -19,11 +19,24 @@ class LoginController extends Controller
             if (Auth::attempt($credentials)) {
                 Auth::login($user = User::Where(['email' => $request->email])->first());
                 // Authentication passed
-                return response()->json(['success' => 'شما وارد شدید','user' => $user]);
+                return response()->json(['data' => ['success' => 'شما وارد شدید','user' => $user]]);
             }
         
             // Authentication failed
             return response()->json(['error' => 'اطلاعات ورود صحیح نمی باشد']);
+
+        }
+
+
+        public function firstLogin(Request $request)
+        {
+            if(!Auth::check()){
+                return response()->json(['error' => 'لطفا ابندا وارد شوید']);
+            }
+
+            return redirect()->back();
+
+            // Authentication failed
 
         }
 }

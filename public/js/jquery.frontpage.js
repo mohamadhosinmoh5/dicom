@@ -1,37 +1,3 @@
-/*
-
-    .----.                    _..._                                                     .-'''-.
-   / .--./    .---.        .-'_..._''.                          _______                '   _    \
-  ' '         |   |.--.  .' .'      '.\     __.....__           \  ___ `'.           /   /` '.   \_________   _...._
-  \ \         |   ||__| / .'            .-''         '.    ,.--. ' |--.\  \         .   |     \  '\        |.'      '-.
-   `.`'--.    |   |.--.. '             /     .-''"'-.  `. //    \| |    \  ' .-,.--.|   '      |  '\        .'```'.    '.
-     `'-. `.  |   ||  || |            /     /________\   \\\    /| |     |  '|  .-. \    \     / /  \      |       \     \
-         `. \ |   ||  || |            |                  | `'--' | |     |  || |  | |`.   ` ..' /    |     |        |    |
-           \ '|   ||  |. '            \    .-------------' ,.--. | |     ' .'| |  | |   '-...-'`     |      \      /    .
-            | |   ||  | \ '.          .\    '-.____...---.//    \| |___.' /' | |  '-                 |     |\`'-.-'   .'
-            | |   ||__|  '. `._____.-'/ `.             .' \\    /_______.'/  | |                     |     | '-....-'`
-           / /'---'        `-.______ /    `''-...... -'    `'--'\_______|/   | |                    .'     '.
-     /...-'.'                       `                                        |_|                  '-----------'
-    /--...-'
-
-    Slice:Drop - Instantly view scientific and medical imaging data in 3D.
-
-     http://slicedrop.com
-
-    Copyright (c) 2012 The Slice:Drop and X Toolkit Developers <dev@goXTK.com>
-
-    Slice:Drop is licensed under the MIT License:
-      http://www.opensource.org/licenses/mit-license.php
-
-    CREDITS: http://slicedrop.com/LICENSE
-
-*/
-
-/**
- * The main handler for drag'n'drop and also for file selection. The XTK scene
- * gets created here and the viewer gets activated. Inspired by
- * http://imgscalr.com - THANKS!!
- */
 
 
 jQuery(document).ready(function() {
@@ -100,10 +66,10 @@ jQuery(document).ready(function() {
   } else {
 
     //for (var a in argsParsed) {
-    var _url = document.location.search;
-    if (_url.length > 1) {
-      loadFile(document.location.search.substring(1));
-    }
+    // var _url = document.location.search;
+    // if (_url.length > 1) {
+    //   loadFile(document.location.search.substring(1));
+    // }
     //}
 
   }
@@ -276,7 +242,9 @@ function initBrowserWarning() {
 };
 
 function initDnD() {
-
+  if( document.getElementById("drop-box-overlay") == null){
+    return;
+  }
   // Add drag handling to target elements
   document.getElementById("body").addEventListener("dragenter", onDragEnter,
       false);
@@ -358,11 +326,17 @@ function switchToViewer() {
 
 function selectfiles(files,send) {
 
-  // now switch to the viewer
-  switchToViewer();
+  if(!send){
+    read(files,send);
 
-  // .. and start the file reading
-  read(files,send);
+    switchToViewer();
+  }else{
+    switchToViewer();
+  
+    // .. and start the file reading
+    read(files,send);
+  }
+  // now switch to the viewer
 
 };
 

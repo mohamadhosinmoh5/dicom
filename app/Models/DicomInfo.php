@@ -15,6 +15,7 @@ class DicomInfo extends Model
     protected $table = "dicominfos";
 
     protected $fillable = [
+        'id',
         'dicom_id',
         'Encoding',
         'Strength',
@@ -32,6 +33,6 @@ class DicomInfo extends Model
 
     public function dicom()
     {
-        return $this->hasOne(Dicom::class, 'dicom_id');
+        return $this->belongsTo(Dicom::class, 'dicom_id');
     }
 }

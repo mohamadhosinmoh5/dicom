@@ -19,6 +19,7 @@ class Dicom extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'path',
         'baseName',
         'user_id',
@@ -29,6 +30,6 @@ class Dicom extends Model
 
     public function dicomInfo()
     {
-        return $this->belongsTo(DicomInfo::class,'dicom_id'); 
+        return $this->hasOne(DicomInfo::class,'dicom_id'); 
     }
 }
