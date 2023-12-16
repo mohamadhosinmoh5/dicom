@@ -32,7 +32,7 @@ class dicomController extends Controller
             'Station' => 'string|max:255',
         ]);
         
-        if(Auth::user()){
+        // if(Auth::user()){
             if ($request->hasFile('files')) {
     
                 $uniqTime = $request->date.'_'.time(); 
@@ -40,13 +40,15 @@ class dicomController extends Controller
                 if(!File::isDirectory($pathUniq))
                     File::makeDirectory(public_path($pathUniq), 0777, true);
                    
-                try {
+                // try {
                     
                     $size = 0 ;
                     $count = 0;
+                    $allFilesname=[];
                     foreach ($_FILES['files']["tmp_name"] as $key => $file) { 
                         $count+=1;  
                         $file_name = $_FILES['files']['name'];
+                        $allFilesname[] = $file_name;
                         $size += $_FILES['files']['size'][$key];
                         $fileName = $pathUniq.$file_name[$key];  
                         move_uploaded_file($file,$fileName);
@@ -54,7 +56,9 @@ class dicomController extends Controller
     
                     $newDicom = new Dicom();
                     $newDicom->path = $pathUniq;
-                    $newDicom->user_id = Auth::user()->id;
+                    // $newDicom->user_id = Auth::user()->id;
+                    $newDicom->user_id = 1;
+                    $newDicom->files_names = serialize($allFilesname);
                     $newDicom->baseName = $_FILES['files']['name'][0];
                     $newDicom->size = $size;
                     $newDicom->totalCount = $count;
@@ -94,13 +98,13 @@ class dicomController extends Controller
                         'Encoding' => $newDicomInfo->Encoding,
                         'Station' => $newDicomInfo->Station,
                     ]]);
-                } catch (\Throwable $th) {
-                    return response()->json(['error' => 'در ارسال داده سمت سرور خطایی رخ داده لطفا مجدد فایل را لود کنید ']);
-                }
+                // } catch (\Throwable $th) {
+                //     return response()->json(['error' => 'در ارسال داده سمت سرور خطایی رخ داده لطفا مجدد فایل را لود کنید ']);
+                // }
     
     
             }
-        }
+        // }
     }
 
 
@@ -131,8 +135,9 @@ class dicomController extends Controller
 
     public function dicom()
     {
-        if($_GET['path']){
-            return view('dicom2');
+        if(array_key_exists('id',$_GET) && $_GET['id']){
+            $dicom = Dicom::find((int)$_GET['id']);
+            return view('dicom2',compact('dicom'));
         }else{
             return view('dicom');
         }
