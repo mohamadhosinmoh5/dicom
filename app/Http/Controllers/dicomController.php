@@ -32,7 +32,7 @@ class dicomController extends Controller
             'Station' => 'string|max:255',
         ]);
         
-        // if(Auth::user()){
+        if(Auth::user()){
             if ($request->hasFile('files')) {
     
                 $uniqTime = $request->date.'_'.time(); 
@@ -40,7 +40,7 @@ class dicomController extends Controller
                 if(!File::isDirectory($pathUniq))
                     File::makeDirectory(public_path($pathUniq), 0777, true);
                    
-                // try {
+                try {
                     
                     $size = 0 ;
                     $count = 0;
@@ -56,8 +56,8 @@ class dicomController extends Controller
     
                     $newDicom = new Dicom();
                     $newDicom->path = $pathUniq;
-                    // $newDicom->user_id = Auth::user()->id;
-                    $newDicom->user_id = 1;
+                    $newDicom->user_id = Auth::user()->id;
+                    // $newDicom->user_id = 1;
                     $newDicom->files_names = serialize($allFilesname);
                     $newDicom->baseName = $_FILES['files']['name'][0];
                     $newDicom->size = $size;
@@ -98,13 +98,13 @@ class dicomController extends Controller
                         'Encoding' => $newDicomInfo->Encoding,
                         'Station' => $newDicomInfo->Station,
                     ]]);
-                // } catch (\Throwable $th) {
-                //     return response()->json(['error' => 'در ارسال داده سمت سرور خطایی رخ داده لطفا مجدد فایل را لود کنید ']);
-                // }
+                } catch (\Throwable $th) {
+                    return response()->json(['error' => 'در ارسال داده سمت سرور خطایی رخ داده لطفا مجدد فایل را لود کنید ']);
+                }
     
     
             }
-        // }
+        }
     }
 
 

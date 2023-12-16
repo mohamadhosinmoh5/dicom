@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/dicomFile',[dicomController::class,'dicomFile']);
 Route::middleware('auth')->get('/dicom-view',[dicomController::class,'showDicom']);
 Route::middleware('auth')->get('/dicom/{id}',[dicomController::class,'singleDicom']);
-Route::get('/dicom', [dicomController::class,'dicom']);
+Route::middleware('auth')->get('/dicom', [dicomController::class,'dicom']);
 Route::post('/login', [LoginController::class,'login']);
 Route::get('/csrf', function(){
     return csrf_token();
