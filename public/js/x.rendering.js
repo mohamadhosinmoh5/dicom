@@ -260,24 +260,28 @@ function createData() {
   };
 
 }
-async function url2blob(url) {
+async function url2blob(url,name) {
+  var fileResponse;
   try {
-    // const data = await fetch(url);
-    // const blob = await data.blob();
+    console.log(url);
     await fetch(url).then(response => {
-      if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response;
+      myBlob = response.blob();
+      var file = new File([myBlob],name,{
+        type: myBlob.type,
+    });
+      fileResponse =  myBlob;      
   })
   .then(textContent => {
       // get the text.
       const result = textContent;
-      console.log(textContent);
+      // console.log(textContent);
+      
   })
   .catch(error => {
       console.error('Fetch error:', error);
   });
+  return fileResponse;
+
   } catch (err) {
     console.error(err.name, err.message);
   }
@@ -285,12 +289,20 @@ async function url2blob(url) {
 //
 // Reading files using the HTML5 FileReader.
 //
-function read(files,send) {
-  console.log('content');
+
+
+async function read(files,send) {
+  
   if(!send){
-    // console.log();
-    url2blob(baseurl+`/`+files+`IM-0001-0001.dcm`)
+    path = files;
+    
+    // files.append('file1',await url2blob(baseurl+`/`+path+`IM-0001-0001.dcm`,"IM-0001-0001.dcm")); 
+    // files.append('file2',await url2blob(`${baseurl}/${path}/IM-0001-0002.dcm`,"IM-0001-0002.dcm")); 
+    // files.append('file3',await url2blob(baseurl+`/`+path+`IM-0001-0003.dcm`,"IM-0001-0003.dcm")); 
   }
+
+  // document.querySelector('#myImageInput').files = dT.files;
+
   createData();
 
   // show share button

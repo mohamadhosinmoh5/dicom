@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('dicoms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('path');
+            $table->longText('files_names');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('baseName');

@@ -55,7 +55,6 @@
 <body id='body' class='webgl_enabled'>
   <input type="hidden" id="token" value="{{csrf_token('')}}">
   <input type="hidden" id="baseUrl" value="{{url('/')}}">
-
 	<!-- The viewer -->
 	<div id='viewer' style='display: none;'>
 
@@ -256,10 +255,48 @@
 
 	{{-- <script type='text/javascript' src='{{url("")}}/js/modules.js'></script> --}}
 	<script type='text/javascript' src='{{url("")}}/js/x.rendering.js'></script>
+	@php
+		$names = unserialize($dicom->files_names)[0];
+	@endphp
 	<script type="text/javascript">
-		$(document).ready(function(){
-			selectfiles("{{$_GET['path']}}",false);
+		var baseurl = document.getElementById('baseUrl').value;
+		var token = document.getElementById('token').value;
+		var files = [];
+		 function toDataUrl(urls,callBack) {
+			urls.forEach((url, index) => {
+				var xhr = new XMLHttpRequest();
+				xhr.onload = async function() {
+					 var file = xhr.response;
+					callBack(file,index);
+				};
+				xhr.open('GET', url);
+				xhr.responseType = 'blob';
+				xhr.send();
+			})
+		}
+
+		var names = [<?php echo '"'.implode('","', $names).'"' ?>];
+		var urls= [];
+		names.forEach((value, index) => {
+			urls.push(`${baseurl}/{{$dicom->path}}${value}`);
 		})
+		console.log(urls);
+		var dT = new ClipboardEvent('').clipboardData || 
+		new DataTransfer();
+		var pushed = false;
+		toDataUrl(urls,async function(file,index){
+			 addItem(file,index);
+		})
+
+		function addItem(file,index){
+			dT.items.add(new File([file], `dicom${index}.dcm`));
+			files.push(dT.files);
+			if(index == {{$dicom->totalCount - 1}}){
+				selectfiles(dT.files,false)
+			}
+		}
+
+
 		</script>
 </body>
 </html>

@@ -44,9 +44,11 @@ class dicomController extends Controller
                     
                     $size = 0 ;
                     $count = 0;
+                    $allFilesname=[];
                     foreach ($_FILES['files']["tmp_name"] as $key => $file) { 
                         $count+=1;  
                         $file_name = $_FILES['files']['name'];
+                        $allFilesname[] = $file_name;
                         $size += $_FILES['files']['size'][$key];
                         $fileName = $pathUniq.$file_name[$key];  
                         move_uploaded_file($file,$fileName);
@@ -55,6 +57,8 @@ class dicomController extends Controller
                     $newDicom = new Dicom();
                     $newDicom->path = $pathUniq;
                     $newDicom->user_id = Auth::user()->id;
+                    // $newDicom->user_id = 1;
+                    $newDicom->files_names = serialize($allFilesname);
                     $newDicom->baseName = $_FILES['files']['name'][0];
                     $newDicom->size = $size;
                     $newDicom->totalCount = $count;
@@ -131,8 +135,9 @@ class dicomController extends Controller
 
     public function dicom()
     {
-        if($_GET['path']){
-            return view('dicom2');
+        if(array_key_exists('id',$_GET) && $_GET['id']){
+            $dicom = Dicom::find((int)$_GET['id']);
+            return view('dicom2',compact('dicom'));
         }else{
             return view('dicom');
         }
