@@ -41,8 +41,14 @@
 <script type='text/javascript' src='{{url("")}}/js/x.scene.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/x.share.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/x.realtime.js'></script>
-<script type='text/javascript' src='{{url("")}}/js/xtk.js'></script> 
+<script type='text/javascript' src='{{url("")}}/js/xtk.js'></script>
 
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 
 <!-- Brand new TRAKO support https://github.com/haehn/TRAKO! -->
 <script type='text/javascript' src="js/draco/draco_decoder.js"></script>
@@ -74,24 +80,24 @@
 
 </head>
 <body id='body' class='webgl_enabled'>
-  <input type="hidden" id="token" value="{{csrf_token('')}}">
-  <input type="hidden" id="baseUrl" value="{{url('/')}}">
+  <input type="hidden" id="token" value="{{csrf_token('')}}" />
+  <input type="hidden" id="baseUrl" value="{{url('/')}}" />
 	<!-- The frontpage -->
-	<div id='frontpage' style=''>
+	<div id='frontpage'>
 
-		<div id='content' class='container' style=''>
+		<div id='content' class='container'>
 
-			<img src='{{url("")}}/gfx/slicedrop.png' />
+			<!-- <img src='{{url("")}}/gfx/slicedrop.png' /> -->
 
-			<div class='hero-unit'>
+			<!-- <div class='hero-unit'>
 				<p>Instantly view scientific and medical imaging data in 3D.</p>
 				<p>
 					<a class='btn btn-medium' data-toggle='modal' href='{{url("")}}/#learnMore'>Learn
 						more &raquo;</a>
 				</p>
-			</div>
+			</div> -->
 
-			<div class='well examples'>
+			<!-- <div class='well examples'>
 				<h3>Try the examples..</h3>
 				<img id='14yroldImage' src='{{url("")}}/gfx/14yrold.png' class='selectexample'
 					style='cursor: pointer;' /> <img id='avfImage'
@@ -126,18 +132,22 @@
 						class='label label-info viewexample' id='brainstemlink'>View
 						Example</span>
 				</div>
-			</div>
+			</div> -->
 
 			<div class='dropzone'>
-				<span>Drop files here or </span><input id='filebutton' type='file'
-					multiple onchange='selectfiles(this.files,true)' style='display: none;'></input><a
-					class='btn btn-inverse btn-large' style='vertical-align: super;'
-					onclick='javascript:document.getElementById("filebutton").click();'>Select
-					files</a><br />
-				<span style='font-size: 10px'> Your data stays on your
+				<!-- <span>Drop files here or </span> -->
+				<input id='filebutton' type='file' multiple onchange='selectfiles(this.files,true)' style='display: none;' />
+					<a
+						class='btn btn-inverse btn-large' style='vertical-align: super;'
+						onclick='javascript:document.getElementById("filebutton").click();'
+					>
+						Select files
+					</a>
+					<!-- <br /> -->
+				<!-- <span style='font-size: 10px'> Your data stays on your
 					computer. No upload required!</span><br />
-				<br />
-				<ul class='thumbnails'>
+				<br /> -->
+				<!-- <ul class='thumbnails'>
 					<li>
 						<div class='thumbnail'>
 							<img src='{{url("")}}/gfx/fibers.png' alt='' /> Fibers<br />(.trk / .tko)<br /> <br />
@@ -155,10 +165,10 @@
 							FreeSurfer)<br /> <br />
 						</div>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 
-			<div class='footer'>
+			<!-- <div class='footer'>
 				<div class='row' style='margin: auto'>
 					<div class='span2 offset8'>
 						<ul class='unstyled paddingated'>
@@ -173,10 +183,9 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<!-- /container -->
-
 	</div>
 
 	<!-- Learn more -->

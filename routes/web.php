@@ -20,20 +20,21 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::middleware('auth')->post('/dicomFile',[dicomController::class,'dicomFile']);
+Route::POST('/login', [LoginController::class,'login']);
+Route::POST('/dicomFile',[dicomController::class,'dicomFile']);
 Route::middleware('auth')->get('/dicom-view',[dicomController::class,'showDicom']);
 Route::middleware('auth')->get('/dicom/{id}',[dicomController::class,'singleDicom']);
-Route::middleware('auth')->get('/dicom', [dicomController::class,'dicom']);
-Route::post('/login', [LoginController::class,'login']);
-Route::get('/login', [LoginController::class,'firstLogin'])->name('login');
+Route::get('/dicom', function () { return view('dicom');});
+Route::get('/csrf', function () { return csrf_token();});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('/', function(){return view('master');});
+Route::get('/', function(){
+    return view('master');
+});
 
-Route::get('{any}', function(){return view('master');});
-
-
-
-
+Route::get('{any}', function(){
+    return view('master');
+});

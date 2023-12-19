@@ -5,7 +5,7 @@
             ref="dicomIframe"
             width="100%"
             height="100%"
-            src="/dicom"
+            src="http://localhost/dicom/public/dicom"
             frameborder="0"
         ></iframe>
     </div>

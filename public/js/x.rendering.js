@@ -438,8 +438,6 @@ function read(files,send) {
 // var modules = require('./modules.js');
 
 
-
-
 function startLoader() {
   const loader = document.createElement('div');
   loader.style.position = 'relative';
@@ -452,7 +450,7 @@ function startLoader() {
   loader.style.alignItems = 'center';
   loader.style.justifyContent = 'center';
   loader.style.zIndex = '9999';
- 
+
   const loaderImage = document.createElement('img');
   loaderImage.src = baseurl+'/loader.gif';
   loaderImage.alt = 'Uploading Datas in Server...';
@@ -487,7 +485,7 @@ function sendFile(files){
   });
   $form.append(`_token`,token);
 
-  // 
+  //
     $.ajax({
       type: "post",
       url: baseurl+"/dicomFile",
@@ -501,13 +499,12 @@ function sendFile(files){
       },
       success: function (response) {
         stopLoader();
-        alert('Your All directory Uploaded in Server');
-        console.log(response);
+        alertify.success('Your All directory Uploaded in Server');
       },
       error: function(){
         stopLoader();
-        alert('Error in uploading Directory in Server please try again');
-          return false;
+        alertify.error('Error in uploading Directory in Server please try again');
+        return false;
       }
     });
 }
