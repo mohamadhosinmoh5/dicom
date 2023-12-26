@@ -31,7 +31,7 @@
 						class="border-b border-solid border-[#3E5E9F]"
 					>
 						<td :class="rowClass">
-							<input type="checkbox" />
+							<a :href="'http://localhost/dicom/public/dicom?id='+ row.id">مشاهده</a>
 						</td>
 						<td :class="rowClass">not Sending</td>
 						<td :class="rowClass">
@@ -106,9 +106,8 @@
 		},
 		mounted() {
 			axios.get('http://localhost/dicom/public/dicom-view').then(res => {
-				console.log(res.data);
-				console.log(res.data.data.data);
 				this.details = res.data.data.data;
+				console.log(res.data);
 			});
 		},
 	};
