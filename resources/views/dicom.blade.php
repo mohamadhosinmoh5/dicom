@@ -21,8 +21,8 @@
 
 <script type='text/javascript' src='{{url("")}}/js/jquery.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/jquery.ui.js'></script>
-<script type='text/javascript' src='{{url("")}}/js/corn.js'></script> 
-<script type='text/javascript' src='{{url("")}}/js/dicom.js'></script> 
+<script type='text/javascript' src='{{url("")}}/js/corn.js'></script>
+<script type='text/javascript' src='{{url("")}}/js/dicom.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/jquery.ui.slider.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/jquery.miniColors.js'></script>
 <script type='text/javascript' src='{{url("")}}/js/jquery.filestyle.js'></script>
@@ -52,7 +52,7 @@
 
 <!-- Brand new TRAKO support https://github.com/haehn/TRAKO! -->
 <script type='text/javascript' src="js/draco/draco_decoder.js"></script>
-<script type='text/javascript' src='{{url("")}}/js/xtkTrakoReader.js'></script> 
+<script type='text/javascript' src='{{url("")}}/js/xtkTrakoReader.js'></script>
 
 
 <script type='text/javascript' src='{{url("")}}/js/pusher.min.js'></script>
@@ -63,7 +63,7 @@
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-33092072-1']);
   _gaq.push(['_trackPageview']);
-  
+
   (function() {
 
     var ga = document.createElement('script');
@@ -137,12 +137,12 @@
 			<div class='dropzone'>
 				<!-- <span>Drop files here or </span> -->
 				<input id='filebutton' type='file' multiple onchange='selectfiles(this.files,true)' style='display: none;' />
-					<a
-						class='btn btn-inverse btn-large' style='vertical-align: super;'
-						onclick='javascript:document.getElementById("filebutton").click();'
-					>
-						Select files
-					</a>
+				<a
+					class='btn btn-inverse btn-large' style='vertical-align: super;'
+					onclick='javascript:document.getElementById("filebutton").click();'
+				>
+					Select files
+				</a>
 					<!-- <br /> -->
 				<!-- <span style='font-size: 10px'> Your data stays on your
 					computer. No upload required!</span><br />
@@ -206,7 +206,7 @@
 				out-of-the-box (see <a
 					href='{{url("")}}/https://github.com/xtk/X/wiki/X%3AFileformats'
 					target='_blank' style='color:cornflowerblue'>here</a> for a complete list).
-			</p>			
+			</p>
 			<img src='{{url("")}}/gfx/multitouch.png' style='float:right'/>
 			<p>
 				<b>Slice:Drop</b> uses WebGL and HTML5 Canvas to render the data in
@@ -394,14 +394,14 @@
       <div id='sag_right_label' class='right_annotation'>P</div>
       <div id='sag_left_label' class='left_annotation'>A</div>
       <div id='sag_top_label' class='top_annotation'>S</div>
-      <div id='sag_bottom_label' class='bottom_annotation'>I</div>			
+      <div id='sag_bottom_label' class='bottom_annotation'>I</div>
 		</div>
 		<div id='sliceCor' class='twoDRenderer'>
 			<div id='green_slider'></div>
       <div id='cor_right_label' class='left_annotation'>R</div>
       <div id='cor_left_label' class='right_annotation'>L</div>
       <div id='cor_top_label' class='top_annotation'>S</div>
-      <div id='cor_bottom_label' class='bottom_annotation'>I</div>			
+      <div id='cor_bottom_label' class='bottom_annotation'>I</div>
 		</div>
 
 
@@ -414,13 +414,13 @@
       <img id='sharelogo' src='{{url("")}}/gfx/dropbox.png' title='Share with Dropbox'/>
       <div id='sharemsg' style='display:none'></div>
     </div>
-    
+
     <div id='download'>
       <img id='linklogo' src='{{url("")}}/gfx/link.png' title='Realtime Collaboration'/>
       <img id='linkselectedlogo' style='display:none' src='{{url("")}}/gfx/link_selected.png' title='Stop Realtime Collaboration'/>
       <img id='downloadlogo' src='{{url("")}}/gfx/download.png' title='Download data'/>
     </div>
-    
+
     <div id='log'></div>
 
 	</div>

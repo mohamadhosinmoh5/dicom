@@ -15,12 +15,14 @@
         "vite": "^4.4.9"
     },
     "dependencies": {
+        "@tanstack/vue-query": "^5.15.0",
         "@vitejs/plugin-vue": "^4.3.4",
         "chart.js": "^4.4.0",
         "json-server": "^0.17.4",
         "vue": "^3.2.36",
         "vue-chartjs": "^5.2.0",
         "vue-loader": "^17.2.2",
-        "vue-router": "^4.0.13"
+        "vue-router": "^4.0.13",
+        "vuex": "^4.0.2"
     }
 }
