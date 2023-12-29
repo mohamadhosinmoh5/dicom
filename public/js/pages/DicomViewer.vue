@@ -13,9 +13,9 @@
 
 <script>
 	export default {
+		props: ['src'],
 		data() {
 			return {
-				src: 'http://localhost/dicom/public/dicom',
 				dicomInput: undefined,
 			};
 		},
@@ -27,6 +27,7 @@
 		},
 		methods: {
 			addDicom() {
+				console.log(this.dicomInput);
 				this.dicomInput?.click();
 			},
 		},

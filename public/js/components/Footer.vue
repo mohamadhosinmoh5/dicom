@@ -1,13 +1,3 @@
-<script setup>
-	import { useQuery } from '@tanstack/vue-query';
-	import axios from 'axios';
-
-	const { data, isLoading, error } = useQuery({
-		queryKey: ['todos'],
-		queryFn:()=> axios.get('http://localhost/dicom/public/dicom-view').then(res => res.data.data.data)
-	});
-</script>
-
 <template>
 	<footer class="h-[20vh] grid grid-rows-[1fr_20px] gap-[2px] px-[2%] py-[1%]">
 		<div class="overflow-auto">
@@ -34,12 +24,15 @@
 				</thead>
 				<tbody>
 					<tr
-						v-for="row in data"
+						v-for="row in query.data"
 						:key="row.id"
 						class="border-b border-solid border-[#3E5E9F]"
 					>
 						<td :class="rowClass">
-							<a :href="'http://localhost/dicom/public/dicom?id=' + row.id">مشاهده</a>
+							<button @click="$emit('on-analyse', `http://localhost/dicom/public/dicom?id=${row.id}`)">
+								مشاهده
+							</button>
+							<!-- <a :href="'http://localhost/dicom/public/dicom?id=' + row.id">مشاهده</a> -->
 						</td>
 						<td :class="rowClass">not Sending</td>
 						<td :class="rowClass">
@@ -146,7 +139,8 @@
 
 <script>
 	import Table from './Table.vue';
-
+	import { useQuery } from '@tanstack/vue-query';
+	import axios from 'axios';
 
 	export default {
 		components: {
@@ -154,10 +148,24 @@
 		},
 		data() {
 			return {
+				query: {},
 				headerClass: 'text-center bg-[#3e5e9f33] whitespace-nowrap p-1 border-r border-solid border-[#3E5E9F]',
 				rowClass: 'text-center p-[2px] border-l border-solid border-[#3E5E9F] bg-[#F5F5F5] whitespace-nowrap',
 			};
-		}
+		},
+		emits: ['on-analyse'],
+		mounted() {
+			this.query = useQuery({
+				queryKey: ['footer'],
+				queryFn: () =>
+					axios
+						.get('http://localhost/dicom/public/dicom-view')
+						.then(res => res.data.data.data)
+						.catch(error => {
+							this.$router.push('/dicom/public/log-in');
+						}),
+			});
+		},
 	};
 </script>
 

@@ -8,10 +8,11 @@
 		/>
 		<DicomViewer
 			ref="dicom"
+			:src="dicomSrc"
 			v-show="$route.path === '/dicom/public/image-viewer'"
 		/>
 		<router-view></router-view>
-		<Footer v-if="$route.path !== '/dicom/public/log-in'" />
+		<Footer v-if="$route.path !== '/dicom/public/log-in'" @on-analyse="(link)=> dicomSrc = link" />
 	</div>
 </template>
 <script>
@@ -24,6 +25,11 @@
 			Sidebar,
 			DicomViewer,
 			Footer,
+		},
+		data(){
+			return {
+				dicomSrc: 'http://localhost/dicom/public/dicom',
+			}
 		},
 		methods: {
 			addDicom() {
