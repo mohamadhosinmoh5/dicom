@@ -138,6 +138,7 @@
 				<!-- <span>Drop files here or </span> -->
 				<input id='filebutton' type='file' multiple onchange='selectfiles(this.files,true)' style='display: none;' />
 				<a
+					id="shetopski"
 					class='btn btn-inverse btn-large' style='vertical-align: super;'
 					onclick='javascript:document.getElementById("filebutton").click();'
 				>
@@ -425,5 +426,8 @@
 
 	</div>
 	<script type='text/javascript' src='{{url("")}}/js/x.rendering.js'></script>
+	<script type='text/javascript'>
+		switchToViewer();
+	</script>
 </body>
 </html>

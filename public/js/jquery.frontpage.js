@@ -320,6 +320,7 @@ function switchToViewer() {
 
   jQuery('#body').addClass('viewerBody');
   jQuery('#frontpage').hide();
+  
   jQuery('#viewer').show();
 
 };

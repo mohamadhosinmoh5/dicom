@@ -451,28 +451,31 @@ async function read(files,send) {
 
 
 function startLoader() {
+  
+  const loaderdimmer = document.createElement('div');
+  loaderdimmer.className = 'dimmer-loader';
   const loader = document.createElement('div');
-  loader.style.position = 'relative';
-  loader.className = 'laoder';
-  loader.style.top = '0';
-  loader.style.left = '0';
-  loader.style.right = '0';
-  loader.style.bottom = '0';
+  // loader.style.position = 'absolute';
+  loader.className = 'loader';
+  // loader.style.top = '50%';
+  // loader.style.left = '50%';
+  // loader.style.right = '0';
+  // loader.style.bottom = '0';
   loader.style.display = 'flex';
   loader.style.alignItems = 'center';
   loader.style.justifyContent = 'center';
   loader.style.zIndex = '9999';
 
-  const loaderImage = document.createElement('img');
-  loaderImage.src = baseurl+'/loader.gif';
-  loaderImage.alt = 'Uploading Datas in Server...';
- 
-  loader.appendChild(loaderImage);
-  document.body.appendChild(loader);
+  // const loaderImage = document.createElement('img');
+  // loaderImage.src = baseurl+'/loader.gif';
+  // loaderImage.alt = 'Uploading Datas in Server...';
+  loaderdimmer.appendChild(loader)
+  // loader.appendChild(loaderImage);
+  document.body.appendChild(loaderdimmer);
  }
  
  function stopLoader() {
-  const loader = document.querySelector('div.laoder');
+   const loader = document.querySelector('div.dimmer-loader');
   if (loader) {
      document.body.removeChild(loader);
   }

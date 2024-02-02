@@ -174,8 +174,8 @@
 					.post('http://localhost/dicom/public/login', { ...params, _token: this.csrf })
 					.then(response => {
 						if (response.data.error) {
-							alert(response.data.error);
-							return;
+							// alert('you are already logged in');
+							this.$router.push('/dicom/public/image-viewer');
 						}
 						if (response.data.data) {
 							if (this.rememberMe && this.loginWay === 'email')

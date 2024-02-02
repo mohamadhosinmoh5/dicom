@@ -29,10 +29,12 @@
 						class="border-b border-solid border-[#3E5E9F]"
 					>
 						<td :class="rowClass">
-							<button @click="$emit('on-analyse', `http://localhost/dicom/public/dicom?id=${row.id}`)">
-								مشاهده
+							<button class="px-2.5 py-1.5 text-white bg-[#4348ef] rounded-lg" @click="()=> {
+								this.$router.push('/dicom/public/image-viewer');
+								$emit('on-analyse', `http://localhost/dicom/public/dicom?id=${row.id}`);
+							}">
+								observe
 							</button>
-							<!-- <a :href="'http://localhost/dicom/public/dicom?id=' + row.id">مشاهده</a> -->
 						</td>
 						<td :class="rowClass">not Sending</td>
 						<td :class="rowClass">
@@ -161,7 +163,7 @@
 					axios
 						.get('http://localhost/dicom/public/dicom-view')
 						.then(res => res.data.data.data)
-						.catch(error => {
+						.catch(() => {
 							this.$router.push('/dicom/public/log-in');
 						}),
 			});
