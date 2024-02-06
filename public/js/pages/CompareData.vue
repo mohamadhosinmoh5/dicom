@@ -25,13 +25,13 @@
 				/>
 				<Button
 					type="icon"
-					text="bar_chart"
-					@on-click="() => (currentChartArea = 'bar_chart')"
+					text="pie_chart"
+					@on-click="() => (currentChartArea = 'pie_chart')"
 				/>
 				<Button
 					type="icon"
-					text="pie_chart"
-					@on-click="() => (currentChartArea = 'pie_chart')"
+					text="bar_chart"
+					@on-click="() => (currentChartArea = 'bar_chart')"
 				/>
 				<Button
 					type="icon"
@@ -44,7 +44,7 @@
 					v-if="currentChartArea === 'area_chart'"
 					class="grid grid-cols-4 items-center h-full"
 				>
-					<div class="grid gap-2 h-full">
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
 						<div class="text-center text-gray-500 text-sm">XComponent</div>
 						<div class="w-[250px] h-full relative flex items-center justify-center">
 							<Line
@@ -59,7 +59,7 @@
 							/>
 						</div>
 					</div>
-					<div class="grid gap-2 h-full">
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
 						<div class="text-center text-gray-500 text-sm">YComponent</div>
 						<div class="w-[250px] h-full relative flex items-center justify-center">
 							<Line
@@ -74,7 +74,7 @@
 							/>
 						</div>
 					</div>
-					<div class="grid gap-2 h-full">
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
 						<div class="text-center text-gray-500 text-sm">ZComponent</div>
 						<div class="w-[250px] h-full relative flex items-center justify-center">
 							<Line
@@ -89,7 +89,7 @@
 							/>
 						</div>
 					</div>
-					<div class="grid gap-2 h-full">
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
 						<div class="text-center text-gray-500 text-sm">AbsoluteDistortion</div>
 						<div class="w-[250px] h-full relative flex items-center justify-center">
 							<Line
@@ -107,31 +107,67 @@
 				</div>
 				<div
 					v-if="currentChartArea === 'bar_chart'"
-					class="flex items-center justify-between h-full"
+					class="grid grid-cols-4 items-center h-full"
 				>
-					<div class="w-[220px] h-full relative flex items-center justify-center">
-						<Bar
-							:data="charts.bar.XComponent.data"
-							:options="charts.bar.XComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">XComponent</div>
+						<div class="w-[220px] h-full relative flex items-center justify-center">
+							<Bar
+								:data="charts.bar.XComponent.data"
+								:options="charts.bar.XComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
-					<div class="w-[220px] h-full relative flex items-center justify-center">
-						<Bar
-							:data="charts.bar.YComponent.data"
-							:options="charts.bar.YComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">YComponent</div>
+						<div class="w-[220px] h-full relative flex items-center justify-center">
+							<Bar
+								:data="charts.bar.YComponent.data"
+								:options="charts.bar.YComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
-					<div class="w-[220px] h-full relative flex items-center justify-center">
-						<Bar
-							:data="charts.bar.ZComponent.data"
-							:options="charts.bar.ZComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">ZComponent</div>
+						<div class="w-[220px] h-full relative flex items-center justify-center">
+							<Bar
+								:data="charts.bar.ZComponent.data"
+								:options="charts.bar.ZComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
-					<div class="w-[220px] h-full relative flex items-center justify-center">
-						<Bar
-							:data="charts.bar.AbsoluteComponent.data"
-							:options="charts.bar.AbsoluteComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">Absolute Distortion</div>
+						<div class="w-[220px] h-full relative flex items-center justify-center">
+							<Bar
+								:data="charts.bar.AbsoluteComponent.data"
+								:options="charts.bar.AbsoluteComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
 				</div>
 				<div
@@ -237,7 +273,7 @@
 		},
 		data() {
 			return {
-				currentChartArea: 'area_chart',
+				currentChartArea: 'bar_chart',
 				summaryStatistics: {
 					headers: [
 						{
@@ -382,6 +418,27 @@
 							options: {
 								responsive: true,
 								maintainAspectRatio: false,
+								plugins: {
+									legend: {
+										display: false,
+									},
+								},
+								scales: {
+									x: {
+										display: true,
+										title: {
+											display: true,
+											text: 'position along z-axis (mm)',
+										},
+									},
+									y: {
+										display: true,
+										title: {
+											display: true,
+											text: 'mean distortion (mm)',
+										},
+									},
+								},
 							},
 						},
 						YComponent: {
@@ -434,6 +491,27 @@
 							options: {
 								responsive: true,
 								maintainAspectRatio: false,
+								plugins: {
+									legend: {
+										display: false,
+									},
+								},
+								scales: {
+									x: {
+										display: true,
+										title: {
+											display: true,
+											text: 'position along z-axis (mm)',
+										},
+									},
+									y: {
+										display: true,
+										title: {
+											display: true,
+											text: 'mean distortion (mm)',
+										},
+									},
+								},
 							},
 						},
 						ZComponent: {
@@ -486,6 +564,27 @@
 							options: {
 								responsive: true,
 								maintainAspectRatio: false,
+								plugins: {
+									legend: {
+										display: false,
+									},
+								},
+								scales: {
+									x: {
+										display: true,
+										title: {
+											display: true,
+											text: 'position along z-axis (mm)',
+										},
+									},
+									y: {
+										display: true,
+										title: {
+											display: true,
+											text: 'mean distortion (mm)',
+										},
+									},
+								},
 							},
 						},
 						AbsoluteComponent: {
@@ -538,6 +637,27 @@
 							options: {
 								responsive: true,
 								maintainAspectRatio: false,
+								plugins: {
+									legend: {
+										display: false,
+									},
+								},
+								scales: {
+									x: {
+										display: true,
+										title: {
+											display: true,
+											text: 'position along z-axis (mm)',
+										},
+									},
+									y: {
+										display: true,
+										title: {
+											display: true,
+											text: 'mean distortion (mm)',
+										},
+									},
+								},
 							},
 						},
 					},
