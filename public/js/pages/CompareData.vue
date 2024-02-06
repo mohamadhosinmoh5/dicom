@@ -203,29 +203,65 @@
 					v-if="currentChartArea === 'bubble_chart'"
 					class="grid grid-cols-[1fr_1fr_1fr_1fr] items-center h-full"
 				>
-					<div class="w-[250px] h-full relative flex items-center justify-center">
-						<Bubble
-							:data="charts.bubble.XComponent.data"
-							:options="charts.bubble.XComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">XComponent</div>
+						<div class="w-[250px] h-full relative flex items-center justify-center">
+							<Bubble
+								:data="charts.bubble.XComponent.data"
+								:options="charts.bubble.XComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
-					<div class="w-[250px] h-full relative flex items-center justify-center">
-						<Bubble
-							:data="charts.bubble.XComponent.data"
-							:options="charts.bubble.XComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">YComponent</div>
+						<div class="w-[250px] h-full relative flex items-center justify-center">
+							<Bubble
+								:data="charts.bubble.XComponent.data"
+								:options="charts.bubble.XComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
-					<div class="w-[250px] h-full relative flex items-center justify-center">
-						<Bubble
-							:data="charts.bubble.XComponent.data"
-							:options="charts.bubble.XComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">ZComponent</div>
+						<div class="w-[250px] h-full relative flex items-center justify-center">
+							<Bubble
+								:data="charts.bubble.XComponent.data"
+								:options="charts.bubble.XComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
-					<div class="w-[250px] h-full relative flex items-center justify-center">
-						<Bubble
-							:data="charts.bubble.XComponent.data"
-							:options="charts.bubble.XComponent.options"
-						/>
+					<div class="grid gap-2 grid-rows-[max-content_1fr_max-content] h-full">
+						<div class="text-center text-gray-500 text-sm">Absolute Distortion</div>
+						<div class="w-[250px] h-full relative flex items-center justify-center">
+							<Bubble
+								:data="charts.bubble.XComponent.data"
+								:options="charts.bubble.XComponent.options"
+							/>
+						</div>
+						<div class="flex justify-end mr-[20%]">
+							<Button
+								type="icon"
+								text="save"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -671,527 +707,527 @@
 										data: [
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 											{
 												x: Math.round(Math.random() * 100),
-												y: Math.round(Math.random() * 100),
+												y: Math.random() * 2,
 												z: 2,
 											},
 										],
@@ -1201,6 +1237,27 @@
 							options: {
 								responsive: true,
 								maintainAspectRatio: false,
+								plugins: {
+									legend: {
+										display: false,
+									},
+								},
+								scales: {
+									x: {
+										display: true,
+										title: {
+											display: true,
+											text: 'distance from isocenter (mm)',
+										},
+									},
+									y: {
+										display: true,
+										title: {
+											display: true,
+											text: 'distortion (mm)',
+										},
+									},
+								},
 							},
 						},
 					},
