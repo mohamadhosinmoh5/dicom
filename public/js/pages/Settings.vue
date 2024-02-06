@@ -10,7 +10,6 @@
                     <div class="flex items-center gap-[10px]">
                         <span>numberof bins: </span>
                         <input type="number" value="50.00" class="w-[70px] border border-solid border-[#4E51FE] pl-2 rounded-md">
-                        
                     </div>
                     <div class="flex items-center gap-[10px]">
                         <span>numberof bins: </span>
